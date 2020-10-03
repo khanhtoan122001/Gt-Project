@@ -35,11 +35,6 @@ namespace GT
             label1.Text = "X: " + e.X.ToString() + "\nY: " + e.Y.ToString();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void PaintGraph()
         {
             pictureBox1.Refresh();

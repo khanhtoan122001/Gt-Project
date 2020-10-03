@@ -1,5 +1,3 @@
-using System;
-
 namespace Fcn
 {
     public class Function
