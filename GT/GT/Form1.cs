@@ -24,17 +24,11 @@ namespace GT
             pictureBox1.Refresh();
             frmMain_Resize(null, null);
             VeTruc();
-            //max_x = pictureBox1.Width;
-            //max_y = pictureBox1.Height;
-            //g = pictureBox1.CreateGraphics();
-            //Pen pen = new Pen(Color.Red, 1);
-            //g.DrawLine(pen, 0, max_y / 2, max_x, max_y / 2);
-            //g.DrawLine(pen, max_x / 2, 0, max_x / 2, max_y);
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            label1.Text = "X: " + e.X.ToString() + "\nY: " + e.Y.ToString();
+
         }
 
         private void VeTruc()
@@ -84,10 +78,6 @@ namespace GT
 
             x0 = (int)(max_x / 2);
             y0 = (int)(max_y / 2);
-
-        }
-        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
-        {
 
         }
     }
