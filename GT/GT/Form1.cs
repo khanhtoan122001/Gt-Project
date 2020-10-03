@@ -22,12 +22,14 @@ namespace GT
         private void button1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
-            max_x = pictureBox1.Width;
-            max_y = pictureBox1.Height;
-            g = pictureBox1.CreateGraphics();
-            Pen pen = new Pen(Color.Red, 1);
-            g.DrawLine(pen, 0, max_y / 2, max_x, max_y / 2);
-            g.DrawLine(pen, max_x / 2, 0, max_x / 2, max_y);
+            frmMain_Resize(null, null);
+            VeTruc();
+            //max_x = pictureBox1.Width;
+            //max_y = pictureBox1.Height;
+            //g = pictureBox1.CreateGraphics();
+            //Pen pen = new Pen(Color.Red, 1);
+            //g.DrawLine(pen, 0, max_y / 2, max_x, max_y / 2);
+            //g.DrawLine(pen, max_x / 2, 0, max_x / 2, max_y);
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -35,13 +37,44 @@ namespace GT
             label1.Text = "X: " + e.X.ToString() + "\nY: " + e.Y.ToString();
         }
 
-        private void PaintGraph()
+        private void VeTruc()
         {
-            pictureBox1.Refresh();
             g = pictureBox1.CreateGraphics();
             Pen pen = new Pen(Color.Black, 2);
             g.DrawLine(pen, 0, y0, max_x, y0);
-            g.DrawLine(pen, x0, 1, x0, max_y);
+            g.DrawLine(pen, x0, 0, x0, max_y);
+            Font f = new Font("Tahoma", 10);
+            Brush br = new SolidBrush(Color.Red);
+
+            g.DrawString("O", f, br, x0 - 15, y0);
+            g.DrawString("X", f, br, max_x - 20, y0 - 20);
+            g.DrawString("Y", f, br, x0 - 20, 1);
+            Pen pen_x = new Pen(Color.Gray, 1);
+
+            int i, k = 30;
+            f = new Font("Tahoma", 7);
+            for (i = x0 + k; i < max_x; i += k)
+            {
+                g.DrawLine(pen_x, i, y0 - 3, i, y0 + 2);
+                g.DrawString(((i - x0)/ k).ToString(), f, br, i - 7, y0 + 3);
+            }
+            for (i = x0 - k; i > 0; i -= k)
+            {
+                g.DrawLine(pen_x, i, y0 - 3, i, y0 + 2);
+                g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
+            }
+
+            for (i = y0 + k; i < max_y; i += k)
+            {
+                g.DrawLine(pen_x, x0 - 3, i, x0 + 2, i);
+                g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
+            }
+
+            for (i = y0 - k; i > 0; i -= k)
+            {
+                g.DrawLine(pen_x, x0 - 3, i, x0 + 2, i);
+                g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
+            }
         }
 
         private void frmMain_Resize(object sender, EventArgs e)

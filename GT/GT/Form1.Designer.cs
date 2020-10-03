@@ -48,7 +48,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(233, 36);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(754, 419);
+            this.panel1.Size = new System.Drawing.Size(754, 378);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -59,7 +59,7 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pictureBox1.Location = new System.Drawing.Point(3, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(748, 413);
+            this.pictureBox1.Size = new System.Drawing.Size(748, 372);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
@@ -69,9 +69,9 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.panel2.Location = new System.Drawing.Point(233, 461);
+            this.panel2.Location = new System.Drawing.Point(233, 417);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(754, 151);
+            this.panel2.Size = new System.Drawing.Size(754, 195);
             this.panel2.TabIndex = 1;
             // 
             // panel3
