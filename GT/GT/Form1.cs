@@ -19,6 +19,16 @@ namespace GT
             InitializeComponent();
         }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Refresh();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
@@ -26,20 +36,7 @@ namespace GT
             VeTruc();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            pictureBox1.Refresh();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-
-        }
+      
 
         private void VeTruc()
         {
