@@ -19,17 +19,15 @@ namespace GT
             InitializeComponent();
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ẽitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-       
 
         private void button1_Click(object sender, EventArgs e)
         {
