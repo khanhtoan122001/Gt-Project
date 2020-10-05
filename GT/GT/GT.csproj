@@ -90,5 +90,14 @@
   <ItemGroup>
     <None Include="Resources\bang-chi-dan-loi-thoat-hiem-mica.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\246-2463623_cafe-menu-logo-png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\246-2463623_cafe-menu-logo-png1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

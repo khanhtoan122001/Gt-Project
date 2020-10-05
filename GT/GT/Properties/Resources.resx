@@ -124,7 +124,16 @@
   <data name="Bo-suu-tap-dong-ho-tissot-moi-nhat-1024x914" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bo-suu-tap-dong-ho-tissot-moi-nhat-1024x914.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="download" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bang-chi-dan-loi-thoat-hiem-mica" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bang-chi-dan-loi-thoat-hiem-mica.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="246-2463623_cafe-menu-logo-png" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\246-2463623_cafe-menu-logo-png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="246-2463623_cafe-menu-logo-png1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\246-2463623_cafe-menu-logo-png1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

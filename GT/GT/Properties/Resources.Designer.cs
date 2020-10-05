@@ -63,6 +63,26 @@ namespace GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _246_2463623_cafe_menu_logo_png {
+            get {
+                object obj = ResourceManager.GetObject("246-2463623_cafe-menu-logo-png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _246_2463623_cafe_menu_logo_png1 {
+            get {
+                object obj = ResourceManager.GetObject("246-2463623_cafe-menu-logo-png1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bang_chi_dan_loi_thoat_hiem_mica {
             get {
                 object obj = ResourceManager.GetObject("bang-chi-dan-loi-thoat-hiem-mica", resourceCulture);
@@ -76,6 +96,16 @@ namespace GT.Properties {
         internal static System.Drawing.Bitmap Bo_suu_tap_dong_ho_tissot_moi_nhat_1024x914 {
             get {
                 object obj = ResourceManager.GetObject("Bo-suu-tap-dong-ho-tissot-moi-nhat-1024x914", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download {
+            get {
+                object obj = ResourceManager.GetObject("download", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

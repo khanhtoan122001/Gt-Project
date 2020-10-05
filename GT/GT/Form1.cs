@@ -29,6 +29,8 @@ namespace GT
             this.Close();
         }
 
+       
+
         private void button1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
