@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fcn;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace GT
 {
     public partial class Form1 : Form
     {
+        Function[] a = new Function[5];
         int max_x, max_y, x0, y0;
         Graphics g;
         public Form1()
@@ -46,7 +48,7 @@ namespace GT
             Pen pen_x = new Pen(Color.Gray, 1);
 
             int i, k = 30;
-            f = new Font("Tahoma", 7);
+            f = new Font("Tahoma", 8);
             for (i = x0 + k; i < max_x; i += k)
             {
                 g.DrawLine(pen_x, i, y0 - 3, i, y0 + 2);
@@ -78,6 +80,10 @@ namespace GT
 
             x0 = (int)(max_x / 2);
             y0 = (int)(max_y / 2);
+        }
+
+        private void VeDoThi()
+        {
 
         }
     }
