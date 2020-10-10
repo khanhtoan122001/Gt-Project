@@ -112,7 +112,6 @@
             this.button1.Text = "Vẽ hình";
             this.button1.UseCompatibleTextRendering = true;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1

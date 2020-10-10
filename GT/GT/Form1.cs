@@ -14,7 +14,8 @@ namespace GT
     public partial class Form1 : Form
     {
         Function[] a = new Function[5];
-        int max_x, max_y, x0, y0;
+        int max_x, max_y, x0, y0, k = 30;
+        float mx, my;
         Graphics g;
         public Form1()
         {
@@ -42,6 +43,11 @@ namespace GT
             pictureBox1.Refresh();
             frmMain_Resize(null, null);
             VeTruc();
+            a[0] = new Bac_n(5);
+            float[] x = new float[6];
+            x[0] = 1; x[1] = 0; x[2] = 0; x[3] = 0; x[4] = 0; x[5] = 0;
+            a[0].X = x;
+            VeDoThi();
         }
 
         private void Create(object sender, EventArgs e)
@@ -65,7 +71,7 @@ namespace GT
             g.DrawString("Y", f, br, x0 - 20, 1);
             Pen pen_x = new Pen(Color.Gray, 1);
 
-            int i, k = 30;
+            int i;
             f = new Font("Tahoma", 8);
             for (i = x0 + k; i < max_x; i += k)
             {
@@ -102,7 +108,26 @@ namespace GT
 
         private void VeDoThi()
         {
+            mx = Convert.ToSingle(max_x) / Convert.ToSingle(k);
+            my = Convert.ToSingle(max_y) / Convert.ToSingle(k);
 
+            for (int i = 0; a[i] != null; i++)
+            {
+                Point[] pGraph = new Point[100];
+                for(int p = 0; p < 100; p++)
+                {
+                    float x, y;
+                    x = p * (mx / 100) - mx / 2;
+                    y = a[i].f(x);
+                    int _x = Convert.ToInt32(x * k) + x0;
+                    int _y = -Convert.ToInt32(y * k) + y0;
+                    if (_x < 0) _x = -1; if (_x > max_x) _x = max_x + 1;
+                    if (_y < 0) _y = -1; if (_y > max_y) _y = max_y + 1;
+                    pGraph[p] = new Point(_x, _y);
+                }
+                Pen pen = new Pen(Color.Red, 2);
+                g.DrawCurve(pen, pGraph);
+            }
         }
     }
 }

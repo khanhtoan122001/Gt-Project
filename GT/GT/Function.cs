@@ -1,17 +1,11 @@
+using System.Security.Policy;
+
 namespace Fcn
 {
     public class Function
     {
-        protected float y_relust = 0;
         protected float[] x;
         public Function(){}
-        virtual public float relust
-        {
-            get
-            {
-                return y_relust;
-            }
-        }
         public float[] X
         {
             set
@@ -35,21 +29,33 @@ namespace Fcn
                 n = value;
             }
         }
+        public Bac_n(int i)
+        {
+            n = i;
+            x = new float[3];
+        }
         public override float f(float _x)
         {
+            float y_relust = 0;
             if (n > 0) n++;
             else n--;
             if(n > 0)
+            {
                 for(int i = 0; i < n; i++)
                 {
                     y_relust += x[i] * Pow(_x, n - i - 1);
                 }
+                n--;
+            }
             else
+            {
                 for (int i = 0; i < -n; i++)
                 {
                     y_relust += x[i] / Pow(_x, -n - i - 1);
                 }
-            return this.relust;
+                n++;
+            }
+            return y_relust;
         }
         float Pow(float x, int n)
         {
