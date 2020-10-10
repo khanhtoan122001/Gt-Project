@@ -43,9 +43,9 @@ namespace GT
             pictureBox1.Refresh();
             frmMain_Resize(null, null);
             VeTruc();
-            a[0] = new Bac_n(5);
-            float[] x = new float[6];
-            x[0] = 1; x[1] = 0; x[2] = 0; x[3] = 0; x[4] = 0; x[5] = 0;
+            a[0] = new Bac_n(-1);
+            float[] x = new float[2];
+            x[0] = 1; x[1] = 1;
             a[0].X = x;
             VeDoThi();
         }
@@ -64,11 +64,11 @@ namespace GT
             g.DrawLine(pen, 0, y0, max_x, y0);
             g.DrawLine(pen, x0, 0, x0, max_y);
             Font f = new Font("Tahoma", 10);
-            Brush br = new SolidBrush(Color.Red);
+            Brush br = new SolidBrush(Color.Black);
 
             g.DrawString("O", f, br, x0 - 15, y0);
-            g.DrawString("X", f, br, max_x - 20, y0 - 20);
-            g.DrawString("Y", f, br, x0 - 20, 1);
+            g.DrawString("x", f, br, max_x - 20, y0 - 20);
+            g.DrawString("y", f, br, x0 - 20, 1);
             Pen pen_x = new Pen(Color.Gray, 1);
 
             int i;
@@ -108,25 +108,45 @@ namespace GT
 
         private void VeDoThi()
         {
+            const int G = 100000;
+            const int E = 10000;
             mx = Convert.ToSingle(max_x) / Convert.ToSingle(k);
             my = Convert.ToSingle(max_y) / Convert.ToSingle(k);
 
             for (int i = 0; a[i] != null; i++)
             {
-                Point[] pGraph = new Point[100];
-                for(int p = 0; p < 100; p++)
+                int p = 0;
+                PointF[] pGraph = new PointF[G];
+                for(p = 0; p < G; p++)
                 {
                     float x, y;
-                    x = p * (mx / 100) - mx / 2;
+                    x = p * (mx / G) - mx / 2;
                     y = a[i].f(x);
-                    int _x = Convert.ToInt32(x * k) + x0;
-                    int _y = -Convert.ToInt32(y * k) + y0;
-                    if (_x < 0) _x = -1; if (_x > max_x) _x = max_x + 1;
-                    if (_y < 0) _y = -1; if (_y > max_y) _y = max_y + 1;
-                    pGraph[p] = new Point(_x, _y);
+                    float _x = (x * k) + x0;
+                    float _y = -(y * k) + y0;
+                    pGraph[p] = new PointF(_x, _y);
                 }
                 Pen pen = new Pen(Color.Red, 2);
-                g.DrawCurve(pen, pGraph);
+                p = 0;
+                while(p < G)
+                {
+                    if (pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
+                    {
+                        PointF[] d;
+                        int f = p, l = 0;
+                        while (p < G && pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
+                        {
+                            l++; p++;
+                        }
+                        d = new PointF[l];
+                        for (int index = f; index - f < l; index++)
+                        {
+                            d[index - f] = pGraph[index];
+                        }
+                        g.DrawCurve(pen, d);
+                    }
+                    p++;
+                }
             }
         }
     }

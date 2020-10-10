@@ -65,4 +65,8 @@ namespace Fcn
             return relust;
         }
     }
+    class Circle : Function
+    {
+
+    }
 }
