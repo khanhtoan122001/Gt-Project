@@ -13,10 +13,12 @@ namespace GT
 {
     public partial class Form1 : Form
     {
-        Function[] a = new Function[5];
-        int max_x, max_y, x0, y0, k = 30;
+        List<Function> a = new List<Function>();
+        int max_x, max_y, x0, y0, k = 60;
         float mx, my;
         Graphics g;
+        const int G = 100000;
+        const int E = 10000;
         public Form1()
         {
             InitializeComponent();
@@ -38,16 +40,32 @@ namespace GT
             Create(null, null);
         }
 
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            label1.Text = string.Format("X: {0}\nY: {1}", e.X, e.Y);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
             frmMain_Resize(null, null);
             VeTruc();
-            a[0] = new Bac_n(-1);
+            a.Clear();
+            a.Add(new Bac_n(-1));
             float[] x = new float[2];
             x[0] = 1; x[1] = 1;
             a[0].X = x;
+            a.Add(new Circle());
+            float[] y = new float[2];
+            y[0] = 1; y[1] = 2;
+            a[1].X = y;
             VeDoThi();
+            //Pen pen = new Pen(Color.Red, 2);
+            //g.DrawEllipse(pen, 200f, 200f, 100f, 100f);
+            //a.Clear();
+            //a.Add(new Circle());
+            //a.Add(new Bac_n(2));
+            //label2.Text = string.Format("{0}\n{1}", a[0].GetType(), a[1].GetType());
         }
 
         private void Create(object sender, EventArgs e)
@@ -108,45 +126,60 @@ namespace GT
 
         private void VeDoThi()
         {
-            const int G = 100000;
-            const int E = 10000;
+            
             mx = Convert.ToSingle(max_x) / Convert.ToSingle(k);
             my = Convert.ToSingle(max_y) / Convert.ToSingle(k);
 
-            for (int i = 0; a[i] != null; i++)
+            for (int i = 0; i < a.Count; i++)
             {
-                int p = 0;
-                PointF[] pGraph = new PointF[G];
-                for(p = 0; p < G; p++)
+                PointF[] pGraph = SetGraph(a[i], 1);
+                PaintGraph(pGraph);
+                if (a[i].GetType().ToString() == "Fcn.Circle")
                 {
-                    float x, y;
-                    x = p * (mx / G) - mx / 2;
-                    y = a[i].f(x);
-                    float _x = (x * k) + x0;
-                    float _y = -(y * k) + y0;
-                    pGraph[p] = new PointF(_x, _y);
+                    pGraph = SetGraph(a[i], -1);
+                    PaintGraph(pGraph);
                 }
-                Pen pen = new Pen(Color.Red, 2);
-                p = 0;
-                while(p < G)
+            }
+        }
+
+        PointF[] SetGraph(Function a, int C)
+        {
+            int p = 0;
+            PointF[] pGraph = new PointF[G];
+            for (p = 0; p < G; p++)
+            {
+                float x, y;
+                x = p * (mx / G) - mx / 2;
+                y = a.f(x) * C;
+                float _x = (x * k) + x0;
+                float _y = -(y * k) + y0;
+                pGraph[p] = new PointF(_x, _y);
+            }
+            return pGraph;
+        }
+
+        void PaintGraph(PointF[] pGraph)
+        {
+            Pen pen = new Pen(Color.Red, 2);
+            int p = 0;
+            while (p < G)
+            {
+                if (pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
                 {
-                    if (pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
+                    PointF[] d;
+                    int f = p, l = 0;
+                    while (p < G && pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
                     {
-                        PointF[] d;
-                        int f = p, l = 0;
-                        while (p < G && pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
-                        {
-                            l++; p++;
-                        }
-                        d = new PointF[l];
-                        for (int index = f; index - f < l; index++)
-                        {
-                            d[index - f] = pGraph[index];
-                        }
-                        g.DrawCurve(pen, d);
+                        l++; p++;
                     }
-                    p++;
+                    d = new PointF[l];
+                    for (int index = f; index - f < l; index++)
+                    {
+                        d[index - f] = pGraph[index];
+                    }
+                    g.DrawCurve(pen, d);
                 }
+                p++;
             }
         }
     }

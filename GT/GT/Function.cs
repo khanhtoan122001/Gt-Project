@@ -1,3 +1,4 @@
+using System;
 using System.Security.Policy;
 
 namespace Fcn
@@ -68,5 +69,9 @@ namespace Fcn
     class Circle : Function
     {
 
+        public override float f(float _x)
+        {
+            return Convert.ToSingle(Math.Sqrt(x[1] - _x * _x * x[0]));
+        }
     }
 }
