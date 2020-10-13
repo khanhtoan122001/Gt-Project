@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,17 +20,69 @@ namespace GT
             InitializeComponent();
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        
+
+        
+
+        private void phươngTrìnhElipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pictureBox1.Refresh();
+            formElip f = new formElip();
+            f.ShowDialog();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            formTron f = new formTron();
+            f.ShowDialog();
         }
 
-       
+        private void phươngTrìnhBậc3ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formTru3 f = new formTru3();
+            f.ShowDialog();        }
+
+        private void phươngTrìnhBậc2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formTru2 f = new formTru2();
+            f.ShowDialog();
+        }
+
+        private void phươngTrìnhBậcTrừ1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formTru1 f = new formTru1();
+            f.ShowDialog();
+        }
+
+        private void phươngTrìnhBậc1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formBac1 f = new formBac1();
+            f.ShowDialog();
+        }
+
+        private void phươngTrìnhBậc2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            formBac2 f = new formBac2();
+            f.ShowDialog();
+        }
+
+        private void phươngTrìnhBậc3ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            formBac3 f = new formBac3();
+            f.ShowDialog();
+        }
+
+        private void phươngTrìnhBậc4ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formBac4 f = new formBac4();
+            f.ShowDialog();
+
+        }
+
+        private void phươngTrìnhBậc5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            formBac5 f = new formBac5();
+            f.ShowDialog();
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
