@@ -213,5 +213,11 @@
   <ItemGroup>
     <None Include="Resources\Screenshot %2849%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot %2854%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot %2855%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
