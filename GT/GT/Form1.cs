@@ -84,6 +84,11 @@ namespace GT
             f.ShowDialog();
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
