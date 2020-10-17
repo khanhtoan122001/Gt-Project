@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -45,25 +43,6 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(103, 245);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "label2";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(155, 365);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
             // 
             // button1
             // 
@@ -100,8 +79,6 @@
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.label2);
             // 
             // splitContainer1.Panel2
             // 
@@ -151,7 +128,6 @@
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -165,8 +141,6 @@
 
         #endregion
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;

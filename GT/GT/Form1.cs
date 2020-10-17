@@ -16,14 +16,16 @@ namespace GT
         List<Function> a = new List<Function>();
         int max_x, max_y, x0, y0, k = 60;
         Point u = new Point(0, 0);
-        float mx;
+        Point LastMouse = new Point(0, 0);
         Graphics g;
-        const int G = 100000;
+        bool S = false;
+        int G = 100000;
         const int E = 10000;
         public Form1()
         {
             InitializeComponent();
-            
+
+            this.pictureBox1.MouseMove += _MouseMove;
 
 
             a.Clear();
@@ -42,17 +44,34 @@ namespace GT
                 if (e.Delta > 0)
                     k = k + 15;
                 else
-                    k = (k - 15) < 15 ? 15 : k - 15;
+                    k = (k - 15) < 30 ? 30 : k - 15;
                 button1_Click(null, null);
             };
 
-            this.pictureBox1.MouseClick += (s, e) =>
+            this.pictureBox1.MouseDown += (s, e) =>
             {
-                u.X = e.X - x0;
-                u.Y = e.Y - y0;
-                button1_Click(null, null);
+                LastMouse = e.Location;
+                pictureBox1.Cursor = Cursors.NoMove2D;
+                S = true;
             };
 
+            this.pictureBox1.MouseUp += (s, e) =>
+            {
+                pictureBox1.Cursor = Cursors.Default;
+                S = false;
+            };
+
+        }
+
+        void _MouseMove(object sender, MouseEventArgs e)
+        {
+            if (S)
+            {
+                u.X = e.X - LastMouse.X;
+                u.Y = e.Y - LastMouse.Y;
+                LastMouse = e.Location;
+                button1_Click(null, null);
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,11 +147,6 @@ namespace GT
             }
         }
 
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            
-        }
-
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             Form1_Load(null, null);
@@ -146,6 +160,7 @@ namespace GT
 
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
         {
+            G = this.pictureBox1.Width * 5;
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             Create(null, null);
@@ -182,13 +197,19 @@ namespace GT
                     Pen pen = new Pen(Color.Red, 2);
                     int k = 0;
 
-                    while (pGraph_1[k].Y.ToString() == float.NaN.ToString() && k < pGraph_1.Length) k++;
-                    g.DrawCurve(pen, new PointF[2]{ pGraph[k], pGraph_1[k]});
+                    while (k < pGraph_1.Length)
+                        if (pGraph_1[k].Y.ToString() == float.NaN.ToString()) k++;
+                        else break;
+                    if(k < pGraph.Length)
+                        g.DrawCurve(pen, new PointF[2]{ pGraph[k], pGraph_1[k]});
                     
                     k = pGraph.Length - 1;
-                    
-                    while (pGraph_1[k].Y.ToString() == float.NaN.ToString() && k > 0) k--;
-                    g.DrawCurve(pen, new PointF[2]{ pGraph[k], pGraph_1[k]});
+
+                    while (k > 0)
+                        if (pGraph_1[k].Y.ToString() == float.NaN.ToString()) k--;
+                        else break;
+                    if(k > 0)
+                        g.DrawCurve(pen, new PointF[2]{ pGraph[k], pGraph_1[k]});
                 
                 }
             }
