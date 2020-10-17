@@ -32,18 +32,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-           
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.phươngTrìnhĐườngTrònToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.phươngTrìnhBậcTrừ1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.phươngTrìnhBậc1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.phươngTrìnhBậc2ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.phươngTrìnhBậc3ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.phươngTrìnhBậc4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.phươngTrìnhBậc5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.combo = new System.Windows.Forms.ToolStripComboBox();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(748, 372);
             this.pictureBox1.TabIndex = 0;
@@ -85,22 +79,36 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.panel2.Location = new System.Drawing.Point(233, 417);
+            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel2.Location = new System.Drawing.Point(233, 414);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(754, 195);
+            this.panel2.Size = new System.Drawing.Size(754, 209);
             this.panel2.TabIndex = 1;
+            this.panel2.TabStop = true;
             // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Location = new System.Drawing.Point(12, 36);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(218, 576);
             this.panel3.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 233);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 60);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -108,7 +116,7 @@
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(42, 395);
+            this.button1.Location = new System.Drawing.Point(3, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 47);
             this.button1.TabIndex = 1;
@@ -145,66 +153,31 @@
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.phươngTrìnhĐườngTrònToolStripMenuItem,
-            this.phươngTrìnhBậcTrừ1ToolStripMenuItem,
-            this.phươngTrìnhBậc1ToolStripMenuItem,
-            this.phươngTrìnhBậc2ToolStripMenuItem1,
-            this.phươngTrìnhBậc3ToolStripMenuItem1,
-            this.phươngTrìnhBậc4ToolStripMenuItem,
-            this.phươngTrìnhBậc5ToolStripMenuItem});
+            this.combo});
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
             this.newToolStripMenuItem1.Size = new System.Drawing.Size(224, 30);
             this.newToolStripMenuItem1.Text = "new";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
-            // phươngTrìnhĐườngTrònToolStripMenuItem
+            // combo
             // 
-            this.phươngTrìnhĐườngTrònToolStripMenuItem.Name = "phươngTrìnhĐườngTrònToolStripMenuItem";
-            this.phươngTrìnhĐườngTrònToolStripMenuItem.Size = new System.Drawing.Size(309, 30);
-            this.phươngTrìnhĐườngTrònToolStripMenuItem.Text = "phương trình đường tròn";
-            this.phươngTrìnhĐườngTrònToolStripMenuItem.Click += new System.EventHandler(this.phươngTrìnhĐườngTrònToolStripMenuItem_Click);
-            // 
-            // phươngTrìnhBậcTrừ1ToolStripMenuItem
-            // 
-            this.phươngTrìnhBậcTrừ1ToolStripMenuItem.Name = "phươngTrìnhBậcTrừ1ToolStripMenuItem";
-            this.phươngTrìnhBậcTrừ1ToolStripMenuItem.Size = new System.Drawing.Size(309, 30);
-            this.phươngTrìnhBậcTrừ1ToolStripMenuItem.Text = "phương trình bậc- 1";
-            this.phươngTrìnhBậcTrừ1ToolStripMenuItem.Click += new System.EventHandler(this.phươngTrìnhBậcTrừ1ToolStripMenuItem_Click);
-            // 
-            // phươngTrìnhBậc1ToolStripMenuItem
-            // 
-            this.phươngTrìnhBậc1ToolStripMenuItem.Name = "phươngTrìnhBậc1ToolStripMenuItem";
-            this.phươngTrìnhBậc1ToolStripMenuItem.Size = new System.Drawing.Size(309, 30);
-            this.phươngTrìnhBậc1ToolStripMenuItem.Text = "phương trình bậc 1";
-            this.phươngTrìnhBậc1ToolStripMenuItem.Click += new System.EventHandler(this.phươngTrìnhBậc1ToolStripMenuItem_Click);
-            // 
-            // phươngTrìnhBậc2ToolStripMenuItem1
-            // 
-            this.phươngTrìnhBậc2ToolStripMenuItem1.Name = "phươngTrìnhBậc2ToolStripMenuItem1";
-            this.phươngTrìnhBậc2ToolStripMenuItem1.Size = new System.Drawing.Size(309, 30);
-            this.phươngTrìnhBậc2ToolStripMenuItem1.Text = "phương trình bậc 2";
-            this.phươngTrìnhBậc2ToolStripMenuItem1.Click += new System.EventHandler(this.phươngTrìnhBậc2ToolStripMenuItem1_Click);
-            // 
-            // phươngTrìnhBậc3ToolStripMenuItem1
-            // 
-            this.phươngTrìnhBậc3ToolStripMenuItem1.Name = "phươngTrìnhBậc3ToolStripMenuItem1";
-            this.phươngTrìnhBậc3ToolStripMenuItem1.Size = new System.Drawing.Size(309, 30);
-            this.phươngTrìnhBậc3ToolStripMenuItem1.Text = "phương trình bậc 3";
-            this.phươngTrìnhBậc3ToolStripMenuItem1.Click += new System.EventHandler(this.phươngTrìnhBậc3ToolStripMenuItem1_Click);
-            // 
-            // phươngTrìnhBậc4ToolStripMenuItem
-            // 
-            this.phươngTrìnhBậc4ToolStripMenuItem.Name = "phươngTrìnhBậc4ToolStripMenuItem";
-            this.phươngTrìnhBậc4ToolStripMenuItem.Size = new System.Drawing.Size(309, 30);
-            this.phươngTrìnhBậc4ToolStripMenuItem.Text = "phương trình bậc 4";
-            this.phươngTrìnhBậc4ToolStripMenuItem.Click += new System.EventHandler(this.phươngTrìnhBậc4ToolStripMenuItem_Click);
-            // 
-            // phươngTrìnhBậc5ToolStripMenuItem
-            // 
-            this.phươngTrìnhBậc5ToolStripMenuItem.Name = "phươngTrìnhBậc5ToolStripMenuItem";
-            this.phươngTrìnhBậc5ToolStripMenuItem.Size = new System.Drawing.Size(309, 30);
-            this.phươngTrìnhBậc5ToolStripMenuItem.Text = "phương trình bậc 5";
-            this.phươngTrìnhBậc5ToolStripMenuItem.Click += new System.EventHandler(this.phươngTrìnhBậc5ToolStripMenuItem_Click);
+            this.combo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.combo.AutoToolTip = true;
+            this.combo.DropDownHeight = 110;
+            this.combo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo.DropDownWidth = 200;
+            this.combo.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.combo.IntegralHeight = false;
+            this.combo.Items.AddRange(new object[] {
+            "phương trình đường tròn",
+            "phương trình bậc- 1",
+            "phương trình bậc 1",
+            "phương trình bậc 2",
+            "phương trình bậc 3",
+            "phương trình bậc 4",
+            "phương trình bậc 5"});
+            this.combo.Name = "combo";
+            this.combo.Size = new System.Drawing.Size(121, 33);
             // 
             // saveToolStripMenuItem
             // 
@@ -297,13 +270,8 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem phươngTrìnhĐườngTrònToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậcTrừ1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậc1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậc2ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậc3ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậc4ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậc5ToolStripMenuItem;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.ToolStripComboBox combo;
     }
 }
 
