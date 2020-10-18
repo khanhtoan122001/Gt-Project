@@ -31,9 +31,15 @@ namespace GT
 
             this.pictureBox1.MouseWheel += (s, e) => {
                 if (e.Delta > 0)
-                    k = k + 15;
+                {
+                    k = (int)(k * 1.10);
+                    u = new Point();
+                }
                 else
-                    k = (k - 15) < 30 ? 30 : k - 15;
+                {
+                    k = (k / 1.10) < 30 ? 30 : (int)(k / 1.10);
+
+                }
                 button1_Click(null, null);
             };
 
