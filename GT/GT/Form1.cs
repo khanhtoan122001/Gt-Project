@@ -105,6 +105,19 @@ namespace GT
             TextBox t = new TextBox();
             t.Size = new Size(60, 30);
             t.BackColor = Color.White;
+            t.KeyDown += (s, e) =>
+            {
+                if (e.KeyValue == 13)
+                {
+                    SendKeys.Send("{TAB}");
+                }
+            };
+            t.TextChanged += (s, e) =>
+            {
+                float o;
+                if (!float.TryParse(t.Text, out o))
+                    SendKeys.Send("{BACKSPACE}");
+            };
             return t;
         }
         void themLabo(int n,PictureBox pt)
@@ -136,19 +149,30 @@ namespace GT
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
             f.Controls.Add(ve);
-            f.ShowDialog();
-            float[] x = new float[n + 1];
-            for (int i = 0; i < n; i++)
+            ve.Click += (s, e) =>
             {
-                x[i] = Convert.ToSingle(txt[i].Text);
-            }
-            bac_N.X = x;
-            a.Add(bac_N);
+                float[] x = new float[n + 1];
+                for (int i = 0; i < n; i++)
+                {
+                    if (txt[i].Text == string.Empty)
+                    {
+                        MessageBox.Show("Nhập đầy đủ giá trị", "Lỗi");
+                        return;
+                    }
+                    x[i] = Convert.ToSingle(txt[i].Text);
+                }
+                bac_N.X = x;
+                a.Add(bac_N);
+                f.Close();
+            };
+            f.ShowDialog();
+            button1_Click(null, null);
         }
         void themLaboDuongTron(int n,PictureBox pt)
         {
             Button ve = new Button();
-            ve.Text = "draw";
+            ve.Text = "Draw";
+            
             Label name = new Label();
             name.Text = "phương trình có dạng";
             name.Size = new Size(180, 30);
@@ -174,17 +198,27 @@ namespace GT
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
             f.Controls.Add(ve);
-            f.ShowDialog();
-            Circle circle = new Circle();
-            float[] x = new float[n];
-            for(int i = 0; i < n; i++)
+            ve.Click += (s, e) =>
             {
-                x[i] = Convert.ToSingle(txt[i].Text);   
-            }
-            circle.X = x;
-            a.Add(circle);
+                Circle circle = new Circle();
+                float[] x = new float[n];
+                for (int i = 0; i < n; i++)
+                {
+                    if (txt[i].Text == string.Empty)
+                    {
+                        MessageBox.Show("Nhập đầy đủ giá trị", "Lỗi");
+                        return;
+                    }
+                    x[i] = Convert.ToSingle(txt[i].Text);
+                }
+                circle.X = x;
+                a.Add(circle);
+                f.Close();
+            };
+            f.ShowDialog();
+            button1_Click(null, null);
         }
-        
+
         private void button2_Click(object sender, EventArgs e)
         {
 

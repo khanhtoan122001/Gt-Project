@@ -40,12 +40,12 @@
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Add_Click = new System.Windows.Forms.Button();
             this.Draw_Click = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -87,26 +87,26 @@
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(224, 30);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(170, 30);
             this.newToolStripMenuItem1.Text = "new";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(170, 30);
             this.saveToolStripMenuItem.Text = "save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(170, 30);
             this.saveAsToolStripMenuItem.Text = "save as...";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(170, 30);
             this.exitToolStripMenuItem.Text = "exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -124,20 +124,20 @@
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(150, 30);
             this.addToolStripMenuItem.Text = "add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.button2_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(150, 30);
             this.deleteToolStripMenuItem.Text = "delete";
             // 
             // backToolStripMenuItem
             // 
             this.backToolStripMenuItem.Name = "backToolStripMenuItem";
-            this.backToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(150, 30);
             this.backToolStripMenuItem.Text = "back";
             // 
             // panel1
@@ -169,6 +169,23 @@
             this.splitContainer1.SplitterDistance = 255;
             this.splitContainer1.TabIndex = 9;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "phương trình đường tròn",
+            "phương trình bậc- 1",
+            "phương trình bậc 1",
+            "phương trình bậc 2",
+            "phương trình bậc 3",
+            "phương trình bậc 4",
+            "phương trình bậc 5"});
+            this.comboBox1.Location = new System.Drawing.Point(21, 478);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(195, 31);
+            this.comboBox1.TabIndex = 3;
+            // 
             // Add_Click
             // 
             this.Add_Click.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -187,13 +204,14 @@
             this.Draw_Click.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.Draw_Click.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.Draw_Click.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Draw_Click.Location = new System.Drawing.Point(21, 57);
+            this.Draw_Click.Location = new System.Drawing.Point(21, 515);
             this.Draw_Click.Name = "Draw_Click";
             this.Draw_Click.Size = new System.Drawing.Size(195, 47);
             this.Draw_Click.TabIndex = 1;
             this.Draw_Click.Text = "Vẽ hình";
             this.Draw_Click.UseCompatibleTextRendering = true;
             this.Draw_Click.UseVisualStyleBackColor = true;
+            this.Draw_Click.Visible = false;
             this.Draw_Click.Click += new System.EventHandler(this.button1_Click);
             // 
             // splitContainer2
@@ -232,23 +250,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(746, 187);
             this.panel2.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "phương trình đường tròn",
-            "phương trình bậc- 1",
-            "phương trình bậc 1",
-            "phương trình bậc 2",
-            "phương trình bậc 3",
-            "phương trình bậc 4",
-            "phương trình bậc 5"});
-            this.comboBox1.Location = new System.Drawing.Point(21, 478);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(195, 31);
-            this.comboBox1.TabIndex = 3;
             // 
             // Form1
             // 
