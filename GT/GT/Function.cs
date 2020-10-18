@@ -1,9 +1,10 @@
 using System;
+using System.Data.SqlTypes;
 using System.Security.Policy;
 
 namespace Fcn
 {
-    public class Function
+    public abstract class Function
     {
         protected float[] x;
         public Function(){}
@@ -68,10 +69,27 @@ namespace Fcn
     }
     class Circle : Function
     {
-
-        public override float f(float _x)
+        public float A
         {
-            return Convert.ToSingle(Math.Sqrt(x[1] - _x * _x * x[0]));
+            get
+            {
+                return x[0];
+            }
         }
+        public float B
+        {
+            get
+            {
+                return x[1];
+            }
+        }
+        public float R
+        {
+            get 
+            {
+                return x[2];
+            }
+        }
+        
     }
-}
+}   //          (x - a)^2 + (y - b)^2 = R   =>  y = b + sqrt(R - (x - a)^2)
