@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,70 +26,6 @@ namespace GT
             InitializeComponent();
         }
 
-        
-
-        
-
-        private void phươngTrìnhElipToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formElip f = new formElip();
-            f.ShowDialog();
-        }
-
-        private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formTron f = new formTron();
-            f.ShowDialog();
-        }
-
-        private void phươngTrìnhBậc3ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formTru3 f = new formTru3();
-            f.ShowDialog();        }
-
-        private void phươngTrìnhBậc2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formTru2 f = new formTru2();
-            f.ShowDialog();
-        }
-
-        private void phươngTrìnhBậcTrừ1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formTru1 f = new formTru1();
-            f.ShowDialog();
-        }
-
-        private void phươngTrìnhBậc1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formBac1 f = new formBac1();
-            f.ShowDialog();
-        }
-
-        private void phươngTrìnhBậc2ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            formBac2 f = new formBac2();
-            f.ShowDialog();
-        }
-
-        private void phươngTrìnhBậc3ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            formBac3 f = new formBac3();
-            f.ShowDialog();
-        }
-
-        private void phươngTrìnhBậc4ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formBac4 f = new formBac4();
-            f.ShowDialog();
-
-        }
-
-        private void phươngTrìnhBậc5ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            formBac5 f = new formBac5();
-            f.ShowDialog();
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -105,10 +42,10 @@ namespace GT
             Create(null, null);
         }
 
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            label1.Text = string.Format("X: {0}\nY: {1}", e.X, e.Y);
-        }
+        //private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    label1.Text = string.Format("X: {0}\nY: {1}", e.X, e.Y);
+        //}
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -138,6 +75,165 @@ namespace GT
             pictureBox1.Refresh();
             frmMain_Resize(null, null);
             VeTruc();
+        }
+
+        Label[] lb;
+        TextBox[] txt;
+        Label labo()
+        {
+            Label n = new Label();
+
+            n.Size = new Size(60, 30);
+
+            return n;
+        }
+        TextBox txtBox()
+        {
+            TextBox t = new TextBox();
+            t.Size = new Size(60, 30);
+            t.BackColor = Color.White;
+            return t;
+        }
+        void themLabo(int n,PictureBox pt)
+        {
+            Label name = new Label();
+            name.Text = "phương trình có dạng";
+            name.Size = new Size(170, 30);
+            name.Location = new Point(0, 0);
+            lb = new Label[n];
+            txt = new TextBox[n];
+            for (int i = 0; i < n; i++)
+            {
+                lb[i] = labo();
+                lb[i].Text = "nhập " + Convert.ToChar('a' + i);
+                lb[i].Location = new Point(0, i * 30+30);
+                txt[i] = txtBox();
+                txt[i].Location = new Point(100, i*30+30);
+            }
+            formInput f = new formInput();
+            f.Controls.Add(name);
+            f.Controls.Add(pt);
+            f.Controls.AddRange(lb);
+            f.Controls.AddRange(txt);
+            f.ShowDialog();
+        }
+        void themLaboDuongTron(int n,PictureBox pt)
+        {
+            Label name = new Label();
+            name.Text = "phương trình có dạng";
+            name.Size = new Size(180, 30);
+            name.Location = new Point(0,0);
+            lb = new Label[n];
+            txt = new TextBox[n];
+            for (int i = 0; i < 3; i++)
+            {
+                lb[i] = labo();
+
+                lb[i].Location = new Point(0, i * 30+30);
+                txt[i] = txtBox();
+                txt[i].Location = new Point(100,i*30+30);
+            }
+            lb[0].Text = "nhập a";
+            lb[1].Text = "nhập b";
+            lb[2].Text = "nhập R";
+            formInput f = new formInput();
+            f.Controls.Add(pt);
+            f.Controls.Add(name);
+            f.Controls.AddRange(lb);
+            f.Controls.AddRange(txt);
+            f.ShowDialog();
+        }
+        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string _input = combo.SelectedItem.ToString();
+            
+            
+            switch (_input)
+            {
+                case "phương trình đường tròn":
+                    PictureBox pt = new PictureBox();
+                    pt.Size = new Size(200,50 );
+                    pt.Location = new Point(190, 0);
+                    pt.BackColor = Color.White;
+                   Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                    pt.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt.Image = ig;
+                    
+                    int a1 = 3;
+                    themLaboDuongTron(a1,pt);
+                    break;
+                case "phương trình bậc- 1":
+                    PictureBox pt1 = new PictureBox();
+                    pt1.Size = new Size(200, 50);
+                    pt1.Location = new Point(190, 0);
+                    pt1.BackColor = Color.White;
+                    Image ig1 = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
+                    pt1.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt1.Image = ig1;
+                    int a2 = 2;
+                    themLabo(a2,pt1);
+                    break;
+                case "phương trình bậc 1":
+                    PictureBox pt2 = new PictureBox();
+                    pt2.Size = new Size(200, 50);
+                    pt2.Location = new Point(190, 0);
+                    pt2.BackColor = Color.White;
+                    Image ig2 = Image.FromFile(@"..\\..\\Resources\\bac1.png");
+                    pt2.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt2.Image = ig2;
+                    int a3 = 2;
+                    themLabo(a3,pt2);
+                    break;
+                case "phương trình bậc 2":
+                    PictureBox pt3 = new PictureBox();
+                    pt3.Size = new Size(200, 50);
+                    pt3.Location = new Point(190, 0);
+                    pt3.BackColor = Color.White;
+                    Image ig3 = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
+                    pt3.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt3.Image = ig3;
+                    int a4 = 3;
+                    themLabo(a4,pt3);
+                    break;
+                case "phương trình bậc 3":
+                    PictureBox pt4 = new PictureBox();
+                    pt4.Size = new Size(250, 50);
+                    pt4.Location = new Point(190, 0);
+                    pt4.BackColor = Color.White;
+                    Image ig4 = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
+                    pt4.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt4.Image = ig4;
+                    int a5 = 4;
+                    themLabo(a5,pt4);
+                    break;
+                case "phương trình bậc 4":
+                    PictureBox pt5 = new PictureBox();
+                    pt5.Size = new Size(200, 50);
+                    pt5.Location = new Point(190, 0);
+                    pt5.BackColor = Color.White;
+                    Image ig5 = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
+                    pt5.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt5.Image = ig5;
+                    int f = 5;
+                    themLabo(f,pt5);
+                    break;
+                case "phương trình bậc 5":
+                    PictureBox pt6 = new PictureBox();
+                    pt6.Size = new Size(250, 50);
+                    pt6.Location = new Point(190, 0);
+                    pt6.BackColor = Color.White;
+                    Image ig6 = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
+                    pt6.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt6.Image = ig6;
+                    int a7 = 6;
+                    themLabo(a7,pt6);
+                    break;
+
+                default:
+
+                    break;
+            }
         }
 
         private void VeTruc()
