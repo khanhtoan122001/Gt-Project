@@ -362,35 +362,21 @@ namespace GT
 
             for (int i = 0; i < a.Count; i++)
             {
-                PointF[] pGraph = SetGraph(a[i], 1);
-                PaintGraph(pGraph);
-                if (a[i].GetType().ToString() == "Fcn.Circle")
+                PointF[] pGraph;
+                if (a[i].GetType().ToString() != "Fcn.Circle")
                 {
-                    PointF[] pGraph_1 = SetGraph(a[i], -1);
-                    PaintGraph(pGraph_1);
-                    
-                    Pen pen = new Pen(Color.Red, 2);
-                    int k = 0;
-
-                    while (k < pGraph_1.Length)
-                        if (pGraph_1[k].Y.ToString() == float.NaN.ToString()) k++;
-                        else break;
-                    if(k < pGraph.Length)
-                        g.DrawCurve(pen, new PointF[2]{ pGraph[k], pGraph_1[k]});
-                    
-                    k = pGraph.Length - 1;
-
-                    while (k > 0)
-                        if (pGraph_1[k].Y.ToString() == float.NaN.ToString()) k--;
-                        else break;
-                    if(k > 0)
-                        g.DrawCurve(pen, new PointF[2]{ pGraph[k], pGraph_1[k]});
-                
+                    pGraph = SetGraph(a[i]);
+                    PaintGraph(pGraph);
+                }
+                else
+                {
+                    Circle p = (Circle)a[i];
+                    g.DrawEllipse(new Pen(Color.Red, 2), (p.A - p.R) * k + x0, (- p.B - p.R) * k + y0, (p.R * 2) * k, (p.R * 2) * k);
                 }
             }
         }
 
-        PointF[] SetGraph(Function a, int C)
+        PointF[] SetGraph(Function a)
         {
             float mx = Convert.ToSingle(max_x);
             int p = 0;
@@ -399,7 +385,7 @@ namespace GT
             {
                 float x, y;
                 x = ((mx / Convert.ToSingle(G)) * Convert.ToSingle(p) - x0) / Convert.ToSingle(k);
-                y = a.f(x) * C;
+                y = a.f(x);
                 float _x = (x * k) + x0;
                 float _y = -(y * k) + y0;
                 pGraph[p] = new PointF(_x, _y);
