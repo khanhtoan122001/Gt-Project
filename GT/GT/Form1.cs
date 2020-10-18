@@ -111,6 +111,7 @@ namespace GT
         {
             Bac_n bac_N = new Bac_n(n);
             Label name = new Label();
+            Button ve = new Button();
             if (n > 0) n++;
             else n = -n + 1;
             name.Text = "phương trình có dạng";
@@ -126,11 +127,15 @@ namespace GT
                 txt[i] = txtBox();
                 txt[i].Location = new Point(100, i*30+30);
             }
+            ve.Text = "draw";
+            ve.Size = new Size(60, 30);
+            ve.Location = new Point(0, n * 30 + 30);
             formInput f = new formInput();
             f.Controls.Add(name);
             f.Controls.Add(pt);
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
+            f.Controls.Add(ve);
             f.ShowDialog();
             float[] x = new float[n + 1];
             for (int i = 0; i < n; i++)
@@ -142,6 +147,8 @@ namespace GT
         }
         void themLaboDuongTron(int n,PictureBox pt)
         {
+            Button ve = new Button();
+            ve.Text = "draw";
             Label name = new Label();
             name.Text = "phương trình có dạng";
             name.Size = new Size(180, 30);
@@ -160,10 +167,13 @@ namespace GT
             lb[1].Text = "nhập b";
             lb[2].Text = "nhập R";
             formInput f = new formInput();
+            ve.Size = new Size(60, 30);
+            ve.Location = new Point(0, n * 30 + 30);
             f.Controls.Add(pt);
             f.Controls.Add(name);
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
+            f.Controls.Add(ve);
             f.ShowDialog();
             Circle circle = new Circle();
             float[] x = new float[n];
