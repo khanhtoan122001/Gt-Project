@@ -94,11 +94,11 @@ namespace GT
             t.BackColor = Color.White;
             return t;
         }
-        void themLabo(int n)
+        void themLabo(int n,PictureBox pt)
         {
             Label name = new Label();
             name.Text = "phương trình có dạng";
-            name.Size = new Size(200, 30);
+            name.Size = new Size(170, 30);
             name.Location = new Point(0, 0);
             lb = new Label[n];
             txt = new TextBox[n];
@@ -112,15 +112,16 @@ namespace GT
             }
             formInput f = new formInput();
             f.Controls.Add(name);
+            f.Controls.Add(pt);
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
             f.ShowDialog();
         }
-        void themLaboDuongTron(int n)
+        void themLaboDuongTron(int n,PictureBox pt)
         {
             Label name = new Label();
             name.Text = "phương trình có dạng";
-            name.Size = new Size(200, 30);
+            name.Size = new Size(180, 30);
             name.Location = new Point(0,0);
             lb = new Label[n];
             txt = new TextBox[n];
@@ -136,6 +137,7 @@ namespace GT
             lb[1].Text = "nhập b";
             lb[2].Text = "nhập R";
             formInput f = new formInput();
+            f.Controls.Add(pt);
             f.Controls.Add(name);
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
@@ -145,35 +147,87 @@ namespace GT
         private void button2_Click(object sender, EventArgs e)
         {
             string _input = combo.SelectedItem.ToString();
+            
+            
             switch (_input)
             {
                 case "phương trình đường tròn":
+                    PictureBox pt = new PictureBox();
+                    pt.Size = new Size(200,50 );
+                    pt.Location = new Point(190, 0);
+                    pt.BackColor = Color.White;
+                   Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                    pt.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt.Image = ig;
+                    
                     int a1 = 3;
-                    themLaboDuongTron(a1);
+                    themLaboDuongTron(a1,pt);
                     break;
                 case "phương trình bậc- 1":
+                    PictureBox pt1 = new PictureBox();
+                    pt1.Size = new Size(200, 50);
+                    pt1.Location = new Point(190, 0);
+                    pt1.BackColor = Color.White;
+                    Image ig1 = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
+                    pt1.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt1.Image = ig1;
                     int a2 = 2;
-                    themLabo(a2);
+                    themLabo(a2,pt1);
                     break;
                 case "phương trình bậc 1":
+                    PictureBox pt2 = new PictureBox();
+                    pt2.Size = new Size(200, 50);
+                    pt2.Location = new Point(190, 0);
+                    pt2.BackColor = Color.White;
+                    Image ig2 = Image.FromFile(@"..\\..\\Resources\\bac1.png");
+                    pt2.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt2.Image = ig2;
                     int a3 = 2;
-                    themLabo(a3);
+                    themLabo(a3,pt2);
                     break;
                 case "phương trình bậc 2":
+                    PictureBox pt3 = new PictureBox();
+                    pt3.Size = new Size(200, 50);
+                    pt3.Location = new Point(190, 0);
+                    pt3.BackColor = Color.White;
+                    Image ig3 = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
+                    pt3.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt3.Image = ig3;
                     int a4 = 3;
-                    themLabo(a4);
+                    themLabo(a4,pt3);
                     break;
                 case "phương trình bậc 3":
+                    PictureBox pt4 = new PictureBox();
+                    pt4.Size = new Size(250, 50);
+                    pt4.Location = new Point(190, 0);
+                    pt4.BackColor = Color.White;
+                    Image ig4 = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
+                    pt4.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt4.Image = ig4;
                     int a5 = 4;
-                    themLabo(a5);
+                    themLabo(a5,pt4);
                     break;
                 case "phương trình bậc 4":
+                    PictureBox pt5 = new PictureBox();
+                    pt5.Size = new Size(200, 50);
+                    pt5.Location = new Point(190, 0);
+                    pt5.BackColor = Color.White;
+                    Image ig5 = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
+                    pt5.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt5.Image = ig5;
                     int f = 5;
-                    themLabo(f);
+                    themLabo(f,pt5);
                     break;
                 case "phương trình bậc 5":
+                    PictureBox pt6 = new PictureBox();
+                    pt6.Size = new Size(250, 50);
+                    pt6.Location = new Point(190, 0);
+                    pt6.BackColor = Color.White;
+                    Image ig6 = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
+                    pt6.SizeMode = PictureBoxSizeMode.AutoSize;
+                    pt6.Image = ig6;
                     int a7 = 6;
-                    themLabo(a7);
+                    themLabo(a7,pt6);
                     break;
 
                 default:
