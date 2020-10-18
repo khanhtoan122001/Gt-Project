@@ -21,26 +21,13 @@ namespace GT
         Point LastMouse = new Point(0, 0);
         Graphics g;
         bool S = false;
-        int G = 100000;
+        int G = 10;
         const int E = 10000;
         public Form1()
         {
             InitializeComponent();
 
             this.pictureBox1.MouseMove += _MouseMove;
-
-
-            a.Clear();
-            a.Add(new Bac_n(-1));
-            float[] x = new float[2];
-            x[0] = 1; x[1] = 1;
-            a[0].X = x;
-            a.Add(new Circle());
-            float[] y = new float[2];
-            y[0] = 1; y[1] = 2;
-            a[1].X = y;
-
-
 
             this.pictureBox1.MouseWheel += (s, e) => {
                 if (e.Delta > 0)
@@ -79,12 +66,6 @@ namespace GT
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            pictureBox1.Refresh();
-            Create(null, null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -128,7 +109,10 @@ namespace GT
         }
         void themLabo(int n,PictureBox pt)
         {
+            Bac_n bac_N = new Bac_n(n);
             Label name = new Label();
+            if (n > 0) n++;
+            else n = -n + 1;
             name.Text = "phương trình có dạng";
             name.Size = new Size(170, 30);
             name.Location = new Point(0, 0);
@@ -148,6 +132,13 @@ namespace GT
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
             f.ShowDialog();
+            float[] x = new float[n + 1];
+            for (int i = 0; i < n; i++)
+            {
+                x[i] = Convert.ToSingle(txt[i].Text);
+            }
+            bac_N.X = x;
+            a.Add(bac_N);
         }
         void themLaboDuongTron(int n,PictureBox pt)
         {
@@ -174,11 +165,23 @@ namespace GT
             f.Controls.AddRange(lb);
             f.Controls.AddRange(txt);
             f.ShowDialog();
+            Circle circle = new Circle();
+            float[] x = new float[n];
+            for(int i = 0; i < n; i++)
+            {
+                x[i] = Convert.ToSingle(txt[i].Text);   
+            }
+            circle.X = x;
+            a.Add(circle);
         }
         
         private void button2_Click(object sender, EventArgs e)
         {
-            string _input = combo.SelectedItem.ToString();
+
+            if (comboBox1.SelectedItem == null)
+                return;
+
+            string _input = comboBox1.SelectedItem.ToString();
             
             
             switch (_input)
@@ -188,7 +191,7 @@ namespace GT
                     pt.Size = new Size(200,50 );
                     pt.Location = new Point(190, 0);
                     pt.BackColor = Color.White;
-                   Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
                     pt.SizeMode = PictureBoxSizeMode.AutoSize;
                     pt.Image = ig;
                     
@@ -203,7 +206,7 @@ namespace GT
                     Image ig1 = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
                     pt1.SizeMode = PictureBoxSizeMode.AutoSize;
                     pt1.Image = ig1;
-                    int a2 = 2;
+                    int a2 = -1;
                     themLabo(a2,pt1);
                     break;
                 case "phương trình bậc 1":
@@ -214,7 +217,7 @@ namespace GT
                     Image ig2 = Image.FromFile(@"..\\..\\Resources\\bac1.png");
                     pt2.SizeMode = PictureBoxSizeMode.AutoSize;
                     pt2.Image = ig2;
-                    int a3 = 2;
+                    int a3 = 1;
                     themLabo(a3,pt2);
                     break;
                 case "phương trình bậc 2":
@@ -225,7 +228,7 @@ namespace GT
                     Image ig3 = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
                     pt3.SizeMode = PictureBoxSizeMode.AutoSize;
                     pt3.Image = ig3;
-                    int a4 = 3;
+                    int a4 = 2;
                     themLabo(a4,pt3);
                     break;
                 case "phương trình bậc 3":
@@ -236,7 +239,7 @@ namespace GT
                     Image ig4 = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
                     pt4.SizeMode = PictureBoxSizeMode.AutoSize;
                     pt4.Image = ig4;
-                    int a5 = 4;
+                    int a5 = 3;
                     themLabo(a5,pt4);
                     break;
                 case "phương trình bậc 4":
@@ -247,7 +250,7 @@ namespace GT
                     Image ig5 = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
                     pt5.SizeMode = PictureBoxSizeMode.AutoSize;
                     pt5.Image = ig5;
-                    int f = 5;
+                    int f = 4;
                     themLabo(f,pt5);
                     break;
                 case "phương trình bậc 5":
@@ -258,7 +261,7 @@ namespace GT
                     Image ig6 = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
                     pt6.SizeMode = PictureBoxSizeMode.AutoSize;
                     pt6.Image = ig6;
-                    int a7 = 6;
+                    int a7 = 5;
                     themLabo(a7,pt6);
                     break;
 
@@ -314,11 +317,6 @@ namespace GT
             button1_Click(null, null);
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-            panel2.Controls.Add(new Label() {Text = "hi", Size = new Size(100,100), Location = new Point(20, 20) });
-        }
-
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
         {
             G = this.pictureBox1.Width * 5;
@@ -326,6 +324,12 @@ namespace GT
             y0 = this.pictureBox1.Height / 2;
             Create(null, null);
             button1_Click(null, null);
+        }
+
+        private void newToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Refresh();
+            this.Create(null, null);
         }
 
         private void frmMain_Resize(object sender, EventArgs e)
