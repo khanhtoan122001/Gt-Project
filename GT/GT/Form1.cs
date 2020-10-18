@@ -105,7 +105,10 @@ namespace GT
             Create(null, null);
         }
 
-
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            label1.Text = string.Format("X: {0}\nY: {1}", e.X, e.Y);
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
