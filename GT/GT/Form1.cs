@@ -133,7 +133,7 @@ namespace GT
             Button ve = new Button();
             if (n > 0) n++;
             else n = -n + 1;
-            name.Text = "phương trình có dạng";
+            name.Text = "Phương trình có dạng";
             name.Size = new Size(170, 30);
             name.Location = new Point(0, 0);
             lb = new Label[n];
@@ -141,12 +141,12 @@ namespace GT
             for (int i = 0; i < n; i++)
             {
                 lb[i] = labo();
-                lb[i].Text = "nhập " + Convert.ToChar('a' + i);
+                lb[i].Text = string.Format("Nhập {0}", (char)('a' + i));//"Nhập " + Convert.ToChar('a' + i);
                 lb[i].Location = new Point(0, i * 30+30);
                 txt[i] = txtBox();
                 txt[i].Location = new Point(100, i*30+30);
             }
-            ve.Text = "draw";
+            ve.Text = "OK";
             ve.Size = new Size(60, 30);
             ve.Location = new Point(0, n * 30 + 30);
             formInput f = new formInput();
@@ -177,10 +177,10 @@ namespace GT
         void themLaboDuongTron(int n,PictureBox pt)
         {
             Button ve = new Button();
-            ve.Text = "Draw";
+            ve.Text = "OK";
             
             Label name = new Label();
-            name.Text = "phương trình có dạng";
+            name.Text = "Phương trình có dạng";
             name.Size = new Size(180, 30);
             name.Location = new Point(0,0);
             lb = new Label[n];
@@ -193,9 +193,9 @@ namespace GT
                 txt[i] = txtBox();
                 txt[i].Location = new Point(100,i*30+30);
             }
-            lb[0].Text = "nhập a";
-            lb[1].Text = "nhập b";
-            lb[2].Text = "nhập R";
+            lb[0].Text = "Nhập a";
+            lb[1].Text = "Nhập b";
+            lb[2].Text = "Nhập R";
             formInput f = new formInput();
             ve.Size = new Size(60, 30);
             ve.Location = new Point(0, n * 30 + 30);
