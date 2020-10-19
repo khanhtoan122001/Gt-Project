@@ -46,6 +46,7 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -68,7 +69,7 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1005, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1187, 33);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,38 +77,39 @@
             // 
             this.newToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem1,
+            this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.newToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(74, 29);
-            this.newToolStripMenuItem.Text = "menu";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(55, 29);
+            this.newToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(170, 30);
-            this.newToolStripMenuItem1.Text = "new";
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(224, 30);
+            this.newToolStripMenuItem1.Text = "New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(170, 30);
-            this.saveToolStripMenuItem.Text = "save";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.saveToolStripMenuItem.Text = "Save";
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(170, 30);
-            this.saveAsToolStripMenuItem.Text = "save as...";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.saveAsToolStripMenuItem.Text = "Save as...";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(170, 30);
-            this.exitToolStripMenuItem.Text = "exit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
@@ -119,26 +121,26 @@
             this.editToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
-            this.editToolStripMenuItem.Text = "edit";
+            this.editToolStripMenuItem.Text = "Edit";
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(150, 30);
-            this.addToolStripMenuItem.Text = "add";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.button2_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(150, 30);
-            this.deleteToolStripMenuItem.Text = "delete";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // backToolStripMenuItem
             // 
             this.backToolStripMenuItem.Name = "backToolStripMenuItem";
-            this.backToolStripMenuItem.Size = new System.Drawing.Size(150, 30);
-            this.backToolStripMenuItem.Text = "back";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.backToolStripMenuItem.Text = "Back";
             // 
             // panel1
             // 
@@ -146,7 +148,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1005, 579);
+            this.panel1.Size = new System.Drawing.Size(1187, 579);
             this.panel1.TabIndex = 3;
             // 
             // splitContainer1
@@ -165,8 +167,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1005, 579);
-            this.splitContainer1.SplitterDistance = 255;
+            this.splitContainer1.Size = new System.Drawing.Size(1187, 579);
+            this.splitContainer1.SplitterDistance = 149;
             this.splitContainer1.TabIndex = 9;
             // 
             // comboBox1
@@ -174,13 +176,13 @@
             this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "phương trình đường tròn",
-            "phương trình bậc- 1",
-            "phương trình bậc 1",
-            "phương trình bậc 2",
-            "phương trình bậc 3",
-            "phương trình bậc 4",
-            "phương trình bậc 5"});
+            "Phương trình đường tròn",
+            "Phương trình đb",
+            "Phương trình bậc 1",
+            "Phương trình bậc 2",
+            "Phương trình bậc 3",
+            "Phương trình bậc 4",
+            "Phương trình bậc 5"});
             this.comboBox1.Location = new System.Drawing.Point(21, 478);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(195, 31);
@@ -228,8 +230,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.panel2);
-            this.splitContainer2.Size = new System.Drawing.Size(746, 579);
-            this.splitContainer2.SplitterDistance = 388;
+            this.splitContainer2.Size = new System.Drawing.Size(1034, 579);
+            this.splitContainer2.SplitterDistance = 326;
             this.splitContainer2.TabIndex = 0;
             // 
             // pictureBox1
@@ -237,7 +239,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(746, 388);
+            this.pictureBox1.Size = new System.Drawing.Size(1034, 326);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
@@ -248,15 +250,21 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(746, 187);
+            this.panel2.Size = new System.Drawing.Size(1034, 249);
             this.panel2.TabIndex = 0;
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.openToolStripMenuItem.Text = "Open";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(1005, 612);
+            this.ClientSize = new System.Drawing.Size(1187, 612);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -301,6 +309,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }
 

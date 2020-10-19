@@ -236,7 +236,7 @@ namespace GT
             
             switch (_input)
             {
-                case "phương trình đường tròn":
+                case "Phương trình đường tròn":
                     PictureBox pt = new PictureBox();
                     pt.Size = new Size(200,50 );
                     pt.Location = new Point(190, 0);
@@ -248,7 +248,7 @@ namespace GT
                     int a1 = 3;
                     themLaboDuongTron(a1,pt);
                     break;
-                case "phương trình bậc- 1":
+                case "Phương trình đb":
                     PictureBox pt1 = new PictureBox();
                     pt1.Size = new Size(200, 50);
                     pt1.Location = new Point(190, 0);
@@ -259,7 +259,7 @@ namespace GT
                     int a2 = -1;
                     themLabo(a2,pt1);
                     break;
-                case "phương trình bậc 1":
+                case "Phương trình bậc 1":
                     PictureBox pt2 = new PictureBox();
                     pt2.Size = new Size(200, 50);
                     pt2.Location = new Point(190, 0);
@@ -270,7 +270,7 @@ namespace GT
                     int a3 = 1;
                     themLabo(a3,pt2);
                     break;
-                case "phương trình bậc 2":
+                case "Phương trình bậc 2":
                     PictureBox pt3 = new PictureBox();
                     pt3.Size = new Size(200, 50);
                     pt3.Location = new Point(190, 0);
@@ -281,7 +281,7 @@ namespace GT
                     int a4 = 2;
                     themLabo(a4,pt3);
                     break;
-                case "phương trình bậc 3":
+                case "Phương trình bậc 3":
                     PictureBox pt4 = new PictureBox();
                     pt4.Size = new Size(250, 50);
                     pt4.Location = new Point(190, 0);
@@ -292,7 +292,7 @@ namespace GT
                     int a5 = 3;
                     themLabo(a5,pt4);
                     break;
-                case "phương trình bậc 4":
+                case "Phương trình bậc 4":
                     PictureBox pt5 = new PictureBox();
                     pt5.Size = new Size(200, 50);
                     pt5.Location = new Point(190, 0);
@@ -303,7 +303,7 @@ namespace GT
                     int f = 4;
                     themLabo(f,pt5);
                     break;
-                case "phương trình bậc 5":
+                case "Phương trình bậc 5":
                     PictureBox pt6 = new PictureBox();
                     pt6.Size = new Size(250, 50);
                     pt6.Location = new Point(190, 0);
