@@ -118,12 +118,6 @@ namespace GT
                     SendKeys.Send("{TAB}");
                 }
             };
-            t.TextChanged += (s, e) =>
-            {
-                float o;
-                if (!float.TryParse(t.Text, out o))
-                    SendKeys.Send("{BACKSPACE}");
-            };
             return t;
         }
         void themLabo(int n,PictureBox pt)
@@ -160,6 +154,12 @@ namespace GT
                 float[] x = new float[n + 1];
                 for (int i = 0; i < n; i++)
                 {
+                    float o;
+                    if (!float.TryParse(txt[i].Text, out o))
+                    {
+                        MessageBox.Show("Nhập số", "Lỗi");
+                        return;
+                    }
                     if (txt[i].Text == string.Empty)
                     {
                         MessageBox.Show("Nhập đầy đủ giá trị", "Lỗi");
@@ -339,24 +339,24 @@ namespace GT
             f = new Font("Tahoma", 8);
             for (i = x0 + k; i < max_x; i += k)
             {
-                g.DrawLine(pen_x, i, y0 - 3, i, y0 + 2);
+                g.DrawLine(pen_x, i, 0, i, max_y);
                 g.DrawString(((i - x0)/ k).ToString(), f, br, i - 7, y0 + 3);
             }
             for (i = x0 - k; i > 0; i -= k)
             {
-                g.DrawLine(pen_x, i, y0 - 3, i, y0 + 2);
+                g.DrawLine(pen_x, i, 0, i, max_y);
                 g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
             }
 
             for (i = y0 + k; i < max_y; i += k)
             {
-                g.DrawLine(pen_x, x0 - 3, i, x0 + 2, i);
+                g.DrawLine(pen_x, 0, i, max_x, i);
                 g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
             }
 
             for (i = y0 - k; i > 0; i -= k)
             {
-                g.DrawLine(pen_x, x0 - 3, i, x0 + 2, i);
+                g.DrawLine(pen_x, 0, i, max_x, i);
                 g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
             }
         }
