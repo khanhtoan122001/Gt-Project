@@ -49,8 +49,6 @@
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.Add_Click = new System.Windows.Forms.Button();
             this.Draw_Click = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -144,9 +142,8 @@
             this.phươngTrìnhĐườngTrònToolStripMenuItem,
             this.phươngTrìnhĐặcBiệtToolStripMenuItem});
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.button2_Click);
             // 
             // phươngTrìnhBậcNToolStripMenuItem
             // 
@@ -212,13 +209,13 @@
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // backToolStripMenuItem
             // 
             this.backToolStripMenuItem.Name = "backToolStripMenuItem";
-            this.backToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
             this.backToolStripMenuItem.Text = "Back";
             // 
             // panel1
@@ -239,8 +236,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.Add_Click);
             this.splitContainer1.Panel1.Controls.Add(this.Draw_Click);
             // 
             // splitContainer1.Panel2
@@ -249,34 +244,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(1187, 579);
             this.splitContainer1.SplitterDistance = 149;
             this.splitContainer1.TabIndex = 9;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Phương trình đường tròn",
-            "Phương trình đb",
-            "Phương trình bậc 1",
-            "Phương trình bậc 2",
-            "Phương trình bậc 3",
-            "Phương trình bậc 4",
-            "Phương trình bậc 5"});
-            this.comboBox1.Location = new System.Drawing.Point(21, 478);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(195, 31);
-            this.comboBox1.TabIndex = 3;
-            // 
-            // Add_Click
-            // 
-            this.Add_Click.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Add_Click.Location = new System.Drawing.Point(21, 423);
-            this.Add_Click.Name = "Add_Click";
-            this.Add_Click.Size = new System.Drawing.Size(195, 49);
-            this.Add_Click.TabIndex = 2;
-            this.Add_Click.Text = "Add";
-            this.Add_Click.UseVisualStyleBackColor = true;
-            this.Add_Click.Click += new System.EventHandler(this.button2_Click);
             // 
             // Draw_Click
             // 
@@ -376,12 +343,10 @@
         private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button Add_Click;
         private System.Windows.Forms.Button Draw_Click;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậcNToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem phươngTrìnhBậc1ToolStripMenuItem;
