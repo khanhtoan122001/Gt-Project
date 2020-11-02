@@ -30,15 +30,22 @@ namespace GT
             this.pictureBox1.MouseMove += _MouseMove;
 
             this.pictureBox1.MouseWheel += (s, e) => {
+                float _x = (e.Location.X - x0) / (float)k;
+                float _y = (e.Location.Y - y0) / (float)k;
                 if (e.Delta > 0)
                 {
                     k = (int)(k * 1.10);
-                    u = new Point();
+                    u.X = -(int)((_x * k) - (e.Location.X - x0));
+                    u.Y = -(int)((_y * k) - (e.Location.Y - y0));
                 }
                 else
                 {
-                    k = (k / 1.10) < 30 ? 30 : (int)(k / 1.10);
-
+                    if(k != 30)
+                    {
+                        k = (k / 1.10) < 30 ? 30 : (int)(k / 1.10);
+                        u.X = (int)(-(_x * k) + (e.Location.X - x0));
+                        u.Y = (int)(-(_y * k) + (e.Location.Y - y0));
+                    }
                 }
                 button1_Click(null, null);
             };
@@ -56,7 +63,7 @@ namespace GT
                 S = false;
             };
             this.DoubleBuffered = true;
-            
+
         }
 
         void _MouseMove(object sender, MouseEventArgs e)
@@ -121,7 +128,7 @@ namespace GT
             };
             return t;
         }
-        void themLabo(int n,PictureBox pt)
+        void themLabo(int n, PictureBox pt)
         {
             Bac_n bac_N = new Bac_n(n);
             Label name = new Label();
@@ -137,9 +144,9 @@ namespace GT
             {
                 lb[i] = labo();
                 lb[i].Text = string.Format("Nhập {0}", (char)('a' + i));//"Nhập " + Convert.ToChar('a' + i);
-                lb[i].Location = new Point(0, i * 30+30);
+                lb[i].Location = new Point(0, i * 30 + 30);
                 txt[i] = txtBox();
-                txt[i].Location = new Point(100, i*30+30);
+                txt[i].Location = new Point(100, i * 30 + 30);
             }
             ve.Text = "OK";
             ve.Size = new Size(60, 30);
@@ -175,24 +182,24 @@ namespace GT
             f.ShowDialog();
             button1_Click(null, null);
         }
-        void themLaboDuongTron(int n,PictureBox pt)
+        void themLaboDuongTron(int n, PictureBox pt)
         {
             Button ve = new Button();
             ve.Text = "OK";
-            
+
             Label name = new Label();
             name.Text = "Phương trình có dạng";
             name.Size = new Size(180, 30);
-            name.Location = new Point(0,0);
+            name.Location = new Point(0, 0);
             lb = new Label[n];
             txt = new TextBox[n];
             for (int i = 0; i < 3; i++)
             {
                 lb[i] = labo();
 
-                lb[i].Location = new Point(0, i * 30+30);
+                lb[i].Location = new Point(0, i * 30 + 30);
                 txt[i] = txtBox();
-                txt[i].Location = new Point(100,i*30+30);
+                txt[i].Location = new Point(100, i * 30 + 30);
             }
             lb[0].Text = "Nhập a";
             lb[1].Text = "Nhập b";
@@ -226,7 +233,7 @@ namespace GT
             button1_Click(null, null);
         }
 
-        
+
 
         private void VeTruc()
         {
@@ -247,7 +254,7 @@ namespace GT
             for (i = x0 + k; i < max_x; i += k)
             {
                 g.DrawLine(pen_x, i, 0, i, max_y);
-                g.DrawString(((i - x0)/ k).ToString(), f, br, i - 7, y0 + 3);
+                g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
             }
             for (i = x0 - k; i > 0; i -= k)
             {
@@ -395,7 +402,7 @@ namespace GT
 
         private void VeDoThi()
         {
-            
+
             //mx = Convert.ToSingle(x0) / Convert.ToSingle(k);
             //my = Convert.ToSingle(max_y) / Convert.ToSingle(k);
 
@@ -410,7 +417,7 @@ namespace GT
                 else
                 {
                     Circle p = (Circle)a[i];
-                    g.DrawEllipse(new Pen(Color.Red, 2), (p.A - p.R) * k + x0, (- p.B - p.R) * k + y0, (p.R * 2) * k, (p.R * 2) * k);
+                    g.DrawEllipse(new Pen(Color.Red, 2), (p.A - p.R) * k + x0, (-p.B - p.R) * k + y0, (p.R * 2) * k, (p.R * 2) * k);
                 }
             }
         }
@@ -457,4 +464,5 @@ namespace GT
             }
         }
     }
+
 }
