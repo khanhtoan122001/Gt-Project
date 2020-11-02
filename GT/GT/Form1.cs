@@ -433,7 +433,7 @@ namespace GT
 
         void PaintGraph(PointF[] pGraph)
         {
-            Pen pen = new Pen(Color.Red, 3);
+            Pen pen = new Pen(Color.Red, 2);
             int p = 0;
             while (p < G)
             {
