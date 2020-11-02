@@ -286,6 +286,7 @@ namespace GT
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
+            a.Clear();
             this.Create(null, null);
         }
 
