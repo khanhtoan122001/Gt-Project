@@ -20,12 +20,14 @@ namespace GT
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0);
         Graphics g;
+        Bitmap bitmap;
         bool S = false;
         int G = 10;
         const int E = 10000;
         public Form1()
         {
             InitializeComponent();
+
 
             this.pictureBox1.MouseMove += _MouseMove;
 
@@ -237,41 +239,46 @@ namespace GT
 
         private void VeTruc()
         {
-            g = pictureBox1.CreateGraphics();
-            Pen pen = new Pen(Color.Black, 2);
-            g.DrawLine(pen, 0, y0, max_x, y0);
-            g.DrawLine(pen, x0, 0, x0, max_y);
-            Font f = new Font("Tahoma", 10);
-            Brush br = new SolidBrush(Color.Black);
-
-            g.DrawString("O", f, br, x0 - 15, y0);
-            g.DrawString("x", f, br, max_x - 20, y0 - 20);
-            g.DrawString("y", f, br, x0 - 20, 1);
-            Pen pen_x = new Pen(Color.Gray, 1);
-
-            int i;
-            f = new Font("Tahoma", 8);
-            for (i = x0 + k; i < max_x; i += k)
+            //g = pictureBox1.CreateGraphics();
+            bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            pictureBox1.Image = bitmap;
+            using (g = Graphics.FromImage(bitmap))
             {
-                g.DrawLine(pen_x, i, 0, i, max_y);
-                g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
-            }
-            for (i = x0 - k; i > 0; i -= k)
-            {
-                g.DrawLine(pen_x, i, 0, i, max_y);
-                g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
-            }
+                Pen pen = new Pen(Color.Black, 2);
+                g.DrawLine(pen, 0, y0, max_x, y0);
+                g.DrawLine(pen, x0, 0, x0, max_y);
+                Font f = new Font("Tahoma", 10);
+                Brush br = new SolidBrush(Color.Black);
 
-            for (i = y0 + k; i < max_y; i += k)
-            {
-                g.DrawLine(pen_x, 0, i, max_x, i);
-                g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
-            }
+                g.DrawString("O", f, br, x0 - 15, y0);
+                g.DrawString("x", f, br, max_x - 20, y0 - 20);
+                g.DrawString("y", f, br, x0 - 20, 1);
+                Pen pen_x = new Pen(Color.Gray, 1);
 
-            for (i = y0 - k; i > 0; i -= k)
-            {
-                g.DrawLine(pen_x, 0, i, max_x, i);
-                g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
+                int i;
+                f = new Font("Tahoma", 8);
+                for (i = x0 + k; i < max_x; i += k)
+                {
+                    g.DrawLine(pen_x, i, 0, i, max_y);
+                    g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
+                }
+                for (i = x0 - k; i > 0; i -= k)
+                {
+                    g.DrawLine(pen_x, i, 0, i, max_y);
+                    g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
+                }
+
+                for (i = y0 + k; i < max_y; i += k)
+                {
+                    g.DrawLine(pen_x, 0, i, max_x, i);
+                    g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
+                }
+
+                for (i = y0 - k; i > 0; i -= k)
+                {
+                    g.DrawLine(pen_x, 0, i, max_x, i);
+                    g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
+                }
             }
         }
 
@@ -417,7 +424,8 @@ namespace GT
                 else
                 {
                     Circle p = (Circle)a[i];
-                    g.DrawEllipse(new Pen(Color.Red, 2), (p.A - p.R) * k + x0, (-p.B - p.R) * k + y0, (p.R * 2) * k, (p.R * 2) * k);
+                    using (g = Graphics.FromImage(bitmap))
+                        g.DrawEllipse(new Pen(Color.Red, 2), ((p.A - p.R) * k + x0), ((-p.B - p.R) * k + y0), ((p.R * 2) * k), ((p.R * 2) * k));
                 }
             }
         }
@@ -441,26 +449,29 @@ namespace GT
 
         void PaintGraph(PointF[] pGraph)
         {
-            Pen pen = new Pen(Color.Red, 3);
-            int p = 0;
-            while (p < G)
+            using (g = Graphics.FromImage(bitmap))
             {
-                if (pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
+                Pen pen = new Pen(Color.Red, 2);
+                int p = 0;
+                while (p < G)
                 {
-                    PointF[] d;
-                    int f = p, l = 0;
-                    while (p < G && pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
+                    if (pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
                     {
-                        l++; p++;
+                        PointF[] d;
+                        int f = p, l = 0;
+                        while (p < G && pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
+                        {
+                            l++; p++;
+                        }
+                        d = new PointF[l];
+                        for (int index = f; index - f < l; index++)
+                        {
+                            d[index - f] = pGraph[index];
+                        }
+                        g.DrawCurve(pen, d);
                     }
-                    d = new PointF[l];
-                    for (int index = f; index - f < l; index++)
-                    {
-                        d[index - f] = pGraph[index];
-                    }
-                    g.DrawCurve(pen, d);
+                    p++;
                 }
-                p++;
             }
         }
     }
