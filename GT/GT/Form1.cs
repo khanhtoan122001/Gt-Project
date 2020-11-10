@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Http.Headers;
@@ -15,8 +16,11 @@ namespace GT
 {
     public partial class Form1 : Form
     {
+        const int MinZoom = 60, MaxZoom = 360, Normal = 120; 
         List<Function> a = new List<Function>();
-        int max_x, max_y, x0, y0, k = 60;
+        int max_x, max_y, x0, y0, k = 120;
+        float dv = 1f;
+        const float MaxDv = 500, MinDv = 1 / 200;
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0);
         Graphics g;
@@ -24,30 +28,39 @@ namespace GT
         bool S = false;
         int G = 10;
         const int E = 10000;
+        const float Zoom = 1.1f;
         public Form1()
         {
             InitializeComponent();
 
+            this.DoubleBuffered = true;
 
             this.pictureBox1.MouseMove += _MouseMove;
 
             this.pictureBox1.MouseWheel += (s, e) => {
-                float _x = (e.Location.X - x0) / (float)k;
-                float _y = (e.Location.Y - y0) / (float)k;
+                float _x = dv * (e.Location.X - x0) / (float)k;
+                float _y = dv * (e.Location.Y - y0) / (float)k;
                 if (e.Delta > 0)
                 {
-                    k = (int)(k * 1.10);
-                    u.X = -(int)((_x * k) - (e.Location.X - x0));
-                    u.Y = -(int)((_y * k) - (e.Location.Y - y0));
+                    if ((k * Zoom) > MaxZoom)
+                    {
+                        k = Normal;
+                        if(dv < MaxDv) dv = dv * 2;
+                    }
+                    else { k = (int)(k * Zoom); }
+                    u.X = -(int)(((_x / dv) * k) - (e.Location.X - x0));
+                    u.Y = -(int)(((_y / dv) * k) - (e.Location.Y - y0));
                 }
                 else
                 {
-                    if(k != 30)
+                    if ((k / Zoom) < MinZoom)
                     {
-                        k = (k / 1.10) < 30 ? 30 : (int)(k / 1.10);
-                        u.X = (int)(-(_x * k) + (e.Location.X - x0));
-                        u.Y = (int)(-(_y * k) + (e.Location.Y - y0));
+                        k = Normal;
+                        if(dv > MinDv) dv = dv / 2;
                     }
+                    else { k = (int)(k / Zoom); }
+                    u.X = (int)(-((_x / dv) * k) + (e.Location.X - x0));
+                    u.Y = (int)(-((_y / dv) * k) + (e.Location.Y - y0));
                 }
                 button1_Click(null, null);
             };
@@ -153,7 +166,7 @@ namespace GT
             ve.Text = "OK";
             ve.Size = new Size(60, 30);
             ve.Location = new Point(0, n * 30 + 30);
-            formInput f = new formInput();
+            Form f = createFormInput();
             f.Controls.Add(name);
             f.Controls.Add(pt);
             f.Controls.AddRange(lb);
@@ -206,7 +219,7 @@ namespace GT
             lb[0].Text = "Nhập a";
             lb[1].Text = "Nhập b";
             lb[2].Text = "Nhập R";
-            formInput f = new formInput();
+            Form f = createFormInput();
             ve.Size = new Size(60, 30);
             ve.Location = new Point(0, n * 30 + 30);
             f.Controls.Add(pt);
@@ -226,6 +239,11 @@ namespace GT
                         return;
                     }
                     x[i] = Convert.ToSingle(txt[i].Text);
+                    if (i == 2) if (x[i] < 0)
+                        {
+                            MessageBox.Show("R phải lớn hơn 0");
+                            return;
+                        }
                 }
                 circle.X = x;
                 a.Add(circle);
@@ -239,45 +257,47 @@ namespace GT
 
         private void VeTruc()
         {
-            //g = pictureBox1.CreateGraphics();
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = bitmap;
-            using (g = Graphics.FromImage(bitmap))
+            g = Graphics.FromImage(bitmap);
             {
-                Pen pen = new Pen(Color.Black, 2);
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                Pen pen = new Pen(Color.Black, 1);
                 g.DrawLine(pen, 0, y0, max_x, y0);
                 g.DrawLine(pen, x0, 0, x0, max_y);
-                Font f = new Font("Tahoma", 10);
-                Brush br = new SolidBrush(Color.Black);
+                Font f = new Font("Arial", 12);
 
-                g.DrawString("O", f, br, x0 - 15, y0);
-                g.DrawString("x", f, br, max_x - 20, y0 - 20);
-                g.DrawString("y", f, br, x0 - 20, 1);
+                g.DrawString("O", f, Brushes.Black, x0, y0);
+                g.DrawString("x", f, Brushes.Black, max_x - 20, y0 - 20);
+                g.DrawString("y", f, Brushes.Black, x0 - 20, 1);
                 Pen pen_x = new Pen(Color.Gray, 1);
 
                 int i;
-                f = new Font("Tahoma", 8);
+                f = new Font("Arial", 12);
                 for (i = x0 + k; i < max_x; i += k)
                 {
                     g.DrawLine(pen_x, i, 0, i, max_y);
-                    g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
+                    g.DrawString(((i - x0) * dv / k).ToString(), f, Brushes.Black, i, y0 + 3);
                 }
                 for (i = x0 - k; i > 0; i -= k)
                 {
                     g.DrawLine(pen_x, i, 0, i, max_y);
-                    g.DrawString(((i - x0) / k).ToString(), f, br, i - 7, y0 + 3);
+                    g.DrawString(((i - x0) * dv / k).ToString(), f, Brushes.Black, i, y0 + 3);
                 }
 
                 for (i = y0 + k; i < max_y; i += k)
                 {
                     g.DrawLine(pen_x, 0, i, max_x, i);
-                    g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
+                    g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, x0 + 3, i);
                 }
 
                 for (i = y0 - k; i > 0; i -= k)
                 {
                     g.DrawLine(pen_x, 0, i, max_x, i);
-                    g.DrawString((-(i - y0) / k).ToString(), f, br, x0 + 3, i - 7);
+                    g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, x0 + 3, i);
                 }
             }
         }
@@ -419,13 +439,13 @@ namespace GT
                 if (a[i].GetType().ToString() != "Fcn.Circle")
                 {
                     pGraph = SetGraph(a[i]);
-                    PaintGraph(pGraph);
+                    PaintGraph(pGraph, i);
                 }
                 else
                 {
                     Circle p = (Circle)a[i];
-                    using (g = Graphics.FromImage(bitmap))
-                        g.DrawEllipse(new Pen(Color.Red, 2), ((p.A - p.R) * k + x0), ((-p.B - p.R) * k + y0), ((p.R * 2) * k), ((p.R * 2) * k));
+                    g.FillEllipse(new SolidBrush(p.color), p.I.X / dv * k + x0 - 5, -p.I.Y / dv * k + y0 - 5, 10, 10);
+                    g.DrawEllipse(new Pen(p.color, 2), ((p.A - p.R) / dv * k + x0), ((-p.B - p.R) / dv * k + y0), ((p.R * 2) * k) / dv, ((p.R * 2) * k) / dv);
                 }
             }
         }
@@ -438,41 +458,51 @@ namespace GT
             for (p = 0; p < G; p++)
             {
                 float x, y;
-                x = ((mx / Convert.ToSingle(G)) * Convert.ToSingle(p) - x0) / Convert.ToSingle(k);
+                x = ((mx / Convert.ToSingle(G)) * Convert.ToSingle(p) - x0) / Convert.ToSingle(k) * dv;
                 y = a.f(x);
-                float _x = (x * k) + x0;
-                float _y = -(y * k) + y0;
+                float _x = (x / dv * k) + x0;
+                float _y = -(y / dv * k) + y0;
                 pGraph[p] = new PointF(_x, _y);
             }
             return pGraph;
         }
 
-        void PaintGraph(PointF[] pGraph)
+        void PaintGraph(PointF[] pGraph, int i)
         {
-            using (g = Graphics.FromImage(bitmap))
+            int p = 0;
+            while (p < G)
             {
-                Pen pen = new Pen(Color.Red, 2);
-                int p = 0;
-                while (p < G)
+                if (pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
                 {
-                    if (pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
+                    PointF[] d;
+                    int f = p, l = 0;
+                    while (p < G && pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
                     {
-                        PointF[] d;
-                        int f = p, l = 0;
-                        while (p < G && pGraph[p].X >= -E && pGraph[p].Y >= -E && pGraph[p].X <= max_x + E && pGraph[p].Y <= max_y + E)
-                        {
-                            l++; p++;
-                        }
-                        d = new PointF[l];
-                        for (int index = f; index - f < l; index++)
-                        {
-                            d[index - f] = pGraph[index];
-                        }
-                        g.DrawCurve(pen, d);
+                        l++; p++;
                     }
-                    p++;
+                    d = new PointF[l];
+                    for (int index = f; index - f < l; index++)
+                    {
+                        d[index - f] = pGraph[index];
+                    }
+                    g.DrawCurve(new Pen(a[i].color, 2), d);
                 }
+                p++;
             }
+        }
+
+        Form createFormInput()
+        {
+            Form f = new Form();
+            f.AutoSize = true;
+            f.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            f.Font = new Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            f.Margin = new System.Windows.Forms.Padding(4);
+            f.Name = "formInput";
+            f.Text = "formInput";
+            f.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            f.ResumeLayout(false);
+            return f;
         }
     }
 
