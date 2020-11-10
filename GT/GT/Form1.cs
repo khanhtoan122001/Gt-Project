@@ -8,6 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Http.Headers;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,10 +17,11 @@ namespace GT
 {
     public partial class Form1 : Form
     {
-        const int MinZoom = 60, MaxZoom = 360, Normal = 120; 
+        float[] C_dv = { 1f, 2f, 5f};
+        const int MinZoom = 80, MaxZoom = 360, Normal = 180; 
         List<Function> a = new List<Function>();
-        int max_x, max_y, x0, y0, k = 120;
-        float dv = 1f;
+        int max_x, max_y, x0, y0, k = 120, idv = 0;
+        double dv = 1;
         const float MaxDv = 500, MinDv = 1 / 200;
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0);
@@ -38,14 +40,14 @@ namespace GT
             this.pictureBox1.MouseMove += _MouseMove;
 
             this.pictureBox1.MouseWheel += (s, e) => {
-                float _x = dv * (e.Location.X - x0) / (float)k;
-                float _y = dv * (e.Location.Y - y0) / (float)k;
+                float _x = (float)dv * (e.Location.X - x0) / (float)k;
+                float _y = (float)dv * (e.Location.Y - y0) / (float)k;
                 if (e.Delta > 0)
                 {
                     if ((k * Zoom) > MaxZoom)
                     {
                         k = Normal;
-                        if(dv < MaxDv) dv = dv / 2;
+                        if(dv > MinDv) SetDv(true);
                     }
                     else { k = (int)(k * Zoom); }
                     u.X = -(int)(((_x / dv) * k) - (e.Location.X - x0));
@@ -56,7 +58,7 @@ namespace GT
                     if ((k / Zoom) < MinZoom)
                     {
                         k = Normal;
-                        if(dv > MinDv) dv = dv * 2;
+                        if(dv < MaxDv) SetDv(false);
                     }
                     else { k = (int)(k / Zoom); }
                     u.X = (int)(-((_x / dv) * k) + (e.Location.X - x0));
@@ -261,11 +263,13 @@ namespace GT
             pictureBox1.Image = bitmap;
             g = Graphics.FromImage(bitmap);
             {
+                VeLuoi();
+
                 g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-                Pen pen = new Pen(Color.Black, 1);
+                Pen pen = new Pen(Color.FromArgb(0, 0, 0), 2);
                 g.DrawLine(pen, 0, y0, max_x, y0);
                 g.DrawLine(pen, x0, 0, x0, max_y);
                 Font f = new Font("Arial", 12);
@@ -273,32 +277,7 @@ namespace GT
                 g.DrawString("O", f, Brushes.Black, x0, y0);
                 g.DrawString("x", f, Brushes.Black, max_x - 20, y0 - 20);
                 g.DrawString("y", f, Brushes.Black, x0 - 20, 1);
-                Pen pen_x = new Pen(Color.Gray, 1);
 
-                int i;
-                f = new Font("Arial", 12);
-                for (i = x0 + k; i < max_x; i += k)
-                {
-                    g.DrawLine(pen_x, i, 0, i, max_y);
-                    g.DrawString(((i - x0) * dv / k).ToString(), f, Brushes.Black, i, y0 + 3);
-                }
-                for (i = x0 - k; i > 0; i -= k)
-                {
-                    g.DrawLine(pen_x, i, 0, i, max_y);
-                    g.DrawString(((i - x0) * dv / k).ToString(), f, Brushes.Black, i, y0 + 3);
-                }
-
-                for (i = y0 + k; i < max_y; i += k)
-                {
-                    g.DrawLine(pen_x, 0, i, max_x, i);
-                    g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, x0 + 3, i);
-                }
-
-                for (i = y0 - k; i > 0; i -= k)
-                {
-                    g.DrawLine(pen_x, 0, i, max_x, i);
-                    g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, x0 + 3, i);
-                }
             }
         }
 
@@ -430,9 +409,6 @@ namespace GT
         private void VeDoThi()
         {
 
-            //mx = Convert.ToSingle(x0) / Convert.ToSingle(k);
-            //my = Convert.ToSingle(max_y) / Convert.ToSingle(k);
-
             for (int i = 0; i < a.Count; i++)
             {
                 PointF[] pGraph;
@@ -444,8 +420,8 @@ namespace GT
                 else
                 {
                     Circle p = (Circle)a[i];
-                    g.FillEllipse(new SolidBrush(p.color), p.I.X / dv * k + x0 - 5, -p.I.Y / dv * k + y0 - 5, 10, 10);
-                    g.DrawEllipse(new Pen(p.color, 2), ((p.A - p.R) / dv * k + x0), ((-p.B - p.R) / dv * k + y0), ((p.R * 2) * k) / dv, ((p.R * 2) * k) / dv);
+                    g.FillEllipse(new SolidBrush(p.color), p.I.X / (float)dv * k + x0 - 5, -p.I.Y / (float)dv * k + y0 - 5, 10, 10);
+                    g.DrawEllipse(new Pen(p.color, 2), ((p.A - p.R) / (float)dv * k + x0), ((-p.B - p.R) / (float)dv * k + y0), ((p.R * 2) * k) / (float)dv, ((p.R * 2) * k) / (float)dv);
                 }
             }
         }
@@ -458,10 +434,10 @@ namespace GT
             for (p = 0; p < G; p++)
             {
                 float x, y;
-                x = ((mx / Convert.ToSingle(G)) * Convert.ToSingle(p) - x0) / Convert.ToSingle(k) * dv;
+                x = ((mx / Convert.ToSingle(G)) * Convert.ToSingle(p) - x0) / Convert.ToSingle(k) * (float)dv;
                 y = a.f(x);
-                float _x = (x / dv * k) + x0;
-                float _y = -(y / dv * k) + y0;
+                float _x = (x / (float)dv * k) + x0;
+                float _y = -(y / (float)dv * k) + y0;
                 pGraph[p] = new PointF(_x, _y);
             }
             return pGraph;
@@ -503,6 +479,88 @@ namespace GT
             f.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             f.ResumeLayout(false);
             return f;
+        }
+
+        void SetDv(bool c_i)
+        {
+            if (c_i) idv--;
+            else idv++;
+            if(idv >= 0)
+            {
+                dv = C_dv[idv % 3] * Pow10(idv / 3);
+            }
+            else
+            {
+                int i = 2 - (-idv + 2) % 3;
+                dv = C_dv[i] / Pow10(((-idv + 2) / 3));
+            }
+            if(idv == -5)
+            {
+                c_i = true;
+            }
+        }
+
+        void VeLuoi()
+        {
+            Pen pen_x = new Pen(Color.FromArgb(150, 150, 150), 2);
+            Pen pen_n = new Pen(Color.FromArgb(200, 200, 200), 1);
+            int i, xd = 0, yd = 0;
+            float n = ((float)k / 5);
+            Font f = new Font("Arial", 12);
+            for (int j = 1; j <= 5; j++)
+            {
+                g.DrawLine(pen_n, x0 + j * n, 0, x0 + j * n, max_y);
+                g.DrawLine(pen_n, x0 - j * n, 0, x0 - j * n, max_y);
+                g.DrawLine(pen_n, 0, y0 - j * n, max_x, y0 - j * n);
+                g.DrawLine(pen_n, 0, y0 + j * n, max_x, y0 + j * n);
+            }
+            for (i = x0 + k; i < max_x; i += k)
+            {
+                yd = y0;
+                if (y0 < 0) yd = 3;
+                if (y0 > max_y) yd = max_y - 20;
+                g.DrawLine(pen_x, i, 0, i, max_y);
+                for (int j = 1; j <= 5; j++)
+                    g.DrawLine(pen_n, i + j * n, 0, i + j * n, max_y);
+                g.DrawString(((i - x0) / k * dv).ToString(), f, Brushes.Black, i, yd);
+            }
+            for (i = x0 - k; i > 0; i -= k)
+            {
+                yd = y0;
+                if (y0 < 0) yd = 3;
+                if (y0 > max_y) yd = max_y - 20;
+                g.DrawLine(pen_x, i, 0, i, max_y);
+                for (int j = 1; j <= 5; j++)
+                    g.DrawLine(pen_n, i - j * n, 0, i - j * n, max_y);
+                g.DrawString(((i - x0) / k * dv).ToString(), f, Brushes.Black, i, yd);
+            }
+            for (i = y0 + k; i < max_y; i += k)
+            {
+                xd = x0;
+                if (x0 < 0) xd = 3;
+                if (x0 > max_x) xd = max_x - 20;
+                g.DrawLine(pen_x, 0, i, max_x, i);
+                for (int j = 1; j <= 5; j++)
+                    g.DrawLine(pen_n, 0, i + j * n, max_x, i + j * n);
+                g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, xd, i);
+            }
+            for (i = y0 - k; i > 0; i -= k)
+            {
+                xd = x0;
+                if (x0 < 0) xd = 3;
+                if (x0 > max_x) xd = max_x - 20;
+                g.DrawLine(pen_x, 0, i, max_x, i);
+                for (int j = 1; j <= 5; j++)
+                    g.DrawLine(pen_n, 0, i - j * n, max_x, i - j * n);
+                g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, xd, i);
+            }
+        }
+        int Pow10(int i)
+        {
+            int r = 1;
+            for(int n = 0; n < i; n++)
+                r *= 10;
+            return r;
         }
     }
 
