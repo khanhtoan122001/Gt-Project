@@ -45,7 +45,7 @@ namespace GT
                     if ((k * Zoom) > MaxZoom)
                     {
                         k = Normal;
-                        if(dv < MaxDv) dv = dv * 2;
+                        if(dv < MaxDv) dv = dv / 2;
                     }
                     else { k = (int)(k * Zoom); }
                     u.X = -(int)(((_x / dv) * k) - (e.Location.X - x0));
@@ -56,7 +56,7 @@ namespace GT
                     if ((k / Zoom) < MinZoom)
                     {
                         k = Normal;
-                        if(dv > MinDv) dv = dv / 2;
+                        if(dv > MinDv) dv = dv * 2;
                     }
                     else { k = (int)(k / Zoom); }
                     u.X = (int)(-((_x / dv) * k) + (e.Location.X - x0));
