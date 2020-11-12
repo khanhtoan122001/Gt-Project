@@ -100,7 +100,7 @@ namespace GT
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
+        
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             Create(null, null);
