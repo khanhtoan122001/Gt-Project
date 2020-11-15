@@ -18,11 +18,11 @@ namespace GT
     public partial class Form1 : Form
     {
         float[] C_dv = { 1f, 2f, 5f};
-        const int MinZoom = 80, MaxZoom = 360, Normal = 180; 
+        const int MinZoom = 100, MaxZoom = 360, Normal = 180; 
         List<Function> a = new List<Function>();
         int max_x, max_y, x0, y0, k = 120, idv = 0;
         double dv = 1;
-        const float MaxDv = 500, MinDv = 1 / 200;
+        const float MaxDv = 500, MinDv = 0.001f;
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0);
         Graphics g;
@@ -100,7 +100,7 @@ namespace GT
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        
+        {
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             Create(null, null);
