@@ -18,7 +18,8 @@ namespace GT
     public partial class Form1 : Form
     {
         float[] C_dv = { 1f, 2f, 5f};
-        const int MinZoom = 100, MaxZoom = 360, Normal = 180; 
+        Theme theme = new Theme();
+        const int MinZoom = 80, MaxZoom = 360, Normal = 180; 
         List<Function> a = new List<Function>();
         int max_x, max_y, x0, y0, k = 120, idv = 0;
         double dv = 1;
@@ -263,20 +264,22 @@ namespace GT
             pictureBox1.Image = bitmap;
             g = Graphics.FromImage(bitmap);
             {
+                g.Clear(theme.BackGroundPic);
+
                 VeLuoi();
 
                 g.SmoothingMode = SmoothingMode.AntiAlias;
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-                Pen pen = new Pen(Color.FromArgb(0, 0, 0), 2);
+                Pen pen = new Pen(theme.TextColor, 2);
                 g.DrawLine(pen, 0, y0, max_x, y0);
                 g.DrawLine(pen, x0, 0, x0, max_y);
                 Font f = new Font("Arial", 12);
-
-                g.DrawString("O", f, Brushes.Black, x0, y0);
-                g.DrawString("x", f, Brushes.Black, max_x - 20, y0 - 20);
-                g.DrawString("y", f, Brushes.Black, x0 - 20, 1);
+                Brush br = new SolidBrush(theme.TextColor);
+                g.DrawString("O", f, br, x0, y0);
+                g.DrawString("x", f, br, max_x - 20, y0 - 20);
+                g.DrawString("y", f, br, x0 - 20, 1);
 
             }
         }
@@ -394,6 +397,12 @@ namespace GT
             themLabo(a2, pt1);
         }
 
+        private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            theme.ChangeAll();
+            button1_Click(null, null);
+        }
+
         private void frmMain_Resize(object sender, EventArgs e)
         {
 
@@ -502,10 +511,11 @@ namespace GT
 
         void VeLuoi()
         {
-            Pen pen_x = new Pen(Color.FromArgb(150, 150, 150), 2);
-            Pen pen_n = new Pen(Color.FromArgb(200, 200, 200), 1);
+            Pen pen_x = new Pen(theme.Nest, 2);
+            Pen pen_n = new Pen(theme.Tail, 1);
             int i, xd = 0, yd = 0;
             float n = ((float)k / 5);
+            Brush br = new SolidBrush(theme.TextColor);
             Font f = new Font("Arial", 12);
             for (int j = 1; j <= 5; j++)
             {
@@ -522,7 +532,7 @@ namespace GT
                 g.DrawLine(pen_x, i, 0, i, max_y);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, i + j * n, 0, i + j * n, max_y);
-                g.DrawString(((i - x0) / k * dv).ToString(), f, Brushes.Black, i, yd);
+                g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
             }
             for (i = x0 - k; i > 0; i -= k)
             {
@@ -532,7 +542,7 @@ namespace GT
                 g.DrawLine(pen_x, i, 0, i, max_y);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, i - j * n, 0, i - j * n, max_y);
-                g.DrawString(((i - x0) / k * dv).ToString(), f, Brushes.Black, i, yd);
+                g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
             }
             for (i = y0 + k; i < max_y; i += k)
             {
@@ -542,7 +552,7 @@ namespace GT
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, 0, i + j * n, max_x, i + j * n);
-                g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, xd, i);
+                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
             }
             for (i = y0 - k; i > 0; i -= k)
             {
@@ -552,7 +562,7 @@ namespace GT
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, 0, i - j * n, max_x, i - j * n);
-                g.DrawString((-(i - y0) * dv / k).ToString(), f, Brushes.Black, xd, i);
+                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
             }
         }
         int Pow10(int i)
