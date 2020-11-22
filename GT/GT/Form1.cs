@@ -19,11 +19,12 @@ namespace GT
     {
         float[] C_dv = { 1f, 2f, 5f};
         Theme theme = new Theme();
-        const int MinZoom = 80, MaxZoom = 360, Normal = 180; 
+        const int MinZoom = 120, MaxZoom = 340, Normal = 180; 
         List<Function> a = new List<Function>();
+        List<UserControl1> ListFnc = new List<UserControl1>();
         int max_x, max_y, x0, y0, k = 120, idv = 0;
         double dv = 1;
-        const float MaxDv = 500, MinDv = 1 / 200;
+        const float MaxDv = 500, MinDv = 0.001f;
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0);
         Graphics g;
@@ -36,7 +37,9 @@ namespace GT
         {
             InitializeComponent();
 
-            this.DoubleBuffered = true;
+            ListFnc.Add(create_UserControl1());
+
+            flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count-1]);
 
             this.pictureBox1.MouseMove += _MouseMove;
 
@@ -65,7 +68,7 @@ namespace GT
                     u.X = (int)(-((_x / dv) * k) + (e.Location.X - x0));
                     u.Y = (int)(-((_y / dv) * k) + (e.Location.Y - y0));
                 }
-                button1_Click(null, null);
+                DrawGr();
             };
 
             this.pictureBox1.MouseDown += (s, e) =>
@@ -91,7 +94,7 @@ namespace GT
                 u.X = e.X - LastMouse.X;
                 u.Y = e.Y - LastMouse.Y;
                 LastMouse = e.Location;
-                button1_Click(null, null);
+                DrawGr();
             }
         }
 
@@ -104,18 +107,20 @@ namespace GT
         {
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
-            Create(null, null);
+            flowLayoutPanel1_SizeChanged(null, null);
+            Create();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DrawGr()
         {
             pictureBox1.Refresh();
+
             frmMain_Resize(null, null);
             VeTruc();
             VeDoThi();
         }
 
-        private void Create(object sender, EventArgs e)
+        private void Create()
         {
             pictureBox1.Refresh();
             frmMain_Resize(null, null);
@@ -198,7 +203,7 @@ namespace GT
                 f.Close();
             };
             f.ShowDialog();
-            button1_Click(null, null);
+            DrawGr();
         }
         void themLaboDuongTron(int n, PictureBox pt)
         {
@@ -253,7 +258,7 @@ namespace GT
                 f.Close();
             };
             f.ShowDialog();
-            button1_Click(null, null);
+            DrawGr();
         }
 
 
@@ -287,7 +292,7 @@ namespace GT
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             Form1_Load(null, null);
-            button1_Click(null, null);
+            DrawGr();
         }
 
         private void pictureBox1_SizeChanged(object sender, EventArgs e)
@@ -295,15 +300,16 @@ namespace GT
             G = this.pictureBox1.Width * 5;
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
-            Create(null, null);
-            button1_Click(null, null);
+            Create();
+            DrawGr();
         }
 
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
             a.Clear();
-            this.Create(null, null);
+            ListFnc.Clear();
+            this.Create();
         }
 
         private void phươngTrìnhBậc1ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -317,6 +323,7 @@ namespace GT
             pt2.Image = ig2;
             int a3 = 1;
             themLabo(a3, pt2);
+            addListFcn();
         }
 
         private void phươngTrìnhBậc2ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -330,6 +337,7 @@ namespace GT
             pt3.Image = ig3;
             int a4 = 2;
             themLabo(a4, pt3);
+            addListFcn();
         }
 
         private void phươngTrìnhBậc3ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -343,6 +351,7 @@ namespace GT
             pt4.Image = ig4;
             int a5 = 3;
             themLabo(a5, pt4);
+            addListFcn();
         }
 
         private void phươngTrìnhBậc4ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -356,6 +365,7 @@ namespace GT
             pt5.Image = ig5;
             int f = 4;
             themLabo(f, pt5);
+            addListFcn();
         }
 
         private void phươngTrìnhBậc5ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -369,6 +379,7 @@ namespace GT
             pt6.Image = ig6;
             int a7 = 5;
             themLabo(a7, pt6);
+            addListFcn();
         }
 
         private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
@@ -382,6 +393,7 @@ namespace GT
             pt.Image = ig;
             int a1 = 3;
             themLaboDuongTron(a1, pt);
+            addListFcn();
         }
 
         private void phươngTrìnhĐặcBiệtToolStripMenuItem_Click(object sender, EventArgs e)
@@ -395,14 +407,19 @@ namespace GT
             pt1.Image = ig1;
             int a2 = -1;
             themLabo(a2, pt1);
+            addListFcn();
         }
 
         private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             theme.ChangeAll();
-            button1_Click(null, null);
+            foreach(Function i in a)
+            {
+                int r = i.color.R, g = i.color.G, b = i.color.B;
+                i.color = Color.FromArgb(255 - r, 255 - g, 255 - b);
+            }
+            DrawGr();
         }
-
         private void frmMain_Resize(object sender, EventArgs e)
         {
 
@@ -415,22 +432,38 @@ namespace GT
             u = new Point(0, 0);
         }
 
+        private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)
+        {
+            foreach(UserControl1 i in ListFnc)
+            {
+                i.Width = flowLayoutPanel1.Width - 2;
+            }
+        }
+
+        private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Width = splitContainer1.Panel1.Width - 5;
+        }
+
         private void VeDoThi()
         {
 
             for (int i = 0; i < a.Count; i++)
             {
-                PointF[] pGraph;
-                if (a[i].GetType().ToString() != "Fcn.Circle")
+                if (a[i].Enable)
                 {
-                    pGraph = SetGraph(a[i]);
-                    PaintGraph(pGraph, i);
-                }
-                else
-                {
-                    Circle p = (Circle)a[i];
-                    g.FillEllipse(new SolidBrush(p.color), p.I.X / (float)dv * k + x0 - 5, -p.I.Y / (float)dv * k + y0 - 5, 10, 10);
-                    g.DrawEllipse(new Pen(p.color, 2), ((p.A - p.R) / (float)dv * k + x0), ((-p.B - p.R) / (float)dv * k + y0), ((p.R * 2) * k) / (float)dv, ((p.R * 2) * k) / (float)dv);
+                    PointF[] pGraph;
+                    if (a[i].GetType().ToString() != "Fcn.Circle")
+                    {
+                        pGraph = SetGraph(a[i]);
+                        PaintGraph(pGraph, i);
+                    }
+                    else
+                    {
+                        Circle p = (Circle)a[i];
+                        g.FillEllipse(new SolidBrush(p.color), p.I.X / (float)dv * k + x0 - 5, -p.I.Y / (float)dv * k + y0 - 5, 10, 10);
+                        g.DrawEllipse(new Pen(p.color, 2), ((p.A - p.R) / (float)dv * k + x0), ((-p.B - p.R) / (float)dv * k + y0), ((p.R * 2) * k) / (float)dv, ((p.R * 2) * k) / (float)dv);
+                    }
                 }
             }
         }
@@ -572,6 +605,27 @@ namespace GT
                 r *= 10;
             return r;
         }
-    }
 
+        UserControl1 create_UserControl1()
+        {
+            UserControl1 n = new UserControl1();
+            n.checkBox1.Checked = true;
+            n.checkBox1.CheckedChanged += (s, e) =>
+            {
+                a[(int)n.Tag].Enable = !a[(int)n.Tag].Enable;
+                DrawGr();
+            };
+            return n;
+        }
+
+        private void addListFcn()
+        {
+            ListFnc.Add(create_UserControl1());
+            ListFnc[ListFnc.Count - 2].textBox1.Text = "";
+            ListFnc[ListFnc.Count - 2].pictureBox1.BackColor = a[a.Count - 1].color;
+            ListFnc[ListFnc.Count - 2].Tag = a.Count - 1;
+            flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
+            flowLayoutPanel1_SizeChanged(null, null);
+        }
+    }
 }

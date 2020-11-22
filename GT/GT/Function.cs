@@ -9,8 +9,14 @@ namespace Fcn
     {
         private Random random = new Random();
         protected float[] x;
-
+        bool enable = true;
         protected Color f_color;
+
+        public bool Enable
+        {
+            get => enable;
+            set => enable = value;
+        }
 
         public Color color
         {
