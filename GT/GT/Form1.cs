@@ -619,6 +619,7 @@ namespace GT
         {
             ListFnc.Add(create_UserControl1());
             ListFnc[ListFnc.Count - 2].textBox1.Text = "";
+            ListFnc[ListFnc.Count - 2].textBox1.Visible = false;
             ListFnc[ListFnc.Count - 2].pictureBox1.BackColor = a[a.Count - 1].color;
             ListFnc[ListFnc.Count - 2].Tag = a.Count - 1;
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
