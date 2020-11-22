@@ -417,6 +417,7 @@ namespace GT
             {
                 int r = i.color.R, g = i.color.G, b = i.color.B;
                 i.color = Color.FromArgb(255 - r, 255 - g, 255 - b);
+                SetColorItemList();
             }
             DrawGr();
         }
@@ -612,7 +613,8 @@ namespace GT
             n.checkBox1.Checked = true;
             n.checkBox1.CheckedChanged += (s, e) =>
             {
-                a[(int)n.Tag].Enable = !a[(int)n.Tag].Enable;
+                if(n.Tag != null)
+                    a[(int)n.Tag].Enable = !a[(int)n.Tag].Enable;
                 DrawGr();
             };
             return n;
@@ -626,6 +628,15 @@ namespace GT
             ListFnc[ListFnc.Count - 2].Tag = a.Count - 1;
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
             flowLayoutPanel1_SizeChanged(null, null);
+        }
+
+        private void SetColorItemList()
+        {
+            foreach(UserControl1 i in ListFnc)
+            {
+                if(i.Tag != null)
+                    i.pictureBox1.BackColor = a[(int)i.Tag].color;
+            }
         }
     }
 }
