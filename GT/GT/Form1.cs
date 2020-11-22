@@ -200,6 +200,7 @@ namespace GT
                 }
                 bac_N.X = x;
                 a.Add(bac_N);
+                addListFcn();
                 f.Close();
             };
             f.ShowDialog();
@@ -255,6 +256,7 @@ namespace GT
                 }
                 circle.X = x;
                 a.Add(circle);
+                addListFcn();
                 f.Close();
             };
             f.ShowDialog();
@@ -323,7 +325,6 @@ namespace GT
             pt2.Image = ig2;
             int a3 = 1;
             themLabo(a3, pt2);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc2ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -337,7 +338,6 @@ namespace GT
             pt3.Image = ig3;
             int a4 = 2;
             themLabo(a4, pt3);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc3ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -351,7 +351,6 @@ namespace GT
             pt4.Image = ig4;
             int a5 = 3;
             themLabo(a5, pt4);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc4ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -365,7 +364,6 @@ namespace GT
             pt5.Image = ig5;
             int f = 4;
             themLabo(f, pt5);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc5ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -379,7 +377,6 @@ namespace GT
             pt6.Image = ig6;
             int a7 = 5;
             themLabo(a7, pt6);
-            addListFcn();
         }
 
         private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
@@ -393,7 +390,6 @@ namespace GT
             pt.Image = ig;
             int a1 = 3;
             themLaboDuongTron(a1, pt);
-            addListFcn();
         }
 
         private void phươngTrìnhĐặcBiệtToolStripMenuItem_Click(object sender, EventArgs e)
@@ -407,7 +403,6 @@ namespace GT
             pt1.Image = ig1;
             int a2 = -1;
             themLabo(a2, pt1);
-            addListFcn();
         }
 
         private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
