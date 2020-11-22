@@ -1,19 +1,48 @@
 using System;
 using System.Data.SqlTypes;
+using System.Drawing;
 using System.Security.Policy;
 
 namespace Fcn
 {
     public abstract class Function
     {
+        private Random random = new Random();
         protected float[] x;
-        public Function(){}
+        bool enable = true;
+        protected Color f_color;
+
+        public bool Enable
+        {
+            get => enable;
+            set => enable = value;
+        }
+
+        public Color color
+        {
+            set
+            {
+                f_color = value;
+            }
+            get
+            {
+                return f_color;
+            }
+        }
+
+        public Function(){
+            this.SetRandColor();
+        }
         public float[] X
         {
             set
             {
                 x = value;
             }
+        }
+        public void SetRandColor()
+        {
+            color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
         public virtual float f(float _x) { return 0; }
     }
@@ -69,6 +98,13 @@ namespace Fcn
     }
     class Circle : Function
     {
+        public PointF I
+        {
+            get
+            {
+                return new PointF(x[0], x[1]);
+            }
+        }
         public float A
         {
             get
