@@ -487,10 +487,7 @@ namespace GT
 
         void PaintGraph(PointF[] pGraph, int i)
         {
-<<<<<<< HEAD
             Pen pen = new Pen(Color.Red, 2);
-=======
->>>>>>> c4271e08492b03ebdf5ead66ff52c0ed13bc8ec3
             int p = 0;
             while (p < G)
             {
