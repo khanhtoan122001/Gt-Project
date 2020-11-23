@@ -12,7 +12,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
+using System.Diagnostics;
 namespace GT
 {
     public partial class Form1 : Form
@@ -466,6 +467,50 @@ namespace GT
                     }
                 }
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //using (StreamWriter sw=new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savex0"))
+            //{               
+            //    sw.WriteLine(x0);
+            //}
+            //using (StreamWriter sw1 = new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savey0"))
+            //{
+            //    sw1.WriteLine(y0);
+            //}
+            //using (StreamWriter sw2 = new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savek"))
+            //{ 
+            //    sw2.WriteLine(k);
+            //}
+            //StreamReader sr = new StreamReader(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savex0");
+            //int g1 = Convert.ToInt32(sr.Read());
+            //StreamReader sr1 = new StreamReader(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savey0");
+            //int g2 = Convert.ToInt32(sr1.Read());
+            //StreamReader sr2 = new StreamReader(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savek");
+            //int g3 = Convert.ToInt32(sr2.Read());
+            using (StreamWriter sw4 =new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_save.exe"))
+            {
+                sw4.WriteLine("using System;");
+                sw4.WriteLine("namespace kkk {");
+                sw4.WriteLine("class Program" +
+                    "{");
+                sw4.WriteLine(@"static void Main(string [] r){");
+                    sw4.WriteLine(@" Console.WriteLine("");");
+                    sw4.WriteLine(@" Console.WriteLine("");");
+                    sw4.WriteLine(@" Console.WriteLine("");");
+                sw4.WriteLine(@"}}}");
+
+
+
+
+
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_save.exe");
         }
 
         PointF[] SetGraph(Function a)
