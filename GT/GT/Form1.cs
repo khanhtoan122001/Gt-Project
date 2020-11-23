@@ -201,6 +201,7 @@ namespace GT
                 }
                 bac_N.X = x;
                 a.Add(bac_N);
+                addListFcn();
                 f.Close();
             };
             f.ShowDialog();
@@ -256,6 +257,7 @@ namespace GT
                 }
                 circle.X = x;
                 a.Add(circle);
+                addListFcn();
                 f.Close();
             };
             f.ShowDialog();
@@ -324,7 +326,6 @@ namespace GT
             pt2.Image = ig2;
             int a3 = 1;
             themLabo(a3, pt2);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc2ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -338,7 +339,6 @@ namespace GT
             pt3.Image = ig3;
             int a4 = 2;
             themLabo(a4, pt3);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc3ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -352,7 +352,6 @@ namespace GT
             pt4.Image = ig4;
             int a5 = 3;
             themLabo(a5, pt4);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc4ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -366,7 +365,6 @@ namespace GT
             pt5.Image = ig5;
             int f = 4;
             themLabo(f, pt5);
-            addListFcn();
         }
 
         private void phươngTrìnhBậc5ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -380,7 +378,6 @@ namespace GT
             pt6.Image = ig6;
             int a7 = 5;
             themLabo(a7, pt6);
-            addListFcn();
         }
 
         private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
@@ -394,7 +391,6 @@ namespace GT
             pt.Image = ig;
             int a1 = 3;
             themLaboDuongTron(a1, pt);
-            addListFcn();
         }
 
         private void phươngTrìnhĐặcBiệtToolStripMenuItem_Click(object sender, EventArgs e)
@@ -408,7 +404,6 @@ namespace GT
             pt1.Image = ig1;
             int a2 = -1;
             themLabo(a2, pt1);
-            addListFcn();
         }
 
         private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -418,6 +413,7 @@ namespace GT
             {
                 int r = i.color.R, g = i.color.G, b = i.color.B;
                 i.color = Color.FromArgb(255 - r, 255 - g, 255 - b);
+                SetColorItemList();
             }
             DrawGr();
         }
@@ -657,7 +653,8 @@ namespace GT
             n.checkBox1.Checked = true;
             n.checkBox1.CheckedChanged += (s, e) =>
             {
-                a[(int)n.Tag].Enable = !a[(int)n.Tag].Enable;
+                if(n.Tag != null)
+                    a[(int)n.Tag].Enable = !a[(int)n.Tag].Enable;
                 DrawGr();
             };
             return n;
@@ -667,10 +664,20 @@ namespace GT
         {
             ListFnc.Add(create_UserControl1());
             ListFnc[ListFnc.Count - 2].textBox1.Text = "";
+            ListFnc[ListFnc.Count - 2].textBox1.Visible = false;
             ListFnc[ListFnc.Count - 2].pictureBox1.BackColor = a[a.Count - 1].color;
             ListFnc[ListFnc.Count - 2].Tag = a.Count - 1;
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
             flowLayoutPanel1_SizeChanged(null, null);
+        }
+
+        private void SetColorItemList()
+        {
+            foreach(UserControl1 i in ListFnc)
+            {
+                if(i.Tag != null)
+                    i.pictureBox1.BackColor = a[(int)i.Tag].color;
+            }
         }
     }
 }

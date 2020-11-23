@@ -16,7 +16,6 @@ namespace GT
         public UserControl1()
         {
             InitializeComponent();
-            textBox1.Text = "....";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
