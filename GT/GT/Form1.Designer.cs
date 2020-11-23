@@ -326,12 +326,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-<<<<<<< HEAD
-            this.Text = "Gt";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-=======
-            this.Text = "Form1";
->>>>>>> c4271e08492b03ebdf5ead66ff52c0ed13bc8ec3
+            this.Text = "GT";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
