@@ -439,7 +439,7 @@ namespace GT
 
         private void splitContainer1_Panel1_SizeChanged(object sender, EventArgs e)
         {
-            flowLayoutPanel1.Width = splitContainer1.Panel1.Width - 5;
+            flowLayoutPanel1.Width = splitContainer1.Panel1.Width - 7;
         }
 
         private void VeDoThi()
@@ -467,46 +467,12 @@ namespace GT
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //using (StreamWriter sw=new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savex0"))
-            //{               
-            //    sw.WriteLine(x0);
-            //}
-            //using (StreamWriter sw1 = new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savey0"))
-            //{
-            //    sw1.WriteLine(y0);
-            //}
-            //using (StreamWriter sw2 = new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savek"))
-            //{ 
-            //    sw2.WriteLine(k);
-            //}
-            //StreamReader sr = new StreamReader(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savex0");
-            //int g1 = Convert.ToInt32(sr.Read());
-            //StreamReader sr1 = new StreamReader(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savey0");
-            //int g2 = Convert.ToInt32(sr1.Read());
-            //StreamReader sr2 = new StreamReader(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_savek");
-            //int g3 = Convert.ToInt32(sr2.Read());
-            using (StreamWriter sw4 =new StreamWriter(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_save.exe"))
-            {
-                sw4.WriteLine("using System;");
-                sw4.WriteLine("namespace kkk {");
-                sw4.WriteLine("class Program" +
-                    "{");
-                sw4.WriteLine(@"static void Main(string [] r){");
-                    sw4.WriteLine(@" Console.WriteLine("");");
-                    sw4.WriteLine(@" Console.WriteLine("");");
-                    sw4.WriteLine(@" Console.WriteLine("");");
-                sw4.WriteLine(@"}}}");
-
-
-
-
-
-            }
+            
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start(@"E:\testGit\Gt-Project\Gt-Project\Gt-Project\GT\GT\_save.exe");
+            
         }
 
         PointF[] SetGraph(Function a)
@@ -547,6 +513,22 @@ namespace GT
                     g.DrawCurve(new Pen(a[i].color, 2), d);
                 }
                 p++;
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < ListFnc.Count - 1; i++)
+            {
+                if (ListFnc[i].selected)
+                {
+                    flowLayoutPanel1.Controls.Remove(ListFnc[i]);
+                    ListFnc.RemoveAt(i);
+                    a.RemoveAt(i);
+                    i--;
+                    Refresh_ListFcn();
+                    DrawGr();
+                }
             }
         }
 
@@ -650,6 +632,7 @@ namespace GT
         UserControl1 create_UserControl1()
         {
             UserControl1 n = new UserControl1();
+            n.textBox1.Visible = false;
             n.checkBox1.Checked = true;
             n.checkBox1.CheckedChanged += (s, e) =>
             {
@@ -660,14 +643,21 @@ namespace GT
             return n;
         }
 
+        private void Refresh_ListFcn()
+        {
+            for(int i = 0; i < ListFnc.Count - 1; i++)
+            {
+                ListFnc[i].pictureBox1.BackColor = a[i].color;
+                ListFnc[i].Tag = i;
+            }
+        }
+
         private void addListFcn()
         {
             ListFnc.Add(create_UserControl1());
             ListFnc[ListFnc.Count - 2].textBox1.Text = "";
-            ListFnc[ListFnc.Count - 2].textBox1.Visible = false;
-            ListFnc[ListFnc.Count - 2].pictureBox1.BackColor = a[a.Count - 1].color;
-            ListFnc[ListFnc.Count - 2].Tag = a.Count - 1;
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
+            Refresh_ListFcn();
             flowLayoutPanel1_SizeChanged(null, null);
         }
 
