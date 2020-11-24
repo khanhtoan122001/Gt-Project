@@ -647,7 +647,8 @@ namespace GT
         {
             for(int i = 0; i < ListFnc.Count - 1; i++)
             {
-                ListFnc[i].pictureBox1.BackColor = a[i].color;
+                ListFnc[i].color = a[i].color;
+                ListFnc[i].Change_Color();
                 ListFnc[i].Tag = i;
             }
         }
@@ -666,7 +667,10 @@ namespace GT
             foreach(UserControl1 i in ListFnc)
             {
                 if(i.Tag != null)
-                    i.pictureBox1.BackColor = a[(int)i.Tag].color;
+                {
+                    i.color = a[(int)i.Tag].color;
+                    i.Change_Color();
+                }
             }
         }
     }

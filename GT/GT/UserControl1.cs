@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,24 @@ namespace GT
         //Image img = Image.FromFile(@"..\\..\\Resources\\ColorWheel.png");
         Bitmap b;
         Graphics g;
+        GraphicsPath gPath = new GraphicsPath();
         Rectangle r;
+        public Color color;
         public UserControl1()
         {
             InitializeComponent();
             selected = false;
+            gPath.AddEllipse(7, 7, pictureBox1.Width - 14, pictureBox1.Width - 14);
+            this.pictureBox1.Region = new Region(gPath);
+        }
+
+        public void Change_Color()
+        {
+            b = new Bitmap(this.Width, this.Height);
+            g = Graphics.FromImage(b);
+            r = new Rectangle(7, 7, pictureBox1.Width - 14, pictureBox1.Width - 14);
+            g.FillEllipse(new SolidBrush(color), r);
+            this.pictureBox1.Image = b;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
