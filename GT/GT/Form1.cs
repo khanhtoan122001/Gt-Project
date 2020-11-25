@@ -151,6 +151,8 @@ namespace GT
             };
             return t;
         }
+
+        //Form nhập:
         void themLabo(int n, PictureBox pt)
         {
             Bac_n bac_N = new Bac_n(n);
@@ -263,8 +265,7 @@ namespace GT
             DrawGr();
         }
 
-
-
+        //Vẽ trục:
         private void VeTruc()
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -538,7 +539,7 @@ namespace GT
             }
         }
 
-        void VeLuoi()
+        void VeLuoi() //Vẽ lưới
         {
             Pen pen_x = new Pen(theme.Nest, 2);
             Pen pen_n = new Pen(theme.Tail, 1);
@@ -577,7 +578,7 @@ namespace GT
             {
                 xd = x0;
                 if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 20;
+                if (x0 > max_x) xd = max_x - 35;
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, 0, i + j * n, max_x, i + j * n);
@@ -587,7 +588,7 @@ namespace GT
             {
                 xd = x0;
                 if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 20;
+                if (x0 > max_x) xd = max_x - 35;
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, 0, i - j * n, max_x, i - j * n);
@@ -602,11 +603,10 @@ namespace GT
             return r;
         }
 
+        //Phần này là về list
         UserControl1 create_UserControl1()
         {
             UserControl1 n = new UserControl1();
-            n.textBox1.Visible = false;
-            n.textBox1.Text = "";
             n.checkBox1.Checked = true;
             n.checkBox1.CheckedChanged += (s, e) =>
             {
@@ -621,7 +621,10 @@ namespace GT
         {
             ListFnc.Add(create_UserControl1());
             if (a != null)
+            {
                 ListFnc[ListFnc.Count - 2].pictureBox1.BackColor = a[a.Count - 1].color;
+                ListFnc[ListFnc.Count - 2].label1.Text = "";
+            }
             ListFnc[ListFnc.Count - 2].Tag = a.Count - 1;
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
             flowLayoutPanel1_SizeChanged(null, null);
