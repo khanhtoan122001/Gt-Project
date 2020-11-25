@@ -467,7 +467,25 @@ namespace GT
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (a.Count == 0)
+                return;
             
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter file = new StreamWriter(saveFileDialog1.FileName))
+                {
+                    file.WriteLine(a.Count);
+                    foreach(Function i in a)
+                    {
+                        file.WriteLine("*=*=*");
+                        file.Write(i.SaveString());
+                    }
+                }
+            }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -529,6 +547,19 @@ namespace GT
                     Refresh_ListFcn();
                     DrawGr();
                 }
+            }
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image.Save(saveFileDialog1.FileName);
+                saveFileDialog1.FileName = "";
             }
         }
 
