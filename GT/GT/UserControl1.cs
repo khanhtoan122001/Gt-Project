@@ -14,6 +14,7 @@ namespace GT
     public partial class UserControl1 : UserControl
     {
         //Image img = Image.FromFile(@"..\\..\\Resources\\ColorWheel.png");
+<<<<<<< HEAD
         Bitmap b;
         Graphics g;
         GraphicsPath gPath = new GraphicsPath();
@@ -34,9 +35,26 @@ namespace GT
             r = new Rectangle(7, 7, pictureBox1.Width - 14, pictureBox1.Width - 14);
             g.FillEllipse(new SolidBrush(color), r);
             this.pictureBox1.Image = b;
+=======
+        Color C_panel = Color.FromArgb(255, 252, 48);
+        public UserControl1()
+        {
+            InitializeComponent();
+            _checked = false;
+
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            _checked = !_checked;
+            if (_checked)
+                this.BackColor = C_panel;
+            else
+                this.BackColor = Color.White;
+>>>>>>> toan
+        }
+
+        private void UserControl1_Load(object sender, EventArgs e)
         {
 
         }
