@@ -466,7 +466,6 @@ namespace GT
             }
         }
 
-<<<<<<< HEAD
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -477,22 +476,6 @@ namespace GT
             
         }
 
-=======
-        private void toolStripButton5_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            pictureBox1.Refresh();
-            a.Clear();
-            ListFnc.Clear();
-            this.Create();
-        }
-
-       
->>>>>>> _dung
         PointF[] SetGraph(Function a)
         {
             float mx = Convert.ToSingle(max_x);
@@ -512,7 +495,6 @@ namespace GT
 
         void PaintGraph(PointF[] pGraph, int i)
         {
-            Pen pen = new Pen(Color.Red, 2);
             int p = 0;
             while (p < G)
             {
