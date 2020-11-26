@@ -312,6 +312,9 @@ namespace GT
             pictureBox1.Refresh();
             a.Clear();
             ListFnc.Clear();
+            Refresh_ListFcn();
+            flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel1.Controls.Add(create_UserControl1());
             this.Create();
         }
 
@@ -491,19 +494,6 @@ namespace GT
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-        }
-
-        private void toolStripButton5_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            pictureBox1.Refresh();
-            a.Clear();
-            ListFnc.Clear();
-            this.Create();
         }
 
        
