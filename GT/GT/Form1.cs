@@ -40,7 +40,7 @@ namespace GT
 
             ListFnc.Add(create_UserControl1());
 
-            flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
+            flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count-1]);
 
             this.pictureBox1.MouseMove += _MouseMove;
 
@@ -152,8 +152,6 @@ namespace GT
             };
             return t;
         }
-
-        //Form nhập:
         void themLabo(int n, PictureBox pt)
         {
             Bac_n bac_N = new Bac_n(n);
@@ -266,7 +264,8 @@ namespace GT
             DrawGr();
         }
 
-        //Vẽ trục:
+
+
         private void VeTruc()
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -566,7 +565,7 @@ namespace GT
             }
         }
 
-        void VeLuoi() //Vẽ lưới
+        void VeLuoi()
         {
             Pen pen_x = new Pen(theme.Nest, 2);
             Pen pen_n = new Pen(theme.Tail, 1);
@@ -605,7 +604,7 @@ namespace GT
             {
                 xd = x0;
                 if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 35;
+                if (x0 > max_x) xd = max_x - 20;
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, 0, i + j * n, max_x, i + j * n);
@@ -615,7 +614,7 @@ namespace GT
             {
                 xd = x0;
                 if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 35;
+                if (x0 > max_x) xd = max_x - 20;
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, 0, i - j * n, max_x, i - j * n);
@@ -630,7 +629,6 @@ namespace GT
             return r;
         }
 
-        //Phần này là về list
         UserControl1 create_UserControl1()
         {
             UserControl1 n = new UserControl1();
@@ -658,16 +656,7 @@ namespace GT
         private void addListFcn()
         {
             ListFnc.Add(create_UserControl1());
-<<<<<<< HEAD
             ListFnc[ListFnc.Count - 2].textBox1.Text = "";
-=======
-            if (a != null)
-            {
-                ListFnc[ListFnc.Count - 2].pictureBox1.BackColor = a[a.Count - 1].color;
-                ListFnc[ListFnc.Count - 2].label1.Text = "";
-            }
-            ListFnc[ListFnc.Count - 2].Tag = a.Count - 1;
->>>>>>> toan
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
             Refresh_ListFcn();
             flowLayoutPanel1_SizeChanged(null, null);
