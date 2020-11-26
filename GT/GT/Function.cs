@@ -44,7 +44,11 @@ namespace Fcn
         {
             color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
-        public virtual float f(float _x) { return 0; }
+        public virtual float f(float _x) => 0;
+        public virtual string SaveString()
+        {
+            return this.GetType().ToString();
+        }
     }
     class Bac_n : Function
     {
@@ -88,6 +92,18 @@ namespace Fcn
             }
             return y_relust;
         }
+        public override string SaveString()
+        {
+            string v = "";
+            int m = 0;
+            if (n > 0) m = n;
+            else m = 2;
+            for(int i = 0; i < m; i++)
+            {
+                v += x[i].ToString() + "*";
+            }
+            return String.Format("{0}\n{1}\n{2}\n{3}\n",base.SaveString(), n, v, color.ToArgb());
+        }
         float Pow(float x, int n)
         {
             float relust = 1;
@@ -126,6 +142,10 @@ namespace Fcn
                 return x[2];
             }
         }
-        
+        public override string SaveString()
+        {
+            string v = string.Format("{0}*{1}*{2}", x[0], x[1], x[2]);
+            return string.Format("{0}\n{1}\n{2}\n",base.SaveString(), v, color.ToArgb());
+        }
     }
 }   //          (x - a)^2 + (y - b)^2 = R   =>  y = b + sqrt(R - (x - a)^2)
