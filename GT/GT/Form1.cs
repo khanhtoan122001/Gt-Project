@@ -314,7 +314,9 @@ namespace GT
             ListFnc.Clear();
             Refresh_ListFcn();
             flowLayoutPanel1.Controls.Clear();
-            flowLayoutPanel1.Controls.Add(create_UserControl1());
+            ListFnc.Add(create_UserControl1());
+            flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
+            flowLayoutPanel1_SizeChanged(null, null);
             this.Create();
         }
 
