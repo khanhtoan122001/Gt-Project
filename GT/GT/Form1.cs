@@ -30,7 +30,7 @@ namespace GT
         Point LastMouse = new Point(0, 0);
         Graphics g;
         Bitmap bitmap;
-        bool S = false, Dark = false;
+        bool S = false, Dark = false, LuoiNho = true;
         int G = 10;
         const int E = 10000;
         const float Zoom = 1.1f;
@@ -580,7 +580,8 @@ namespace GT
 
         private void lướiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            LuoiNho = !LuoiNho;
+            DrawGr();
         }
 
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
@@ -646,13 +647,13 @@ namespace GT
             float n = ((float)k / 5);
             Brush br = new SolidBrush(theme.TextColor);
             Font f = new Font("Arial", 12);
-            for (int j = 1; j <= 5; j++)
-            {
-                g.DrawLine(pen_n, x0 + j * n, 0, x0 + j * n, max_y);
-                g.DrawLine(pen_n, x0 - j * n, 0, x0 - j * n, max_y);
-                g.DrawLine(pen_n, 0, y0 - j * n, max_x, y0 - j * n);
-                g.DrawLine(pen_n, 0, y0 + j * n, max_x, y0 + j * n);
-            }
+            //for (int j = 1; j <= 5; j++)
+            //{
+            //    g.DrawLine(pen_n, x0 + j * n, 0, x0 + j * n, max_y);
+            //    g.DrawLine(pen_n, x0 - j * n, 0, x0 - j * n, max_y);
+            //    g.DrawLine(pen_n, 0, y0 - j * n, max_x, y0 - j * n);
+            //    g.DrawLine(pen_n, 0, y0 + j * n, max_x, y0 + j * n);
+            //}
             for (i = x0 + k; i < max_x; i += k)
             {
                 yd = y0;
@@ -685,7 +686,7 @@ namespace GT
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
             }
-            VeLuoiNho();
+            if(!LuoiNho) VeLuoiNho();
         }
         private void VeLuoiNho()
         {
@@ -693,7 +694,13 @@ namespace GT
             Pen pen_n = new Pen(theme.Tail, 1);
             int i;
             float n = ((float)k / 5);
-
+            for (int j = 1; j <= 5; j++)
+            {
+                g.DrawLine(pen_n, x0 + j * n, 0, x0 + j * n, max_y);
+                g.DrawLine(pen_n, x0 - j * n, 0, x0 - j * n, max_y);
+                g.DrawLine(pen_n, 0, y0 - j * n, max_x, y0 - j * n);
+                g.DrawLine(pen_n, 0, y0 + j * n, max_x, y0 + j * n);
+            }
             for (i = x0 + k; i < max_x; i += k)
             {
                 for (int j = 1; j <= 5; j++)
