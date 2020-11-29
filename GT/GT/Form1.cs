@@ -429,6 +429,7 @@ namespace GT
             this.BackColor = theme.Bg1;
             this.flowLayoutPanel1.BackColor = theme.Bg2;
             this.toolStrip1.BackColor = theme.Bg3;
+            this.panel2.BackColor = theme.Bg3;
         }
         private void frmMain_Resize(object sender, EventArgs e)
         {
@@ -653,8 +654,6 @@ namespace GT
                 if (y0 < 0) yd = 3;
                 if (y0 > max_y) yd = max_y - 20;
                 g.DrawLine(pen_x, i, 0, i, max_y);
-                for (int j = 1; j <= 5; j++)
-                    g.DrawLine(pen_n, i + j * n, 0, i + j * n, max_y);
                 g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
             }
             for (i = x0 - k; i > 0; i -= k)
@@ -663,8 +662,6 @@ namespace GT
                 if (y0 < 0) yd = 3;
                 if (y0 > max_y) yd = max_y - 20;
                 g.DrawLine(pen_x, i, 0, i, max_y);
-                for (int j = 1; j <= 5; j++)
-                    g.DrawLine(pen_n, i - j * n, 0, i - j * n, max_y);
                 g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
             }
             for (i = y0 + k; i < max_y; i += k)
@@ -673,8 +670,6 @@ namespace GT
                 if (x0 < 0) xd = 3;
                 if (x0 > max_x) xd = max_x - 20;
                 g.DrawLine(pen_x, 0, i, max_x, i);
-                for (int j = 1; j <= 5; j++)
-                    g.DrawLine(pen_n, 0, i + j * n, max_x, i + j * n);
                 g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
             }
             for (i = y0 - k; i > 0; i -= k)
@@ -683,9 +678,36 @@ namespace GT
                 if (x0 < 0) xd = 3;
                 if (x0 > max_x) xd = max_x - 20;
                 g.DrawLine(pen_x, 0, i, max_x, i);
+                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
+            }
+            VeLuoiNho();
+        }
+        private void VeLuoiNho()
+        {
+            Pen pen_x = new Pen(theme.Nest, 2);
+            Pen pen_n = new Pen(theme.Tail, 1);
+            int i;
+            float n = ((float)k / 5);
+
+            for (i = x0 + k; i < max_x; i += k)
+            {
+                for (int j = 1; j <= 5; j++)
+                    g.DrawLine(pen_n, i + j * n, 0, i + j * n, max_y);
+            }
+            for (i = x0 - k; i > 0; i -= k)
+            {
+                for (int j = 1; j <= 5; j++)
+                    g.DrawLine(pen_n, i - j * n, 0, i - j * n, max_y);
+            }
+            for (i = y0 + k; i < max_y; i += k)
+            {
+                for (int j = 1; j <= 5; j++)
+                    g.DrawLine(pen_n, 0, i + j * n, max_x, i + j * n);
+            }
+            for (i = y0 - k; i > 0; i -= k)
+            {
                 for (int j = 1; j <= 5; j++)
                     g.DrawLine(pen_n, 0, i - j * n, max_x, i - j * n);
-                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
             }
         }
         int Pow10(int i)

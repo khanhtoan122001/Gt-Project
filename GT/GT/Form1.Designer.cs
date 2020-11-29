@@ -59,14 +59,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.newtoolStripButton1 = new System.Windows.Forms.ToolStripLabel();
             this.Open = new System.Windows.Forms.ToolStripLabel();
             this.savetoolStripButton3 = new System.Windows.Forms.ToolStripLabel();
             this.saveastoolStripButton4 = new System.Windows.Forms.ToolStripLabel();
             this.deletetoolStripButton2 = new System.Windows.Forms.ToolStripLabel();
             this.exittoolStripButton5 = new System.Windows.Forms.ToolStripLabel();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -364,12 +364,6 @@
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.BackColorChanged += new System.EventHandler(this.toolStrip1_BackColorChanged);
             // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "save1.png");
-            // 
             // newtoolStripButton1
             // 
             this.newtoolStripButton1.AutoSize = false;
@@ -441,6 +435,12 @@
             this.exittoolStripButton5.Size = new System.Drawing.Size(100, 80);
             this.exittoolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.exittoolStripButton5.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "save1.png");
             // 
             // Form1
             // 
