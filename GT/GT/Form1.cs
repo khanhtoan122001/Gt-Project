@@ -264,8 +264,6 @@ namespace GT
             DrawGr();
         }
 
-
-
         private void VeTruc()
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -288,7 +286,6 @@ namespace GT
                 g.DrawString("O", f, br, x0, y0);
                 g.DrawString("x", f, br, max_x - 20, y0 - 20);
                 g.DrawString("y", f, br, x0 - 20, 1);
-
             }
         }
 
@@ -584,6 +581,16 @@ namespace GT
             DrawGr();
         }
 
+        private void listToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel1Collapsed = !splitContainer1.Panel1Collapsed;
+        }
+
+        private void buttonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
+        }
+
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
             if (Dark)
@@ -686,7 +693,7 @@ namespace GT
                 g.DrawLine(pen_x, 0, i, max_x, i);
                 g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
             }
-            if(!LuoiNho) VeLuoiNho();
+            if(LuoiNho) VeLuoiNho();
         }
         private void VeLuoiNho()
         {

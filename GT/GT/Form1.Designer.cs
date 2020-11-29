@@ -52,6 +52,7 @@
             this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.darkThemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lướiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -67,7 +68,8 @@
             this.exittoolStripButton5 = new System.Windows.Forms.ToolStripLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.lướiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -85,7 +87,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.MenuBar;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -252,7 +254,9 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.darkThemeToolStripMenuItem,
-            this.lướiToolStripMenuItem});
+            this.lướiToolStripMenuItem,
+            this.listToolStripMenuItem,
+            this.buttonToolStripMenuItem});
             this.viewToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(67, 29);
@@ -265,6 +269,16 @@
             this.darkThemeToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.darkThemeToolStripMenuItem.Text = "Dark theme";
             this.darkThemeToolStripMenuItem.CheckedChanged += new System.EventHandler(this.darkThemeToolStripMenuItem_CheckedChanged);
+            // 
+            // lướiToolStripMenuItem
+            // 
+            this.lướiToolStripMenuItem.Checked = true;
+            this.lướiToolStripMenuItem.CheckOnClick = true;
+            this.lướiToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.lướiToolStripMenuItem.Name = "lướiToolStripMenuItem";
+            this.lướiToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.lướiToolStripMenuItem.Text = "Lưới";
+            this.lướiToolStripMenuItem.Click += new System.EventHandler(this.lướiToolStripMenuItem_Click);
             // 
             // panel1
             // 
@@ -311,6 +325,7 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.IsSplitterFixed = true;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -376,6 +391,7 @@
             this.newtoolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newtoolStripButton1.Name = "newtoolStripButton1";
             this.newtoolStripButton1.Size = new System.Drawing.Size(100, 90);
+            this.newtoolStripButton1.Tag = "New";
             this.newtoolStripButton1.ToolTipText = "new";
             this.newtoolStripButton1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
@@ -388,7 +404,9 @@
             this.Open.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Open.Name = "Open";
             this.Open.Size = new System.Drawing.Size(100, 80);
+            this.Open.Tag = "Open";
             this.Open.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.Open.ToolTipText = "Open";
             this.Open.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // savetoolStripButton3
@@ -400,7 +418,9 @@
             this.savetoolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.savetoolStripButton3.Name = "savetoolStripButton3";
             this.savetoolStripButton3.Size = new System.Drawing.Size(100, 80);
+            this.savetoolStripButton3.Tag = "Save";
             this.savetoolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.savetoolStripButton3.ToolTipText = "Save";
             this.savetoolStripButton3.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveastoolStripButton4
@@ -412,7 +432,9 @@
             this.saveastoolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveastoolStripButton4.Name = "saveastoolStripButton4";
             this.saveastoolStripButton4.Size = new System.Drawing.Size(100, 80);
+            this.saveastoolStripButton4.Tag = "Save As";
             this.saveastoolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.saveastoolStripButton4.ToolTipText = "Save As";
             // 
             // deletetoolStripButton2
             // 
@@ -423,7 +445,9 @@
             this.deletetoolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deletetoolStripButton2.Name = "deletetoolStripButton2";
             this.deletetoolStripButton2.Size = new System.Drawing.Size(100, 80);
+            this.deletetoolStripButton2.Tag = "Delete";
             this.deletetoolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.deletetoolStripButton2.ToolTipText = "Delete";
             this.deletetoolStripButton2.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // exittoolStripButton5
@@ -435,7 +459,9 @@
             this.exittoolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.exittoolStripButton5.Name = "exittoolStripButton5";
             this.exittoolStripButton5.Size = new System.Drawing.Size(100, 80);
+            this.exittoolStripButton5.Tag = "Exit";
             this.exittoolStripButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.exittoolStripButton5.ToolTipText = "Exit";
             this.exittoolStripButton5.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // imageList1
@@ -444,13 +470,25 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "save1.png");
             // 
-            // lướiToolStripMenuItem
+            // listToolStripMenuItem
             // 
-            this.lướiToolStripMenuItem.CheckOnClick = true;
-            this.lướiToolStripMenuItem.Name = "lướiToolStripMenuItem";
-            this.lướiToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
-            this.lướiToolStripMenuItem.Text = "Lưới";
-            this.lướiToolStripMenuItem.Click += new System.EventHandler(this.lướiToolStripMenuItem_Click);
+            this.listToolStripMenuItem.Checked = true;
+            this.listToolStripMenuItem.CheckOnClick = true;
+            this.listToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.listToolStripMenuItem.Name = "listToolStripMenuItem";
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.listToolStripMenuItem.Text = "List";
+            this.listToolStripMenuItem.Click += new System.EventHandler(this.listToolStripMenuItem_Click);
+            // 
+            // buttonToolStripMenuItem
+            // 
+            this.buttonToolStripMenuItem.Checked = true;
+            this.buttonToolStripMenuItem.CheckOnClick = true;
+            this.buttonToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
+            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.buttonToolStripMenuItem.Text = "Button";
+            this.buttonToolStripMenuItem.Click += new System.EventHandler(this.buttonToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -527,6 +565,8 @@
         private System.Windows.Forms.ToolStripLabel deletetoolStripButton2;
         private System.Windows.Forms.ToolStripLabel exittoolStripButton5;
         private System.Windows.Forms.ToolStripMenuItem lướiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem buttonToolStripMenuItem;
     }
 }
 
