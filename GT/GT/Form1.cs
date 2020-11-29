@@ -560,6 +560,13 @@ namespace GT
                     DrawGr();
                 }
             }
+            if (a.Count==0)
+            {
+                saveToolStripMenuItem.Enabled = false;
+                saveAsToolStripMenuItem.Enabled = false;
+                savetoolStripButton3.Enabled = false;
+                saveastoolStripButton4.Enabled = false;
+            }
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -567,7 +574,6 @@ namespace GT
             saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
-
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 pictureBox1.Image.Save(saveFileDialog1.FileName);
@@ -768,6 +774,10 @@ namespace GT
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
             Refresh_ListFcn();
             flowLayoutPanel1_SizeChanged(null, null);
+            saveToolStripMenuItem.Enabled = true;
+            saveAsToolStripMenuItem.Enabled = true;
+            savetoolStripButton3.Enabled = true;
+            saveastoolStripButton4.Enabled = true;
         }
 
         private void SetColorItemList()
