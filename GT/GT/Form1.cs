@@ -577,6 +577,11 @@ namespace GT
             }
         }
 
+        private void lướiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
             if (Dark)
