@@ -67,6 +67,7 @@
             this.exittoolStripButton5 = new System.Windows.Forms.ToolStripLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.lướiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -250,7 +251,8 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.darkThemeToolStripMenuItem});
+            this.darkThemeToolStripMenuItem,
+            this.lướiToolStripMenuItem});
             this.viewToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(67, 29);
@@ -442,6 +444,14 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "save1.png");
             // 
+            // lướiToolStripMenuItem
+            // 
+            this.lướiToolStripMenuItem.CheckOnClick = true;
+            this.lướiToolStripMenuItem.Name = "lướiToolStripMenuItem";
+            this.lướiToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.lướiToolStripMenuItem.Text = "Lưới";
+            this.lướiToolStripMenuItem.Click += new System.EventHandler(this.lướiToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -516,6 +526,7 @@
         private System.Windows.Forms.ToolStripLabel saveastoolStripButton4;
         private System.Windows.Forms.ToolStripLabel deletetoolStripButton2;
         private System.Windows.Forms.ToolStripLabel exittoolStripButton5;
+        private System.Windows.Forms.ToolStripMenuItem lướiToolStripMenuItem;
     }
 }
 
