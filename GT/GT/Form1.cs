@@ -20,7 +20,7 @@ namespace GT
     {
         float[] C_dv = { 1f, 2f, 5f};
         Theme theme = new Theme();
-        const int MinZoom = 120, MaxZoom = 340, Normal = 180; 
+        const int MaxZoom = 180, Normal = 100; 
         List<Function> a = new List<Function>();
         List<UserControl1> ListFnc = new List<UserControl1>();
         int max_x, max_y, x0, y0, k = 120, idv = 0;
@@ -60,9 +60,9 @@ namespace GT
                 }
                 else
                 {
-                    if ((k / Zoom) < MinZoom)
+                    if ((k / Zoom) < Normal)
                     {
-                        k = Normal;
+                        k = MaxZoom;
                         if(dv < MaxDv) SetDv(false);
                     }
                     else { k = (int)(k / Zoom); }
