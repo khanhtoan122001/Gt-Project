@@ -46,12 +46,12 @@ namespace GT
             if (this.Tag != null)
             {
                 selected = !selected;
-                r = new Rectangle(0, 0, this.Width, this.Height);
+                r = new Rectangle(0, 0, this.Width-2, this.Height-2);
                 b = new Bitmap(this.Width, this.Height);
                 g = Graphics.FromImage(b);
                 if (selected)
                 {
-                    ControlPaint.DrawBorder(g, r, Color.FromArgb(0, 255, 255), ButtonBorderStyle.Solid);
+                    ControlPaint.DrawBorder(g, r, Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
                 }
                 else
                 {

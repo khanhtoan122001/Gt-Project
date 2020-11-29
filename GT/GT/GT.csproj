@@ -243,6 +243,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\bac1.png" />
+    <None Include="Resources\icons8-add-file-80.png" />
+    <None Include="Resources\icons8-add-file-80-dark.png" />
+    <None Include="Resources\icons8-delete-bin-96.png" />
+    <None Include="Resources\icons8-delete-bin-96-dark.png" />
+    <None Include="Resources\icons8-exit-52.png" />
+    <None Include="Resources\icons8-exit-52-dark.png" />
+    <None Include="Resources\icons8-opened-folder-144.png" />
+    <None Include="Resources\icons8-opened-folder-144-dark.png" />
+    <None Include="Resources\icons8-save-100.png" />
+    <None Include="Resources\icons8-save-100-dark.png" />
+    <None Include="Resources\icons8-save-as-100.png" />
+    <None Include="Resources\icons8-save-as-100-dark.png" />
     <Content Include="Resources\Screenshot %2874%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,7 +20,7 @@ namespace GT
     {
         float[] C_dv = { 1f, 2f, 5f};
         Theme theme = new Theme();
-        const int MaxZoom = 180, Normal = 100; 
+        const int MinZoom = 120, MaxZoom = 180, Normal = 100; 
         List<Function> a = new List<Function>();
         List<UserControl1> ListFnc = new List<UserControl1>();
         int max_x, max_y, x0, y0, k = 120, idv = 0;
@@ -30,7 +30,7 @@ namespace GT
         Point LastMouse = new Point(0, 0);
         Graphics g;
         Bitmap bitmap;
-        bool S = false;
+        bool S = false, Dark = false;
         int G = 10;
         const int E = 10000;
         const float Zoom = 1.1f;
@@ -413,6 +413,7 @@ namespace GT
 
         private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
+            Dark = !Dark;
             theme.ChangeAll();
             foreach(Function i in a)
             {
@@ -420,7 +421,14 @@ namespace GT
                 i.color = Color.FromArgb(255 - r, 255 - g, 255 - b);
                 SetColorItemList();
             }
+            refresh_form();
             DrawGr();
+        }
+        private void refresh_form()
+        {
+            this.BackColor = theme.Bg1;
+            this.flowLayoutPanel1.BackColor = theme.Bg2;
+            this.toolStrip1.BackColor = theme.Bg3;
         }
         private void frmMain_Resize(object sender, EventArgs e)
         {
@@ -569,6 +577,28 @@ namespace GT
             }
         }
 
+        private void toolStrip1_BackColorChanged(object sender, EventArgs e)
+        {
+            if (Dark)
+            {
+                newtoolStripButton1.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80-dark.png");
+                Open.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144-dark.png");
+                savetoolStripButton3.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100-dark.png");
+                saveastoolStripButton4.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100-dark.png");
+                deletetoolStripButton2.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96-dark.png");
+                exittoolStripButton5.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52-dark.png");
+            }
+            else
+            {
+                newtoolStripButton1.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80.png");
+                Open.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144.png");
+                savetoolStripButton3.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100.png");
+                saveastoolStripButton4.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100.png");
+                deletetoolStripButton2.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96.png");
+                exittoolStripButton5.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52.png");
+            }
+        }
+
         Form createFormInput()
         {
             Form f = new Form();
@@ -711,4 +741,5 @@ namespace GT
             }
         }
     }
+    
 }
