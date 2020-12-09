@@ -122,10 +122,17 @@ namespace Fcn
                     string pv = string.Empty;
                     if (x[i] != 0)
                     {
-                        if (Math.Abs(x[i]) != 1)
-                            pv = string.Format("{0}x^{1}", Math.Abs(x[i]), n - i - 1);
+                        if (n - i - 1 != 1)
+
+                            if (Math.Abs(x[i]) != 1)
+                                pv = string.Format("{0}x^{1}", Math.Abs(x[i]), n - i - 1);
+                            else
+                                pv = string.Format("x^{0}", n - i - 1);
                         else
-                            pv = string.Format("x^{0}", n - i - 1);
+                        if (Math.Abs(x[i]) != 1)
+                            pv = string.Format("{0}x", Math.Abs(x[i]));
+                        else
+                            pv = string.Format("x");
                         if (i != 0)
                         {
                             if (x[i] > 0) pv = " + " + pv;
