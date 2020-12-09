@@ -597,6 +597,12 @@ namespace GT
             splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
         }
 
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forminput f = new Forminput();
+            f.Show();
+        }
+
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
             if (Dark)

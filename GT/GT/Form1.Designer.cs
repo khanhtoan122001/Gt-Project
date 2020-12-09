@@ -138,7 +138,7 @@
             // 
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(172, 30);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -146,7 +146,7 @@
             // 
             this.saveAsToolStripMenuItem.Enabled = false;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(172, 30);
             this.saveAsToolStripMenuItem.Text = "Save as...";
             // 
             // exitToolStripMenuItem
@@ -175,6 +175,7 @@
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
             this.addToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // phươngTrìnhBậcNToolStripMenuItem
             // 
