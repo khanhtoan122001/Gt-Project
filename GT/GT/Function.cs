@@ -111,6 +111,49 @@ namespace Fcn
                 relust *= x;
             return relust;
         }
+        public override string ToString()
+        {
+            if(n != -1)
+            {
+                string v = "y = ";
+                n++;
+                for(int i = 0; i < n - 1; i++)
+                {
+                    string pv = string.Empty;
+                    if (x[i] != 0)
+                    {
+                        if (n - i - 1 != 1)
+
+                            if (Math.Abs(x[i]) != 1)
+                                pv = string.Format("{0}x^{1}", Math.Abs(x[i]), n - i - 1);
+                            else
+                                pv = string.Format("x^{0}", n - i - 1);
+                        else
+                        if (Math.Abs(x[i]) != 1)
+                            pv = string.Format("{0}x", Math.Abs(x[i]));
+                        else
+                            pv = string.Format("x");
+                        if (i != 0)
+                        {
+                            if (x[i] > 0) pv = " + " + pv;
+                            if (x[i] < 0) pv = " - " + pv;
+                        }
+                        v += pv;
+                    }
+                }
+                if (x[n - 1] > 0) v += " + " + x[n - 1];
+                if (x[n - 1] < 0) v += " - " + x[n - 1];
+                n--;
+                return v;
+            }
+            else
+            {
+                string v = string.Format("y = 1 / {0}x", x[0]);
+                if (x[1] > 0) return v + " + " + x[1];
+                if (x[1] < 0) return v + " - " + x[1];
+                return v;
+            }
+        }
     }
     class Circle : Function
     {
@@ -146,6 +189,20 @@ namespace Fcn
         {
             string v = string.Format("{0}*{1}*{2}", x[0], x[1], x[2]);
             return string.Format("{0}\n{1}\n{2}\n",base.SaveString(), v, color.ToArgb());
+        }
+        public override string ToString()
+        {
+            string a = string.Empty, b = string.Empty;
+            if (x[0] > 0) a = " - " + x[0];
+            else a = " + " + x[0];
+            if (x[1] > 0) b = " - " + x[1];
+            else b = " + " + x[1];
+            string v = string.Empty;
+            if (a != string.Empty) v += string.Format("(x{0})^2 + ", a);
+            else v += "x^2 + ";
+            if (b != string.Empty) v += string.Format("(y{0})^2", b);
+            else v += "y^2";
+            return v + " = " + x[2] * x[2];
         }
     }
 }   //          (x - a)^2 + (y - b)^2 = R   =>  y = b + sqrt(R - (x - a)^2)

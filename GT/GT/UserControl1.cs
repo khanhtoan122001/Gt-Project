@@ -25,6 +25,7 @@ namespace GT
             selected = false;
             gPath.AddEllipse(7, 7, pictureBox1.Width - 14, pictureBox1.Width - 14);
             this.pictureBox1.Region = new Region(gPath);
+            
         }
 
         public void Change_Color()
@@ -38,7 +39,7 @@ namespace GT
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+             
         }
 
         private void UserControl1_Click(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace GT
             if (this.Tag != null)
             {
                 selected = !selected;
-                r = new Rectangle(0, 0, this.Width-2, this.Height-2);
+                r = new Rectangle(0, 0, this.Width, this.Height);
                 b = new Bitmap(this.Width, this.Height);
                 g = Graphics.FromImage(b);
                 if (selected)
@@ -56,9 +57,32 @@ namespace GT
                 else
                 {
                     g.Clear(Color.White);
+                    ControlPaint.DrawBorder(g, r, Color.FromArgb(0, 0, 0), ButtonBorderStyle.Solid);
                 }
                 this.BackgroundImage = b;
             }
+        }
+
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void UserControl1_SizeChanged(object sender, EventArgs e)
+        {
+            r = new Rectangle(0, 0, this.Width, this.Height);
+            b = new Bitmap(this.Width, this.Height);
+            g = Graphics.FromImage(b);
+            if (selected)
+            {
+                ControlPaint.DrawBorder(g, r, Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
+            }
+            else
+            {
+                g.Clear(Color.White);
+                ControlPaint.DrawBorder(g, r, Color.FromArgb(0, 0, 0), ButtonBorderStyle.Solid);
+            }
+            this.BackgroundImage = b;
         }
     }
 }

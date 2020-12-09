@@ -752,7 +752,7 @@ namespace GT
         UserControl1 create_UserControl1()
         {
             UserControl1 n = new UserControl1();
-            n.textBox1.Visible = false;
+            //n.textBox1.Visible = false;
             n.checkBox1.Checked = true;
             n.checkBox1.CheckedChanged += (s, e) =>
             {
@@ -776,7 +776,7 @@ namespace GT
         private void addListFcn()
         {
             ListFnc.Add(create_UserControl1());
-            ListFnc[ListFnc.Count - 2].textBox1.Text = "";
+            ListFnc[ListFnc.Count - 2].textBox1.Text = a[a.Count - 1].ToString();
             flowLayoutPanel1.Controls.Add(ListFnc[ListFnc.Count - 1]);
             Refresh_ListFcn();
             flowLayoutPanel1_SizeChanged(null, null);
