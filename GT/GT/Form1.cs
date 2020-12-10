@@ -111,7 +111,7 @@ namespace GT
             flowLayoutPanel1_SizeChanged(null, null);
             Create();
         }
-
+        /*********************************************************************/
         private void DrawGr()
         {
             pictureBox1.Refresh();
@@ -120,7 +120,7 @@ namespace GT
             VeTruc();
             VeDoThi();
         }
-
+        /************************************************************/
         private void Create()
         {
             pictureBox1.Refresh();
@@ -256,6 +256,7 @@ namespace GT
                         }
                 }
                 circle.X = x;
+                
                 a.Add(circle);
                 addListFcn();
                 f.Close();

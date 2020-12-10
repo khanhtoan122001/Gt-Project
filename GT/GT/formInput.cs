@@ -213,7 +213,19 @@ namespace GT
                 pictureBox1.Image = ig;
             }
         }
+        Form createFormInput()
+        {
+            Form f = new Form();
+            f.AutoSize = true;
+            f.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            f.Font = new Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            f.Margin = new System.Windows.Forms.Padding(4);
+            f.Name = "formInput";
+            f.Text = "formInput";
+            f.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            f.ResumeLayout(false);
+            return f;
+        }
 
-       
     }
 }
