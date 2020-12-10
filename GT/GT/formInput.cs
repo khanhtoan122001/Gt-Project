@@ -21,6 +21,7 @@ namespace GT
         {
             if (comboBox1.SelectedItem.ToString() == "phương trình đường tròn")
             {
+                
                 this.Size = new Size(700, 250);
                 button3.Visible = true;
                 label1.Visible = true;
