@@ -34,6 +34,20 @@ namespace GT
         int G = 10;
         const int E = 10000;
         const float Zoom = 1.1f;
+
+
+        /* mảng lưu giá trị a,b,r cho đường tròn */
+        public static float[] arr = new float[3];
+        /*mảng lưu các giá trị cho các đường khác*/
+        public static float[] arr1 = new float[2]; // đặc biệt
+        public static float[] arr2 = new float[2];//bậc 1
+        public static float[] arr3 = new float[3];//bậc 2
+        public static float[] arr4 = new float[4];//bậc 3
+        public static float[] arr5 = new float[5];//bậc 4
+        public static float[] arr6 = new float[6];//bậc 5
+        public static bool[] flat = new bool[] {false,false,false,false,false,false,false};
+
+
         public Form1()
         {
             InitializeComponent();
@@ -110,6 +124,7 @@ namespace GT
             y0 = this.pictureBox1.Height / 2;
             flowLayoutPanel1_SizeChanged(null, null);
             Create();
+
         }
         /*********************************************************************/
         private void DrawGr()
@@ -154,6 +169,7 @@ namespace GT
         }
         void themLabo(int n, PictureBox pt)
         {
+            
             Bac_n bac_N = new Bac_n(n);
             Label name = new Label();
             Button ve = new Button();
@@ -265,6 +281,29 @@ namespace GT
             DrawGr();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (flat[0])
+            {
+                flat[0] = false;
+                Circle ci = new Circle();
+                ci.X = arr;
+                a.Add(ci);
+                addListFcn();
+                DrawGr();
+            }
+            else if (flat[1])
+            {
+                flat[1] = false;
+                Bac_n b = new Bac_n(-1);
+                b.X = arr1;
+                a.Add(b);
+                addListFcn();
+                DrawGr();
+            }
+        }
+        /***************************************************************************************************************************/
+        /*****************************************************************************************************************************/
         private void VeTruc()
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
@@ -597,11 +636,129 @@ namespace GT
         {
             splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
         }
-
+       
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Forminput f = new Forminput();
+            f.datasent0 += F_datasent0;
+            f.datasent1 += F_datasent1;
+            f.datasent2 += F_datasent2;
+            f.datasent3 += F_datasent3;
+            f.datasent4 += F_datasent4;
+            f.datasent5 += F_datasent5;
+            f.datasent6 += F_datasent6;
+            /********************************************/
+            f.datasentflat0 += F_datasentflat0;
+            f.datasentflat1 += F_datasentflat1;
+            f.datasentflat2 += F_datasentflat2;
+            f.datasentflat3 += F_datasentflat3;
+            f.datasentflat4 += F_datasentflat4;
+            f.datasentflat5 += F_datasentflat5;
+            f.datasentflat6 += F_datasentflat6;
             f.Show();
+        }
+
+        private void F_datasentflat6(bool a)
+        {
+            flat[6] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasentflat5(bool a)
+        {
+            flat[5] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasentflat4(bool a)
+        {
+            flat[4] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasentflat3(bool a)
+        {
+            flat[3] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasentflat2(bool a)
+        {
+            flat[2] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasentflat1(bool a)
+        {
+            flat[1] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasentflat0(bool a)
+        {
+            flat[0] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasent6(float a)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasent5(float a)
+        {
+            
+            arr6[5] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasent4(float a)
+        {
+            arr5[4] = a;
+            arr6[4] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasent3(float a)
+        {
+            arr4[3] = a;
+            arr5[3] = a;
+            arr6[3] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasent2(float a)
+        {
+            arr[2] = a;
+            arr3[2] = a;
+            arr4[2] = a;
+            arr5[2] = a;
+            arr6[2] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasent1(float a)
+        {
+            arr[1] = a;
+            arr1[1] = a;
+            arr2[1] = a;
+            arr3[1] = a;
+            arr4[1] = a;
+            arr5[1] = a;
+            arr6[1] = a;
+            //throw new NotImplementedException();
+        }
+
+        private void F_datasent0(float a)
+        {
+            arr[0] = a;
+            arr1[0] = a;
+            arr2[0] = a;
+            arr3[0] = a;
+            arr4[0] = a;
+            arr5[0] = a;
+            arr6[0] = a;
+            //throw new NotImplementedException();
         }
 
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
