@@ -251,12 +251,12 @@ namespace GT
             if(comboBox1.SelectedItem.ToString()=="phương trình đường tròn")
             {
                 this.datasentflat0(true);
-                this.datasentflat1(true);
-                this.datasentflat2(true);
-                this.datasentflat3(true);
-                this.datasentflat4(true);
-                this.datasentflat5(true);
-                this.datasentflat6(true);
+                this.datasentflat1(false);
+                this.datasentflat2(false);
+                this.datasentflat3(false);
+                this.datasentflat4(false);
+                this.datasentflat5(false);
+                this.datasentflat6(false);
                 /**************************************************************************/
                 this.datasent0(float.Parse(textBox1.Text));
                 this.datasent1(float.Parse(textBox2.Text));
@@ -269,13 +269,13 @@ namespace GT
             }
             else if (comboBox1.SelectedItem.ToString() == "phương trình đặc biệt")
             {
-                this.datasentflat0(true);
+                this.datasentflat0(false);
                 this.datasentflat1(true);
-                this.datasentflat2(true);
-                this.datasentflat3(true);
-                this.datasentflat4(true);
-                this.datasentflat5(true);
-                this.datasentflat6(true);
+                this.datasentflat2(false);
+                this.datasentflat3(false);
+                this.datasentflat4(false);
+                this.datasentflat5(false);
+                this.datasentflat6(false);
                 /****************************************************************************/
                 this.datasent0(float.Parse(textBox1.Text));
                 this.datasent1(float.Parse(textBox2.Text));
@@ -288,13 +288,13 @@ namespace GT
             }
             else if (comboBox1.SelectedItem.ToString() == "phương trình bậc 1")
             {
-                this.datasentflat0(true);
-                this.datasentflat1(true);
+                this.datasentflat0(false);
+                this.datasentflat1(false);
                 this.datasentflat2(true);
-                this.datasentflat3(true);
-                this.datasentflat4(true);
-                this.datasentflat5(true);
-                this.datasentflat6(true);
+                this.datasentflat3(false);
+                this.datasentflat4(false);
+                this.datasentflat5(false);
+                this.datasentflat6(false);
                 /****************************************************************************/
                 this.datasent0(float.Parse(textBox1.Text));
                 this.datasent1(float.Parse(textBox2.Text));
@@ -307,13 +307,13 @@ namespace GT
             }
             else if (comboBox1.SelectedItem.ToString() == "phương trình bậc 2")
             {
-                this.datasentflat0(true);
-                this.datasentflat1(true);
-                this.datasentflat2(true);
+                this.datasentflat0(false);
+                this.datasentflat1(false);
+                this.datasentflat2(false);
                 this.datasentflat3(true);
-                this.datasentflat4(true);
-                this.datasentflat5(true);
-                this.datasentflat6(true);
+                this.datasentflat4(false);
+                this.datasentflat5(false);
+                this.datasentflat6(false);
                 /****************************************************************************/
                 this.datasent0(float.Parse(textBox1.Text));
                 this.datasent1(float.Parse(textBox2.Text));
@@ -326,13 +326,13 @@ namespace GT
             }
             else if (comboBox1.SelectedItem.ToString() == "phương trình bậc 3")
             {
-                this.datasentflat0(true);
-                this.datasentflat1(true);
-                this.datasentflat2(true);
-                this.datasentflat3(true);
+                this.datasentflat0(false);
+                this.datasentflat1(false);
+                this.datasentflat2(false);
+                this.datasentflat3(false);
                 this.datasentflat4(true);
-                this.datasentflat5(true);
-                this.datasentflat6(true);
+                this.datasentflat5(false);
+                this.datasentflat6(false);
                 /****************************************************************************/
                 this.datasent0(float.Parse(textBox1.Text));
                 this.datasent1(float.Parse(textBox2.Text));
@@ -345,13 +345,13 @@ namespace GT
             }
             else if (comboBox1.SelectedItem.ToString() == "phương trình bậc 4")
             {
-                this.datasentflat0(true);
-                this.datasentflat1(true);
-                this.datasentflat2(true);
-                this.datasentflat3(true);
-                this.datasentflat4(true);
+                this.datasentflat0(false);
+                this.datasentflat1(false);
+                this.datasentflat2(false);
+                this.datasentflat3(false);
+                this.datasentflat4(false);
                 this.datasentflat5(true);
-                this.datasentflat6(true);
+                this.datasentflat6(false);
                 /****************************************************************************/
                 this.datasent0(float.Parse(textBox1.Text));
                 this.datasent1(float.Parse(textBox2.Text));
@@ -364,12 +364,12 @@ namespace GT
             }
             else if (comboBox1.SelectedItem.ToString() == "phương trình bậc 5")
             {
-                this.datasentflat0(true);
-                this.datasentflat1(true);
-                this.datasentflat2(true);
-                this.datasentflat3(true);
-                this.datasentflat4(true);
-                this.datasentflat5(true);
+                this.datasentflat0(false);
+                this.datasentflat1(false);
+                this.datasentflat2(false);
+                this.datasentflat3(false);
+                this.datasentflat4(false);
+                this.datasentflat5(false);
                 this.datasentflat6(true);
                 /****************************************************************************/
                 this.datasent0(float.Parse(textBox1.Text));

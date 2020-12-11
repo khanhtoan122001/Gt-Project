@@ -301,10 +301,55 @@ namespace GT
                 addListFcn();
                 DrawGr();
             }
+            else if (flat[2])
+            {
+                flat[2] = false;
+                Bac_n b = new Bac_n(1);
+                b.X = arr2;
+                a.Add(b);
+                addListFcn();
+                DrawGr();
+            }
+            else if (flat[3])
+            {
+                flat[3] = false;
+                Bac_n b = new Bac_n(2);
+                b.X = arr3;
+                a.Add(b);
+                addListFcn();
+                DrawGr();
+            }
+            else if (flat[4])
+            {
+                flat[1] = false;
+                Bac_n b = new Bac_n(3);
+                b.X = arr4;
+                a.Add(b);
+                addListFcn();
+                DrawGr();
+            }
+            else if (flat[5])
+            {
+                flat[1] = false;
+                Bac_n b = new Bac_n(4);
+                b.X = arr5;
+                a.Add(b);
+                addListFcn();
+                DrawGr();
+            }
+            else if (flat[6])
+            {
+                flat[1] = false;
+                Bac_n b = new Bac_n(5);
+                b.X = arr6;
+                a.Add(b);
+                addListFcn();
+                DrawGr();
+            }
         }
-        /***************************************************************************************************************************/
-        /*****************************************************************************************************************************/
-        private void VeTruc()
+            /***************************************************************************************************************************/
+            /*****************************************************************************************************************************/
+            private void VeTruc()
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = bitmap;
