@@ -118,7 +118,7 @@ namespace GT
             this.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
@@ -126,8 +126,8 @@ namespace GT
             Create();
 
         }
-        /*********************************************************************/
-        private void DrawGr()
+        /**********************************************************************************************************/
+        public void DrawGr()
         {
             pictureBox1.Refresh();
 
@@ -684,23 +684,46 @@ namespace GT
        
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forminput f = new Forminput();
-            f.datasent0 += F_datasent0;
-            f.datasent1 += F_datasent1;
-            f.datasent2 += F_datasent2;
-            f.datasent3 += F_datasent3;
-            f.datasent4 += F_datasent4;
-            f.datasent5 += F_datasent5;
-            f.datasent6 += F_datasent6;
-            /********************************************/
-            f.datasentflat0 += F_datasentflat0;
-            f.datasentflat1 += F_datasentflat1;
-            f.datasentflat2 += F_datasentflat2;
-            f.datasentflat3 += F_datasentflat3;
-            f.datasentflat4 += F_datasentflat4;
-            f.datasentflat5 += F_datasentflat5;
-            f.datasentflat6 += F_datasentflat6;
+            Form f = new Form();
+            SplitContainer split = new SplitContainer();
+            Color color = new Color();
+            color = Color.FromArgb(255, 224, 192);
+            split.Panel2.BackColor = color;
+            split.Size = new Size(600, 1000);
+            ComboBox combobox = new ComboBox();
+            combobox.Dock = DockStyle.Fill;
+            combobox.DropDownHeight = 60;
+            //combobox.DropDownWidth = 400;
+            combobox.Items.Add("Phương Trình Đường Tròn");
+            combobox.Items.Add("Phương Trình Đặc Biệt");
+            for (int i = 1; i <= 5; i++)
+            {
+                string bac = "Phương Trình Bậc "+i.ToString();
+                combobox.Items.Add(bac);
+                
+            }
+            split.Panel1.Controls.Add(combobox);
+
+            f.Controls.Add(split);
+            f.Size = new Size(600, 400);
             f.Show();
+            //Forminput f = new Forminput();
+            //f.datasent0 += F_datasent0;
+            //f.datasent1 += F_datasent1;
+            //f.datasent2 += F_datasent2;
+            //f.datasent3 += F_datasent3;
+            //f.datasent4 += F_datasent4;
+            //f.datasent5 += F_datasent5;
+            //f.datasent6 += F_datasent6;
+            ///********************************************/
+            //f.datasentflat0 += F_datasentflat0;
+            //f.datasentflat1 += F_datasentflat1;
+            //f.datasentflat2 += F_datasentflat2;
+            //f.datasentflat3 += F_datasentflat3;
+            //f.datasentflat4 += F_datasentflat4;
+            //f.datasentflat5 += F_datasentflat5;
+            //f.datasentflat6 += F_datasentflat6;
+            //f.Show();
         }
 
         private void F_datasentflat6(bool a)
