@@ -685,28 +685,87 @@ namespace GT
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new Form();
+            f.Font = new Font( "Arial",12, FontStyle.Regular);
+            
             SplitContainer split = new SplitContainer();
             Color color = new Color();
             color = Color.FromArgb(255, 224, 192);
             split.Panel2.BackColor = color;
-            split.Size = new Size(600, 1000);
+            split.Size = new Size(800, 1000);
             ComboBox combobox = new ComboBox();
             combobox.Dock = DockStyle.Fill;
-            combobox.DropDownHeight = 60;
+            combobox.DropDownHeight = 100;
             //combobox.DropDownWidth = 400;
             combobox.Items.Add("Phương Trình Đường Tròn");
             combobox.Items.Add("Phương Trình Đặc Biệt");
             for (int i = 1; i <= 5; i++)
             {
                 string bac = "Phương Trình Bậc "+i.ToString();
-                combobox.Items.Add(bac);
-                
+                combobox.Items.Add(bac);               
             }
             split.Panel1.Controls.Add(combobox);
-
+            /*****************************************************/
+            Label l = new Label();
+            l.Text = "Phương Trình Có Dạng";
+            l.Size = new Size(180, 30);
+            l.Visible = false;
+            Label l1 = new Label() { Text = "Nhập a", Size = new Size(60, 30), Location = new Point(0, 60),Visible=false };
+            Label l2 = new Label() { Text = "Nhập b", Size = new Size(60, 30), Location = new Point(0, 100),Visible=false };
+            Label l3 = new Label() {  Text = "Nhập c", Size = new Size(60, 30), Location = new Point(0, 140),Visible=false };
+            Label l4 = new Label() { Text = "Nhập d", Size = new Size(60, 30), Location = new Point(0, 180),Visible=false };
+            Label l5 = new Label() { Text = "Nhập e", Size = new Size(60, 30), Location = new Point(0, 220),Visible=false };
+            Label l6 = new Label() { Text = "Nhập f", Size = new Size(60, 30), Location = new Point(0, 260),Visible=false };
+            TextBox t1 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 60),Visible=false };
+            TextBox t2 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 100), Visible = false };
+            TextBox t3 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 140), Visible = false };
+            TextBox t4 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 180), Visible = false };
+            TextBox t5 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 220), Visible = false };
+            TextBox t6 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 260), Visible = false };
+            /*************************************************************************************************/
+            PictureBox p = new PictureBox()
+            {
+                Size = new Size(800, 500),
+                SizeMode = PictureBoxSizeMode.AutoSize,
+                Location = new Point(180, 0),
+                Visible = false
+            };
+            /****************************************************/
+            Label[] label = new Label[] { l, l1, l2, l3, l4, l5,l6 };
+            TextBox[] texbox = new TextBox[] { t1, t2, t3, t4, t5, t6 };
+            split.Panel2.Controls.AddRange(label);
+            split.Panel2.Controls.AddRange(texbox);
+            split.Panel2.Controls.Add(p);
             f.Controls.Add(split);
             f.Size = new Size(600, 400);
             f.Show();
+            /*****************************************************/
+            combobox.SelectedIndexChanged += (s, e1) =>
+            {
+                if (combobox.SelectedItem.ToString() == "Phương Trình Đường Tròn")
+                {
+                    f.Size = new Size(720, 300);
+                    l.Visible = true; l1.Visible = true;l2.Visible = true;l3.Visible = true;
+                    l3.Text = "Nhập R";
+                    l4.Visible = false; l5.Visible = false;l6.Visible = false;
+                    t1.Visible = true;t2.Visible = true;t3.Visible = true;
+                    t4.Visible = false;t5.Visible = false;t6.Visible = false;
+                    p.Visible = true;
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                    p.Image = ig;
+                                        
+                }
+                else if(combobox.SelectedItem.ToString()=="Phương Trình Đặc Biệt")
+                {
+                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = false;
+                    
+                    l4.Visible = false; l5.Visible = false; l6.Visible = false;
+                    t1.Visible = true; t2.Visible = true; t3.Visible =false;
+                    t4.Visible = false; t5.Visible = false; t6.Visible = false;
+                    p.Visible = true;
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
+                    p.Image = ig;
+                }
+            };
             //Forminput f = new Forminput();
             //f.datasent0 += F_datasent0;
             //f.datasent1 += F_datasent1;
