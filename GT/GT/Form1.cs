@@ -281,72 +281,72 @@ namespace GT
             DrawGr();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (flat[0])
-            {
-                flat[0] = false;
-                Circle ci = new Circle();
-                ci.X = arr;
-                a.Add(ci);
-                addListFcn();
-                DrawGr();
-            }
-            else if (flat[1])
-            {
-                flat[1] = false;
-                Bac_n b = new Bac_n(-1);
-                b.X = arr1;
-                a.Add(b);
-                addListFcn();
-                DrawGr();
-            }
-            else if (flat[2])
-            {
-                flat[2] = false;
-                Bac_n b = new Bac_n(1);
-                b.X = arr2;
-                a.Add(b);
-                addListFcn();
-                DrawGr();
-            }
-            else if (flat[3])
-            {
-                flat[3] = false;
-                Bac_n b = new Bac_n(2);
-                b.X = arr3;
-                a.Add(b);
-                addListFcn();
-                DrawGr();
-            }
-            else if (flat[4])
-            {
-                flat[1] = false;
-                Bac_n b = new Bac_n(3);
-                b.X = arr4;
-                a.Add(b);
-                addListFcn();
-                DrawGr();
-            }
-            else if (flat[5])
-            {
-                flat[1] = false;
-                Bac_n b = new Bac_n(4);
-                b.X = arr5;
-                a.Add(b);
-                addListFcn();
-                DrawGr();
-            }
-            else if (flat[6])
-            {
-                flat[1] = false;
-                Bac_n b = new Bac_n(5);
-                b.X = arr6;
-                a.Add(b);
-                addListFcn();
-                DrawGr();
-            }
-        }
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //    if (flat[0])
+        //    {
+        //        flat[0] = false;
+        //        Circle ci = new Circle();
+        //        ci.X = arr;
+        //        a.Add(ci);
+        //        addListFcn();
+        //        DrawGr();
+        //    }
+        //    else if (flat[1])
+        //    {
+        //        flat[1] = false;
+        //        Bac_n b = new Bac_n(-1);
+        //        b.X = arr1;
+        //        a.Add(b);
+        //        addListFcn();
+        //        DrawGr();
+        //    }
+        //    else if (flat[2])
+        //    {
+        //        flat[2] = false;
+        //        Bac_n b = new Bac_n(1);
+        //        b.X = arr2;
+        //        a.Add(b);
+        //        addListFcn();
+        //        DrawGr();
+        //    }
+        //    else if (flat[3])
+        //    {
+        //        flat[3] = false;
+        //        Bac_n b = new Bac_n(2);
+        //        b.X = arr3;
+        //        a.Add(b);
+        //        addListFcn();
+        //        DrawGr();
+        //    }
+        //    else if (flat[4])
+        //    {
+        //        flat[1] = false;
+        //        Bac_n b = new Bac_n(3);
+        //        b.X = arr4;
+        //        a.Add(b);
+        //        addListFcn();
+        //        DrawGr();
+        //    }
+        //    else if (flat[5])
+        //    {
+        //        flat[1] = false;
+        //        Bac_n b = new Bac_n(4);
+        //        b.X = arr5;
+        //        a.Add(b);
+        //        addListFcn();
+        //        DrawGr();
+        //    }
+        //    else if (flat[6])
+        //    {
+        //        flat[1] = false;
+        //        Bac_n b = new Bac_n(5);
+        //        b.X = arr6;
+        //        a.Add(b);
+        //        addListFcn();
+        //        DrawGr();
+        //    }
+        //}
             /***************************************************************************************************************************/
             /*****************************************************************************************************************************/
             private void VeTruc()
@@ -681,12 +681,12 @@ namespace GT
         {
             splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
         }
-       
+
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new Form();
-            f.Font = new Font( "Arial",12, FontStyle.Regular);
-            
+            f.Font = new Font("Arial", 12, FontStyle.Regular);
+
             SplitContainer split = new SplitContainer();
             Color color = new Color();
             color = Color.FromArgb(255, 224, 192);
@@ -700,8 +700,8 @@ namespace GT
             combobox.Items.Add("Phương Trình Đặc Biệt");
             for (int i = 1; i <= 5; i++)
             {
-                string bac = "Phương Trình Bậc "+i.ToString();
-                combobox.Items.Add(bac);               
+                string bac = "Phương Trình Bậc " + i.ToString();
+                combobox.Items.Add(bac);
             }
             split.Panel1.Controls.Add(combobox);
             /*****************************************************/
@@ -709,19 +709,22 @@ namespace GT
             l.Text = "Phương Trình Có Dạng";
             l.Size = new Size(180, 30);
             l.Visible = false;
-            Label l1 = new Label() { Text = "Nhập a", Size = new Size(60, 30), Location = new Point(0, 60),Visible=false };
-            Label l2 = new Label() { Text = "Nhập b", Size = new Size(60, 30), Location = new Point(0, 100),Visible=false };
-            Label l3 = new Label() {  Text = "Nhập c", Size = new Size(60, 30), Location = new Point(0, 140),Visible=false };
-            Label l4 = new Label() { Text = "Nhập d", Size = new Size(60, 30), Location = new Point(0, 180),Visible=false };
-            Label l5 = new Label() { Text = "Nhập e", Size = new Size(60, 30), Location = new Point(0, 220),Visible=false };
-            Label l6 = new Label() { Text = "Nhập f", Size = new Size(60, 30), Location = new Point(0, 260),Visible=false };
-            TextBox t1 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 60),Visible=false };
+            Label l1 = new Label() { Text = "Nhập a", Size = new Size(60, 30), Location = new Point(0, 60), Visible = false };
+            Label l2 = new Label() { Text = "Nhập b", Size = new Size(60, 30), Location = new Point(0, 100), Visible = false };
+            Label l3 = new Label() { Text = "Nhập c", Size = new Size(60, 30), Location = new Point(0, 140), Visible = false };
+            Label l4 = new Label() { Text = "Nhập d", Size = new Size(60, 30), Location = new Point(0, 180), Visible = false };
+            Label l5 = new Label() { Text = "Nhập e", Size = new Size(60, 30), Location = new Point(0, 220), Visible = false };
+            Label l6 = new Label() { Text = "Nhập f", Size = new Size(60, 30), Location = new Point(0, 260), Visible = false };
+            TextBox t1 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 60), Visible = false };
             TextBox t2 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 100), Visible = false };
             TextBox t3 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 140), Visible = false };
             TextBox t4 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 180), Visible = false };
             TextBox t5 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 220), Visible = false };
             TextBox t6 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 260), Visible = false };
             /*************************************************************************************************/
+            Button dr = new Button() { Text = "Draw", Size = new Size(70, 60), Location = new Point(180, 100), Visible = false };
+
+
             PictureBox p = new PictureBox()
             {
                 Size = new Size(800, 500),
@@ -730,11 +733,12 @@ namespace GT
                 Visible = false
             };
             /****************************************************/
-            Label[] label = new Label[] { l, l1, l2, l3, l4, l5,l6 };
+            Label[] label = new Label[] { l, l1, l2, l3, l4, l5, l6 };
             TextBox[] texbox = new TextBox[] { t1, t2, t3, t4, t5, t6 };
             split.Panel2.Controls.AddRange(label);
             split.Panel2.Controls.AddRange(texbox);
             split.Panel2.Controls.Add(p);
+            split.Panel2.Controls.Add(dr);
             f.Controls.Add(split);
             f.Size = new Size(600, 400);
             f.Show();
@@ -743,149 +747,193 @@ namespace GT
             {
                 if (combobox.SelectedItem.ToString() == "Phương Trình Đường Tròn")
                 {
-                    f.Size = new Size(720, 300);
-                    l.Visible = true; l1.Visible = true;l2.Visible = true;l3.Visible = true;
+                    f.Size = new Size(720, 250);
+                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
                     l3.Text = "Nhập R";
-                    l4.Visible = false; l5.Visible = false;l6.Visible = false;
-                    t1.Visible = true;t2.Visible = true;t3.Visible = true;
-                    t4.Visible = false;t5.Visible = false;t6.Visible = false;
-                    p.Visible = true;
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
-                    p.Image = ig;
-                                        
-                }
-                else if(combobox.SelectedItem.ToString()=="Phương Trình Đặc Biệt")
-                {
-                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = false;
-                    
                     l4.Visible = false; l5.Visible = false; l6.Visible = false;
-                    t1.Visible = true; t2.Visible = true; t3.Visible =false;
+                    t1.Visible = true; t2.Visible = true; t3.Visible = true;
                     t4.Visible = false; t5.Visible = false; t6.Visible = false;
                     p.Visible = true;
+                    dr.Visible = true;
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                    p.Image = ig;
+                    dr.Click += (s2, e2) =>
+                    {
+                        Circle circe = new Circle();
+                        float[] fl = new float[3];
+                        fl[0] = float.Parse(t1.Text);
+                        fl[1] = float.Parse(t2.Text);
+                        fl[2] = float.Parse(t3.Text);
+
+                        circe.X = fl;
+                        a.Add(circe);
+                        addListFcn();
+                        f.Close();
+                    };
+                    DrawGr();
+                }
+                else if (combobox.SelectedItem.ToString() == "Phương Trình Đặc Biệt")
+                {
+                    f.Size = new Size(570, 200);
+                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = false;
+
+                    l4.Visible = false; l5.Visible = false; l6.Visible = false;
+                    t1.Visible = true; t2.Visible = true; t3.Visible = false;
+                    t4.Visible = false; t5.Visible = false; t6.Visible = false;
+                    p.Visible = true;
+                    dr.Visible = true;
+                    
                     Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
                     p.Image = ig;
+                    dr.Click += (s2, e2) =>
+                    {
+                        Bac_n db = new Bac_n(-1);
+                        float[] fl = new float[2];
+                        fl[0] = float.Parse(t1.Text);
+                        fl[1] = float.Parse(t2.Text);
+                        db.X = fl;
+                        a.Add(db);
+                        addListFcn();
+                        f.Close();
+
+                    };
+                    DrawGr();
+                }
+                else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 1")
+                {
+                    f.Size = new Size(570, 200);
+                    l.Visible = true;l1.Visible = true;l2.Visible = true;l3.Visible = false;
+                    l4.Visible = false;l5.Visible = false;l6.Visible = false;
+                    t1.Visible = true;t2.Visible = true;t3.Visible = false;t4.Visible = false;t5.Visible = false;t6.Visible = false;
+                    p.Visible = true;
+                    dr.Visible = true;
+
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\bac1.png");
+                    p.Image = ig;
+                    dr.Click += (s2, e2) =>
+                    {
+                        Bac_n b = new Bac_n(1);
+                        float[] fl = new float[2];
+                        fl[0] = float.Parse(t1.Text);
+                        fl[1] = float.Parse(t2.Text);
+                        b.X = fl;
+                        a.Add(b);
+                        addListFcn();
+                        f.Close();
+                    };
+                    DrawGr();
+                }
+                else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 2")
+                {
+                    f.Size = new Size(650, 250);
+                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
+                    l4.Visible = false; l5.Visible = false; l6.Visible = false;
+                    l3.Text = "Nhập c";
+                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = false; t5.Visible = false; t6.Visible = false;
+                    p.Visible = true;
+                    dr.Visible = true;
+
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
+                    p.Image = ig;
+                    dr.Click += (s2, e2) =>
+                    {
+                        Bac_n b = new Bac_n(2);
+                        float[] fl = new float[3];
+                        fl[0] = float.Parse(t1.Text);
+                        fl[1] = float.Parse(t2.Text);
+                        fl[2] = float.Parse(t3.Text);
+                        b.X = fl;
+                        a.Add(b);
+                        addListFcn();
+                        f.Close();
+                    };
+                    DrawGr();
+                }
+                else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 3")
+                {
+                    f.Size = new Size(700, 300);
+                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
+                    l4.Visible = true; l5.Visible = false; l6.Visible = false;
+                    l3.Text = "Nhập c";
+                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = true; t5.Visible = false; t6.Visible = false;
+                    p.Visible = true;
+                    dr.Visible = true;
+
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
+                    p.Image = ig;
+                    dr.Click += (s2, e2) =>
+                    {
+                        Bac_n b = new Bac_n(3);
+                        float[] fl = new float[4];
+                        fl[0] = float.Parse(t1.Text);
+                        fl[1] = float.Parse(t2.Text);
+                        fl[2] = float.Parse(t3.Text);
+                        fl[3] = float.Parse(t4.Text);
+                        b.X = fl;
+                        a.Add(b);
+                        addListFcn();
+                        f.Close();
+                    };
+                    DrawGr();
+                }
+                else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 4")
+                {
+                    f.Size = new Size(800, 340);
+                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
+                    l4.Visible = true; l5.Visible = true; l6.Visible = false;
+                    l3.Text = "Nhập c";
+                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = true; t5.Visible = true; t6.Visible = false;
+                    p.Visible = true;
+                    dr.Visible = true;
+
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
+                    p.Image = ig;
+                    dr.Click += (s2, e2) =>
+                    {
+                        Bac_n b = new Bac_n(4);
+                        float[] fl = new float[5];
+                        fl[0] = float.Parse(t1.Text);
+                        fl[1] = float.Parse(t2.Text);
+                        fl[2] = float.Parse(t3.Text);
+                        fl[3] = float.Parse(t4.Text);
+                        fl[4] = float.Parse(t5.Text);
+                        b.X = fl;
+                        a.Add(b);
+                        addListFcn();
+                        f.Close();
+                    };
+                    DrawGr();
+                }
+                else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 5")
+                {
+                    f.Size = new Size(820, 340);
+                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
+                    l4.Visible = true; l5.Visible = true; l6.Visible = true;
+                    l3.Text = "Nhập c";
+                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = true; t5.Visible = true; t6.Visible = true;
+                    p.Visible = true;
+                    dr.Visible = true;
+
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
+                    p.Image = ig;
+                    dr.Click += (s2, e2) =>
+                    {
+                        Bac_n b = new Bac_n(5);
+                        float[] fl = new float[6];
+                        fl[0] = float.Parse(t1.Text);
+                        fl[1] = float.Parse(t2.Text);
+                        fl[2] = float.Parse(t3.Text);
+                        fl[3] = float.Parse(t4.Text);
+                        fl[4] = float.Parse(t5.Text);
+                        fl[5] = float.Parse(t6.Text);
+                        b.X = fl;
+                        a.Add(b);
+                        addListFcn();
+                        f.Close();
+                    };
+                    DrawGr();
                 }
             };
-            //Forminput f = new Forminput();
-            //f.datasent0 += F_datasent0;
-            //f.datasent1 += F_datasent1;
-            //f.datasent2 += F_datasent2;
-            //f.datasent3 += F_datasent3;
-            //f.datasent4 += F_datasent4;
-            //f.datasent5 += F_datasent5;
-            //f.datasent6 += F_datasent6;
-            ///********************************************/
-            //f.datasentflat0 += F_datasentflat0;
-            //f.datasentflat1 += F_datasentflat1;
-            //f.datasentflat2 += F_datasentflat2;
-            //f.datasentflat3 += F_datasentflat3;
-            //f.datasentflat4 += F_datasentflat4;
-            //f.datasentflat5 += F_datasentflat5;
-            //f.datasentflat6 += F_datasentflat6;
-            //f.Show();
-        }
-
-        private void F_datasentflat6(bool a)
-        {
-            flat[6] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasentflat5(bool a)
-        {
-            flat[5] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasentflat4(bool a)
-        {
-            flat[4] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasentflat3(bool a)
-        {
-            flat[3] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasentflat2(bool a)
-        {
-            flat[2] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasentflat1(bool a)
-        {
-            flat[1] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasentflat0(bool a)
-        {
-            flat[0] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasent6(float a)
-        {
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasent5(float a)
-        {
-            
-            arr6[5] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasent4(float a)
-        {
-            arr5[4] = a;
-            arr6[4] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasent3(float a)
-        {
-            arr4[3] = a;
-            arr5[3] = a;
-            arr6[3] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasent2(float a)
-        {
-            arr[2] = a;
-            arr3[2] = a;
-            arr4[2] = a;
-            arr5[2] = a;
-            arr6[2] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasent1(float a)
-        {
-            arr[1] = a;
-            arr1[1] = a;
-            arr2[1] = a;
-            arr3[1] = a;
-            arr4[1] = a;
-            arr5[1] = a;
-            arr6[1] = a;
-            //throw new NotImplementedException();
-        }
-
-        private void F_datasent0(float a)
-        {
-            arr[0] = a;
-            arr1[0] = a;
-            arr2[0] = a;
-            arr3[0] = a;
-            arr4[0] = a;
-            arr5[0] = a;
-            arr6[0] = a;
-            //throw new NotImplementedException();
         }
 
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
