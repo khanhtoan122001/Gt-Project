@@ -614,7 +614,79 @@ namespace GT
         {
             splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
         }
+        public void draw_grap(Form form,Button a1,int n,TextBox[] t)
+        {
+            float[] f = new float[n];
+            a1.Click += (s4, e4) =>
+            {
+                
+                
+                    Circle circe = new Circle();
+                    
+                    
+                    for (int i = 0; i < n; i++)
+                    {
+                        float o;
+                        if (t[i].Text == string.Empty)
+                        {
+                            MessageBox.Show("Nhập Đầy Đủ Giá Trị", "lỗi");
+                            return;
+                        }
+                        if (!float.TryParse(t[i].Text, out o))
+                        {
+                            MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                            return;
+                        }
+                        if (i == 2 && float.Parse(t[i].Text) < 0)
+                        {
+                            MessageBox.Show("R phải lớn hơn 0");
+                            return;
+                        }
+                        f[i] = float.Parse(t[i].Text);
+                    }
 
+                    circe.X = f;
+                    a.Add(circe);
+                    addListFcn();
+                    form.Close();
+                
+               
+            };
+        }
+        public void draw_grap1(Form form, Button a1, int n, TextBox[] t,int bac)
+        {
+            float[] f = new float[n];
+            a1.Click += (s4, e4) =>
+            {
+
+
+                Bac_n b = new Bac_n(bac);
+
+
+                for (int i = 0; i < n; i++)
+                {
+                    float o;
+                    if (t[i].Text == string.Empty)
+                    {
+                        MessageBox.Show("Nhập Đầy Đủ Giá Trị", "lỗi");
+                        return;
+                    }
+                    if (!float.TryParse(t[i].Text, out o))
+                    {
+                        MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                        return;
+                    }                  
+                    f[i] = float.Parse(t[i].Text);
+                }
+
+                b.X = f;
+                a.Add(b);
+                addListFcn();
+                form.Close();
+
+
+            };
+        }
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new Form();
@@ -702,36 +774,38 @@ namespace GT
                     dr.Visible = true;
                     Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
                     p.Image = ig;
-                    dr.Click += (s2, e2) =>
-                    {
-                        Circle circe = new Circle();
-                        float[] fl = new float[3];
-                       for(int i = 0; i < 3; i++)
-                        {
-                            float o;
-                            if (texbox[i].Text == string.Empty)
-                            {
-                                MessageBox.Show("Nhập Đầy Đủ Giá Trị","lỗi");
-                                return;
-                            }
-                            if (!float.TryParse(texbox[i].Text,out o))
-                            {
-                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                                return;
-                            }
-                            if(i==2 && float.Parse(texbox[i].Text) < 0)
-                            {
-                                MessageBox.Show("R phải lớn hơn 0");
-                                return;
-                            }
-                            fl[i] = float.Parse(texbox[i].Text);
-                        }
+                    draw_grap(f,dr, 3, texbox);
+                    //dr.Click += (s2, e2) =>
+                    //{
+                    //    Circle circe = new Circle();
+                    //    float[] fl = new float[3];
+                    //   for(int i = 0; i < 3; i++)
+                    //    {
+                    //        float o;
+                    //        if (texbox[i].Text == string.Empty)
+                    //        {
+                    //            MessageBox.Show("Nhập Đầy Đủ Giá Trị","lỗi");
+                    //            return;
+                    //        }
+                    //        if (!float.TryParse(texbox[i].Text,out o))
+                    //        {
+                    //            MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                    //            return;
+                    //        }
+                    //        if(i==2 && float.Parse(texbox[i].Text) < 0)
+                    //        {
+                    //            MessageBox.Show("R phải lớn hơn 0");
+                    //            return;
+                    //        }
+                    //        fl[i] = float.Parse(texbox[i].Text);
+                    //    }
 
-                        circe.X = fl;
-                        a.Add(circe);
-                        addListFcn();
-                        f.Close();
-                    };
+                    //    circe.X = fl;
+                    //    a.Add(circe);
+                    //    addListFcn();
+                    //    f.Close();
+                    //};
+
                     DrawGr();
                 }
                  if (combobox.SelectedItem.ToString() == "Phương Trình Đặc Biệt")
@@ -754,34 +828,7 @@ namespace GT
                     
                     Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
                     p.Image = ig;
-                    dr.Click += (s3, e3) =>
-                    {
-                        Bac_n db = new Bac_n(-1);
-                        float[] fl = new float[2];
-                        
-                        for(int i = 0; i < 2; i++)
-                        {
-                            float o;
-                            if (texbox[i].Text == string.Empty)
-                            {
-                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
-                                return;
-                            }
-                            if (!float.TryParse(texbox[i].Text,out o))
-                            {
-                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                                return;
-                            }
-                            fl[i] = float.Parse(texbox[i].Text);
-                        }
-
-                       
-                        db.X = fl;
-                        a.Add(db);
-                        addListFcn();
-                        f.Close();
-
-                    };
+                    draw_grap1(f, dr, 2, texbox, -1);
                     DrawGr();
                 }
                 else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 1")
@@ -804,32 +851,7 @@ namespace GT
 
                     Image ig = Image.FromFile(@"..\\..\\Resources\\bac1.png");
                     p.Image = ig;
-                    dr.Click += (s2, e2) =>
-                    {
-                        Bac_n b = new Bac_n(1);
-                        float[] fl = new float[2];
-
-
-                        for (int i = 0; i < 2; i++)
-                        {
-                            float o;
-                            if (texbox[i].Text == string.Empty)
-                            {
-                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
-                                return;
-                            }
-                            else if (!float.TryParse(texbox[i].Text, out o))
-                            {
-                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                                return;
-                            }
-                            fl[i] = Convert.ToSingle(texbox[i].Text);
-                        }
-                        b.X = fl;
-                        a.Add(b);
-                        addListFcn();
-                        f.Close();
-                    };
+                    draw_grap1(f, dr, 2, texbox, 1);
                     DrawGr();
                 }
                 else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 2")
@@ -852,31 +874,7 @@ namespace GT
 
                     Image ig = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
                     p.Image = ig;
-                    dr.Click += (s2, e2) =>
-                    {
-                        Bac_n b = new Bac_n(2);
-                        float[] fl = new float[3];
-
-                        for (int i = 0; i < 3; i++)
-                        {
-                            float o;
-                            if (texbox[i].Text == string.Empty)
-                            {
-                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
-                                return;
-                            }
-                            else if (!float.TryParse(texbox[i].Text, out o))
-                            {
-                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                                return;
-                            }
-                            fl[i] = float.Parse(texbox[i].Text);
-                        }
-                        b.X = fl;
-                        a.Add(b);
-                        addListFcn();
-                        f.Close();
-                    };
+                    draw_grap1(f, dr, 3, texbox, 2);
                     DrawGr();
                 }
                 else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 3")
@@ -899,31 +897,7 @@ namespace GT
 
                     Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
                     p.Image = ig;
-                    dr.Click += (s2, e2) =>
-                    {
-                        Bac_n b = new Bac_n(3);
-                        float[] fl = new float[4];
-
-                        for (int i = 0; i < 4; i++)
-                        {
-                            float o;
-                            if (texbox[i].Text == string.Empty)
-                            {
-                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
-                                return;
-                            }
-                            else if (!float.TryParse(texbox[i].Text, out o))
-                            {
-                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                                return;
-                            }
-                            fl[i] = float.Parse(texbox[i].Text);
-                        }
-                        b.X = fl;
-                        a.Add(b);
-                        addListFcn();
-                        f.Close();
-                    };
+                    draw_grap1(f,dr,4,texbox,3);
                     DrawGr();
                 }
                 else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 4")
@@ -946,30 +920,7 @@ namespace GT
 
                     Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
                     p.Image = ig;
-                    dr.Click += (s2, e2) =>
-                    {
-                        Bac_n b = new Bac_n(4);
-                        float[] fl = new float[5];
-                        for (int i = 0; i < 5; i++)
-                        {
-                            float o;
-                            if (texbox[i].Text == string.Empty)
-                            {
-                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
-                                return;
-                            }
-                            else if (!float.TryParse(texbox[i].Text, out o))
-                            {
-                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                                return;
-                            }
-                            fl[i] = float.Parse(texbox[i].Text);
-                        }
-                        b.X = fl;
-                        a.Add(b);
-                        addListFcn();
-                        f.Close();
-                    };
+                    draw_grap1(f, dr, 5, texbox, 4);
                     DrawGr();
                 }
                 else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 5")
@@ -988,30 +939,7 @@ namespace GT
 
                     Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
                     p.Image = ig;
-                    dr.Click += (s2, e2) =>
-                    {
-                        Bac_n b = new Bac_n(5);
-                        float[] fl = new float[6];
-                        for (int i = 0; i < 6; i++)
-                        {
-                            float o;
-                            if (texbox[i].Text == string.Empty)
-                            {
-                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
-                                return;
-                            }
-                            else if (!float.TryParse(texbox[i].Text, out o))
-                            {
-                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                                return;
-                            }
-                            fl[i] = float.Parse(texbox[i].Text);
-                        }
-                        b.X = fl;
-                        a.Add(b);
-                        addListFcn();
-                        f.Close();
-                    };
+                    draw_grap1(f, dr, 6, texbox, 5);
                     DrawGr();
                 }
             };
