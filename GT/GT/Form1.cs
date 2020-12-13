@@ -733,7 +733,7 @@ namespace GT
             TextBox t5 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 220), Visible = false };
             TextBox t6 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 260), Visible = false };
             /*************************************************************************************************/
-            Button dr = new Button() { Text = "Draw", Size = new Size(70, 60), Location = new Point(180, 100), Visible = false };
+            Button dr = new Button() { Text = "Draw", Size = new Size(70, 60), Location = new Point(180, 100), Visible = false,BackColor=Color.White };
 
 
             PictureBox p = new PictureBox()
