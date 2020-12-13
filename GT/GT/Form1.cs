@@ -614,6 +614,7 @@ namespace GT
         {
             splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
         }
+        /**********************************************************************************************/
         public void draw_grap(Form form,Button a1,int n,TextBox[] t)
         {
             float[] f = new float[n];
@@ -653,6 +654,7 @@ namespace GT
                
             };
         }
+        /***********************************************************************************************/
         public void draw_grap1(Form form, Button a1, int n, TextBox[] t,int bac)
         {
             float[] f = new float[n];
@@ -687,6 +689,7 @@ namespace GT
 
             };
         }
+        /*******************************************************************************************************/
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new Form();
@@ -775,37 +778,7 @@ namespace GT
                     Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
                     p.Image = ig;
                     draw_grap(f,dr, 3, texbox);
-                    //dr.Click += (s2, e2) =>
-                    //{
-                    //    Circle circe = new Circle();
-                    //    float[] fl = new float[3];
-                    //   for(int i = 0; i < 3; i++)
-                    //    {
-                    //        float o;
-                    //        if (texbox[i].Text == string.Empty)
-                    //        {
-                    //            MessageBox.Show("Nhập Đầy Đủ Giá Trị","lỗi");
-                    //            return;
-                    //        }
-                    //        if (!float.TryParse(texbox[i].Text,out o))
-                    //        {
-                    //            MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                    //            return;
-                    //        }
-                    //        if(i==2 && float.Parse(texbox[i].Text) < 0)
-                    //        {
-                    //            MessageBox.Show("R phải lớn hơn 0");
-                    //            return;
-                    //        }
-                    //        fl[i] = float.Parse(texbox[i].Text);
-                    //    }
-
-                    //    circe.X = fl;
-                    //    a.Add(circe);
-                    //    addListFcn();
-                    //    f.Close();
-                    //};
-
+                   
                     DrawGr();
                 }
                  if (combobox.SelectedItem.ToString() == "Phương Trình Đặc Biệt")
