@@ -642,12 +642,15 @@ namespace GT
             l.Text = "Phương Trình Có Dạng";
             l.Size = new Size(180, 30);
             l.Visible = false;
+            split.Panel2.Controls.Add(l);
+            
             Label l1 = new Label() { Text = "Nhập a", Size = new Size(60, 30), Location = new Point(0, 60), Visible = false };
             Label l2 = new Label() { Text = "Nhập b", Size = new Size(60, 30), Location = new Point(0, 100), Visible = false };
             Label l3 = new Label() { Text = "Nhập c", Size = new Size(60, 30), Location = new Point(0, 140), Visible = false };
             Label l4 = new Label() { Text = "Nhập d", Size = new Size(60, 30), Location = new Point(0, 180), Visible = false };
             Label l5 = new Label() { Text = "Nhập e", Size = new Size(60, 30), Location = new Point(0, 220), Visible = false };
             Label l6 = new Label() { Text = "Nhập f", Size = new Size(60, 30), Location = new Point(0, 260), Visible = false };
+        
             TextBox t1 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 60), Visible = false };
             TextBox t2 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 100), Visible = false };
             TextBox t3 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 140), Visible = false };
@@ -666,7 +669,8 @@ namespace GT
                 Visible = false
             };
             /****************************************************/
-            Label[] label = new Label[] { l, l1, l2, l3, l4, l5, l6 };
+            Label[] label = new Label[] {l1,l2,l3,l4,l5,l6 };
+
             TextBox[] texbox = new TextBox[] { t1, t2, t3, t4, t5, t6 };
             split.Panel2.Controls.AddRange(label);
             split.Panel2.Controls.AddRange(texbox);
@@ -681,11 +685,19 @@ namespace GT
                 if (combobox.SelectedItem.ToString() == "Phương Trình Đường Tròn")
                 {
                     f.Size = new Size(720, 250);
-                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
-                    l3.Text = "Nhập R";
-                    l4.Visible = false; l5.Visible = false; l6.Visible = false;
-                    t1.Visible = true; t2.Visible = true; t3.Visible = true;
-                    t4.Visible = false; t5.Visible = false; t6.Visible = false;
+                    l.Visible = true;
+                    for(int i = 0; i < 3; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    label[2].Text = "Nhập R";
+                    for(int i = 3; i < 6; i++)
+                    {
+                        label[i].Visible = false;
+                        texbox[i].Visible = false;
+                    }
+                                      
                     p.Visible = true;
                     dr.Visible = true;
                     Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
@@ -694,9 +706,26 @@ namespace GT
                     {
                         Circle circe = new Circle();
                         float[] fl = new float[3];
-                        fl[0] = float.Parse(t1.Text);
-                        fl[1] = float.Parse(t2.Text);
-                        fl[2] = float.Parse(t3.Text);
+                       for(int i = 0; i < 3; i++)
+                        {
+                            float o;
+                            if (texbox[i].Text == string.Empty)
+                            {
+                                MessageBox.Show("Nhập Đầy Đủ Giá Trị","lỗi");
+                                return;
+                            }
+                            if (!float.TryParse(texbox[i].Text,out o))
+                            {
+                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                                return;
+                            }
+                            if(i==2 && float.Parse(texbox[i].Text) < 0)
+                            {
+                                MessageBox.Show("R phải lớn hơn 0");
+                                return;
+                            }
+                            fl[i] = float.Parse(texbox[i].Text);
+                        }
 
                         circe.X = fl;
                         a.Add(circe);
@@ -705,25 +734,48 @@ namespace GT
                     };
                     DrawGr();
                 }
-                else if (combobox.SelectedItem.ToString() == "Phương Trình Đặc Biệt")
+                 if (combobox.SelectedItem.ToString() == "Phương Trình Đặc Biệt")
                 {
                     f.Size = new Size(570, 200);
-                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = false;
+                    l.Visible = true;
+                    for(int i = 0; i < 2; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    for (int i = 2 ; i < 6; i++)
+                    {
+                        label[i].Visible = false;
+                        texbox[i].Visible = false;
+                    }
 
-                    l4.Visible = false; l5.Visible = false; l6.Visible = false;
-                    t1.Visible = true; t2.Visible = true; t3.Visible = false;
-                    t4.Visible = false; t5.Visible = false; t6.Visible = false;
                     p.Visible = true;
                     dr.Visible = true;
                     
                     Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
                     p.Image = ig;
-                    dr.Click += (s2, e2) =>
+                    dr.Click += (s3, e3) =>
                     {
                         Bac_n db = new Bac_n(-1);
                         float[] fl = new float[2];
-                        fl[0] = float.Parse(t1.Text);
-                        fl[1] = float.Parse(t2.Text);
+                        
+                        for(int i = 0; i < 2; i++)
+                        {
+                            float o;
+                            if (texbox[i].Text == string.Empty)
+                            {
+                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
+                                return;
+                            }
+                            if (!float.TryParse(texbox[i].Text,out o))
+                            {
+                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                                return;
+                            }
+                            fl[i] = float.Parse(texbox[i].Text);
+                        }
+
+                       
                         db.X = fl;
                         a.Add(db);
                         addListFcn();
@@ -735,9 +787,18 @@ namespace GT
                 else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 1")
                 {
                     f.Size = new Size(570, 200);
-                    l.Visible = true;l1.Visible = true;l2.Visible = true;l3.Visible = false;
-                    l4.Visible = false;l5.Visible = false;l6.Visible = false;
-                    t1.Visible = true;t2.Visible = true;t3.Visible = false;t4.Visible = false;t5.Visible = false;t6.Visible = false;
+                    l.Visible = true;
+                    for (int i = 0; i < 2; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    for (int i = 2; i < 6; i++)
+                    {
+                        label[i].Visible = false;
+                        texbox[i].Visible = false;
+                    }
+                   
                     p.Visible = true;
                     dr.Visible = true;
 
@@ -747,8 +808,23 @@ namespace GT
                     {
                         Bac_n b = new Bac_n(1);
                         float[] fl = new float[2];
-                        fl[0] = float.Parse(t1.Text);
-                        fl[1] = float.Parse(t2.Text);
+
+
+                        for (int i = 0; i < 2; i++)
+                        {
+                            float o;
+                            if (texbox[i].Text == string.Empty)
+                            {
+                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
+                                return;
+                            }
+                            else if (!float.TryParse(texbox[i].Text, out o))
+                            {
+                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                                return;
+                            }
+                            fl[i] = Convert.ToSingle(texbox[i].Text);
+                        }
                         b.X = fl;
                         a.Add(b);
                         addListFcn();
@@ -759,10 +835,18 @@ namespace GT
                 else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 2")
                 {
                     f.Size = new Size(650, 250);
-                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
-                    l4.Visible = false; l5.Visible = false; l6.Visible = false;
-                    l3.Text = "Nhập c";
-                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = false; t5.Visible = false; t6.Visible = false;
+                    l.Visible = true;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    label[2].Text = "Nhập c";
+                    for (int i = 3; i < 6; i++)
+                    {
+                        label[i].Visible = false;
+                        texbox[i].Visible = false;
+                    }
                     p.Visible = true;
                     dr.Visible = true;
 
@@ -772,9 +856,22 @@ namespace GT
                     {
                         Bac_n b = new Bac_n(2);
                         float[] fl = new float[3];
-                        fl[0] = float.Parse(t1.Text);
-                        fl[1] = float.Parse(t2.Text);
-                        fl[2] = float.Parse(t3.Text);
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            float o;
+                            if (texbox[i].Text == string.Empty)
+                            {
+                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
+                                return;
+                            }
+                            else if (!float.TryParse(texbox[i].Text, out o))
+                            {
+                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                                return;
+                            }
+                            fl[i] = float.Parse(texbox[i].Text);
+                        }
                         b.X = fl;
                         a.Add(b);
                         addListFcn();
@@ -785,10 +882,18 @@ namespace GT
                 else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 3")
                 {
                     f.Size = new Size(700, 300);
-                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
-                    l4.Visible = true; l5.Visible = false; l6.Visible = false;
-                    l3.Text = "Nhập c";
-                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = true; t5.Visible = false; t6.Visible = false;
+                    l.Visible = true;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    label[2].Text = "Nhập c";
+                    for (int i = 4; i < 6; i++)
+                    {
+                        label[i].Visible = false;
+                        texbox[i].Visible = false;
+                    }
                     p.Visible = true;
                     dr.Visible = true;
 
@@ -798,10 +903,22 @@ namespace GT
                     {
                         Bac_n b = new Bac_n(3);
                         float[] fl = new float[4];
-                        fl[0] = float.Parse(t1.Text);
-                        fl[1] = float.Parse(t2.Text);
-                        fl[2] = float.Parse(t3.Text);
-                        fl[3] = float.Parse(t4.Text);
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            float o;
+                            if (texbox[i].Text == string.Empty)
+                            {
+                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
+                                return;
+                            }
+                            else if (!float.TryParse(texbox[i].Text, out o))
+                            {
+                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                                return;
+                            }
+                            fl[i] = float.Parse(texbox[i].Text);
+                        }
                         b.X = fl;
                         a.Add(b);
                         addListFcn();
@@ -812,10 +929,18 @@ namespace GT
                 else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 4")
                 {
                     f.Size = new Size(800, 340);
-                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
-                    l4.Visible = true; l5.Visible = true; l6.Visible = false;
-                    l3.Text = "Nhập c";
-                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = true; t5.Visible = true; t6.Visible = false;
+                    l.Visible = true;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    label[2].Text = "Nhập c";
+                    for (int i = 5; i < 6; i++)
+                    {
+                        label[i].Visible = false;
+                        texbox[i].Visible = false;
+                    }
                     p.Visible = true;
                     dr.Visible = true;
 
@@ -825,11 +950,21 @@ namespace GT
                     {
                         Bac_n b = new Bac_n(4);
                         float[] fl = new float[5];
-                        fl[0] = float.Parse(t1.Text);
-                        fl[1] = float.Parse(t2.Text);
-                        fl[2] = float.Parse(t3.Text);
-                        fl[3] = float.Parse(t4.Text);
-                        fl[4] = float.Parse(t5.Text);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            float o;
+                            if (texbox[i].Text == string.Empty)
+                            {
+                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
+                                return;
+                            }
+                            else if (!float.TryParse(texbox[i].Text, out o))
+                            {
+                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                                return;
+                            }
+                            fl[i] = float.Parse(texbox[i].Text);
+                        }
                         b.X = fl;
                         a.Add(b);
                         addListFcn();
@@ -840,10 +975,14 @@ namespace GT
                 else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 5")
                 {
                     f.Size = new Size(820, 340);
-                    l.Visible = true; l1.Visible = true; l2.Visible = true; l3.Visible = true;
-                    l4.Visible = true; l5.Visible = true; l6.Visible = true;
-                    l3.Text = "Nhập c";
-                    t1.Visible = true; t2.Visible = true; t3.Visible = true; t4.Visible = true; t5.Visible = true; t6.Visible = true;
+                    l.Visible = true;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    label[2].Text = "Nhập c";
+                   
                     p.Visible = true;
                     dr.Visible = true;
 
@@ -853,12 +992,21 @@ namespace GT
                     {
                         Bac_n b = new Bac_n(5);
                         float[] fl = new float[6];
-                        fl[0] = float.Parse(t1.Text);
-                        fl[1] = float.Parse(t2.Text);
-                        fl[2] = float.Parse(t3.Text);
-                        fl[3] = float.Parse(t4.Text);
-                        fl[4] = float.Parse(t5.Text);
-                        fl[5] = float.Parse(t6.Text);
+                        for (int i = 0; i < 6; i++)
+                        {
+                            float o;
+                            if (texbox[i].Text == string.Empty)
+                            {
+                                MessageBox.Show("Nhập Đầy Đủ Giá Trị", "Lỗi");
+                                return;
+                            }
+                            else if (!float.TryParse(texbox[i].Text, out o))
+                            {
+                                MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                                return;
+                            }
+                            fl[i] = float.Parse(texbox[i].Text);
+                        }
                         b.X = fl;
                         a.Add(b);
                         addListFcn();
