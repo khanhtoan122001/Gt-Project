@@ -5,6 +5,14 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GT", "GT\GT.csproj", "{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "project", "C:\Users\AD\OneDrive\Desktop\nghiên cứu\project\project.vdproj", "{469BD308-2869-4A14-8F39-988A4AB97EA9}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Do_Thi", "C:\Users\AD\OneDrive\Desktop\nghiên cứu\Do_Thi\Do_Thi.vdproj", "{243999F1-B017-4E98-9B36-B6685C9C625F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_byBifan", "Setup_byBifan\Setup_byBifan.vdproj", "{F242E798-B0D1-4A6A-8B8E-2ED070E56232}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup2", "Setup2\Setup2.vdproj", "{03C9680A-C4BD-4055-B579-AEA1C2C8E60C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +23,14 @@ Global
 		{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{469BD308-2869-4A14-8F39-988A4AB97EA9}.Debug|Any CPU.ActiveCfg = Debug
+		{469BD308-2869-4A14-8F39-988A4AB97EA9}.Release|Any CPU.ActiveCfg = Release
+		{243999F1-B017-4E98-9B36-B6685C9C625F}.Debug|Any CPU.ActiveCfg = Debug
+		{243999F1-B017-4E98-9B36-B6685C9C625F}.Release|Any CPU.ActiveCfg = Release
+		{F242E798-B0D1-4A6A-8B8E-2ED070E56232}.Debug|Any CPU.ActiveCfg = Debug
+		{F242E798-B0D1-4A6A-8B8E-2ED070E56232}.Release|Any CPU.ActiveCfg = Release
+		{03C9680A-C4BD-4055-B579-AEA1C2C8E60C}.Debug|Any CPU.ActiveCfg = Debug
+		{03C9680A-C4BD-4055-B579-AEA1C2C8E60C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
