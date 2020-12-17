@@ -152,61 +152,6 @@ namespace GT
             };
             return t;
         }
-        void themLabo(int n, PictureBox pt)
-        {
-            Bac_n bac_N = new Bac_n(n);
-            Label name = new Label();
-            Button ve = new Button();
-            if (n > 0) n++;
-            else n = -n + 1;
-            name.Text = "Phương trình có dạng";
-            name.Size = new Size(170, 30);
-            name.Location = new Point(0, 0);
-            lb = new Label[n];
-            txt = new TextBox[n];
-            for (int i = 0; i < n; i++)
-            {
-                lb[i] = labo();
-                lb[i].Text = string.Format("Nhập {0}", (char)('a' + i));//"Nhập " + Convert.ToChar('a' + i);
-                lb[i].Location = new Point(0, i * 30 + 30);
-                txt[i] = txtBox();
-                txt[i].Location = new Point(100, i * 30 + 30);
-            }
-            ve.Text = "OK";
-            ve.Size = new Size(60, 30);
-            ve.Location = new Point(0, n * 30 + 30);
-            Form f = createFormInput();
-            f.Controls.Add(name);
-            f.Controls.Add(pt);
-            f.Controls.AddRange(lb);
-            f.Controls.AddRange(txt);
-            f.Controls.Add(ve);
-            ve.Click += (s, e) =>
-            {
-                float[] x = new float[n + 1];
-                for (int i = 0; i < n; i++)
-                {
-                    float o;
-                    if (!float.TryParse(txt[i].Text, out o))
-                    {
-                        MessageBox.Show("Nhập số", "Lỗi");
-                        return;
-                    }
-                    if (txt[i].Text == string.Empty)
-                    {
-                        MessageBox.Show("Nhập đầy đủ giá trị", "Lỗi");
-                        return;
-                    }
-                    x[i] = Convert.ToSingle(txt[i].Text);
-                }
-                bac_N.X = x;
-                a.Add(bac_N);
-                addListFcn();
-                f.Close();
-            };
-            f.ShowDialog();
-            DrawGr();
-        }
         void themLaboDuongTron(int n, PictureBox pt)
         {
             Button ve = new Button();
@@ -317,71 +262,6 @@ namespace GT
             this.Create();
         }
 
-        private void phươngTrìnhBậc1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt2 = new PictureBox();
-            pt2.Size = new Size(200, 50);
-            pt2.Location = new Point(190, 0);
-            pt2.BackColor = Color.White;
-            Image ig2 = Image.FromFile(@"..\\..\\Resources\\bac1.png");
-            pt2.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt2.Image = ig2;
-            int a3 = 1;
-            themLabo(a3, pt2);
-        }
-
-        private void phươngTrìnhBậc2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt3 = new PictureBox();
-            pt3.Size = new Size(200, 50);
-            pt3.Location = new Point(190, 0);
-            pt3.BackColor = Color.White;
-            Image ig3 = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
-            pt3.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt3.Image = ig3;
-            int a4 = 2;
-            themLabo(a4, pt3);
-        }
-
-        private void phươngTrìnhBậc3ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt4 = new PictureBox();
-            pt4.Size = new Size(250, 50);
-            pt4.Location = new Point(190, 0);
-            pt4.BackColor = Color.White;
-            Image ig4 = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
-            pt4.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt4.Image = ig4;
-            int a5 = 3;
-            themLabo(a5, pt4);
-        }
-
-        private void phươngTrìnhBậc4ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt5 = new PictureBox();
-            pt5.Size = new Size(200, 50);
-            pt5.Location = new Point(190, 0);
-            pt5.BackColor = Color.White;
-            Image ig5 = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
-            pt5.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt5.Image = ig5;
-            int f = 4;
-            themLabo(f, pt5);
-        }
-
-        private void phươngTrìnhBậc5ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt6 = new PictureBox();
-            pt6.Size = new Size(250, 50);
-            pt6.Location = new Point(190, 0);
-            pt6.BackColor = Color.White;
-            Image ig6 = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
-            pt6.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt6.Image = ig6;
-            int a7 = 5;
-            themLabo(a7, pt6);
-        }
-
         private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PictureBox pt = new PictureBox();
@@ -393,19 +273,6 @@ namespace GT
             pt.Image = ig;
             int a1 = 3;
             themLaboDuongTron(a1, pt);
-        }
-
-        private void phươngTrìnhĐặcBiệtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt1 = new PictureBox();
-            pt1.Size = new Size(200, 50);
-            pt1.Location = new Point(190, 0);
-            pt1.BackColor = Color.White;
-            Image ig1 = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
-            pt1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt1.Image = ig1;
-            int a2 = -1;
-            themLabo(a2, pt1);
         }
 
         private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
