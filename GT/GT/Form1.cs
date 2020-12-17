@@ -34,6 +34,20 @@ namespace GT
         int G = 10;
         const int E = 10000;
         const float Zoom = 1.1f;
+
+
+        /* mảng lưu giá trị a,b,r cho đường tròn */
+        public static float[] arr = new float[3];
+        /*mảng lưu các giá trị cho các đường khác*/
+        public static float[] arr1 = new float[2]; // đặc biệt
+        public static float[] arr2 = new float[2];//bậc 1
+        public static float[] arr3 = new float[3];//bậc 2
+        public static float[] arr4 = new float[4];//bậc 3
+        public static float[] arr5 = new float[5];//bậc 4
+        public static float[] arr6 = new float[6];//bậc 5
+        public static bool[] flat = new bool[] {false,false,false,false,false,false,false};
+
+
         public Form1()
         {
             InitializeComponent();
@@ -104,15 +118,16 @@ namespace GT
             this.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             flowLayoutPanel1_SizeChanged(null, null);
             Create();
-        }
 
-        private void DrawGr()
+        }
+        /**********************************************************************************************************/
+        public void DrawGr()
         {
             pictureBox1.Refresh();
 
@@ -120,7 +135,7 @@ namespace GT
             VeTruc();
             VeDoThi();
         }
-
+        /************************************************************/
         private void Create()
         {
             pictureBox1.Refresh();
@@ -201,6 +216,7 @@ namespace GT
                         }
                 }
                 circle.X = x;
+                
                 a.Add(circle);
                 addListFcn();
                 f.Close();
@@ -208,8 +224,9 @@ namespace GT
             f.ShowDialog();
             DrawGr();
         }
-
-        private void VeTruc()
+            /***************************************************************************************************************************/
+            /*****************************************************************************************************************************/
+            private void VeTruc()
         {
             bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             pictureBox1.Image = bitmap;
@@ -462,6 +479,133 @@ namespace GT
         private void buttonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             splitContainer2.Panel2Collapsed = !splitContainer2.Panel2Collapsed;
+        }
+        /**********************************************************************************************/
+        public void draw_grap(Form form,Button a1,int n,TextBox[] t)
+        {
+            float[] f = new float[n];
+            a1.Click += (s4, e4) =>
+            {
+                Circle circe = new Circle();
+                for (int i = 0; i < n; i++)
+                {
+                    float o;
+                    if (t[i].Text == string.Empty)
+                    {
+                        MessageBox.Show("Nhập Đầy Đủ Giá Trị", "lỗi");
+                        return;
+                    }
+                    if (!float.TryParse(t[i].Text, out o))
+                    {
+                        MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
+                        return;
+                    }
+                    if (i == 2 && float.Parse(t[i].Text) < 0)
+                    {
+                        MessageBox.Show("R phải lớn hơn 0");
+                        return;
+                    }
+                    f[i] = float.Parse(t[i].Text);
+                }
+
+                circe.X = f;
+                a.Add(circe);
+                addListFcn();
+                form.Close();
+            };
+        }
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new Form();
+            f.Font = new Font("Arial", 12, FontStyle.Regular);
+
+            SplitContainer split = new SplitContainer();
+            Color color = new Color();
+            color = Color.FromArgb(255, 224, 192);
+            split.Panel2.BackColor = color;
+            split.Size = new Size(800, 1000);
+            ComboBox combobox = new ComboBox();
+            combobox.Dock = DockStyle.Fill;
+            combobox.DropDownHeight = 100;
+            //combobox.DropDownWidth = 400;
+            combobox.Items.Add("Phương Trình Đường Tròn");
+            combobox.Items.Add("Phương Trình Đặc Biệt");
+            for (int i = 1; i <= 5; i++)
+            {
+                string bac = "Phương Trình Bậc " + i.ToString();
+                combobox.Items.Add(bac);
+            }
+            split.Panel1.Controls.Add(combobox);
+
+            Label l = new Label();
+            l.Text = "Phương Trình Có Dạng";
+            l.Size = new Size(180, 30);
+            l.Visible = false;
+            split.Panel2.Controls.Add(l);
+            
+            Label l1 = new Label() { Text = "Nhập a", Size = new Size(60, 30), Location = new Point(0, 60), Visible = false };
+            Label l2 = new Label() { Text = "Nhập b", Size = new Size(60, 30), Location = new Point(0, 100), Visible = false };
+            Label l3 = new Label() { Text = "Nhập c", Size = new Size(60, 30), Location = new Point(0, 140), Visible = false };
+            Label l4 = new Label() { Text = "Nhập d", Size = new Size(60, 30), Location = new Point(0, 180), Visible = false };
+            Label l5 = new Label() { Text = "Nhập e", Size = new Size(60, 30), Location = new Point(0, 220), Visible = false };
+            Label l6 = new Label() { Text = "Nhập f", Size = new Size(60, 30), Location = new Point(0, 260), Visible = false };
+        
+            TextBox t1 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 60), Visible = false };
+            TextBox t2 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 100), Visible = false };
+            TextBox t3 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 140), Visible = false };
+            TextBox t4 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 180), Visible = false };
+            TextBox t5 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 220), Visible = false };
+            TextBox t6 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 260), Visible = false };
+
+            Button dr = new Button() { Text = "Draw", Size = new Size(70, 60), Location = new Point(180, 100), Visible = false,BackColor=Color.White };
+
+            PictureBox p = new PictureBox()
+            {
+                Size = new Size(800, 500),
+                SizeMode = PictureBoxSizeMode.AutoSize,
+                Location = new Point(180, 0),
+                Visible = false
+            };
+
+            Label[] label = new Label[] {l1,l2,l3,l4,l5,l6 };
+
+            TextBox[] texbox = new TextBox[] { t1, t2, t3, t4, t5, t6 };
+            split.Panel2.Controls.AddRange(label);
+            split.Panel2.Controls.AddRange(texbox);
+            split.Panel2.Controls.Add(p);
+            split.Panel2.Controls.Add(dr);
+            f.Controls.Add(split);
+            f.Size = new Size(600, 400);
+            f.Show();
+            
+            combobox.SelectedIndexChanged += (s, e1) =>
+            {
+                if (combobox.SelectedItem.ToString() == "Phương Trình Đường Tròn")
+                {
+                    f.Size = new Size(720, 250);
+                    l.Visible = true;
+                    for(int i = 0; i < 3; i++)
+                    {
+                        label[i].Visible = true;
+                        texbox[i].Visible = true;
+                    }
+                    label[2].Text = "Nhập R";
+                    for(int i = 3; i < 6; i++)
+                    {
+                        label[i].Visible = false;
+                        texbox[i].Visible = false;
+                    }
+                                      
+                    p.Visible = true;
+                    dr.Visible = true;
+                    Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                    p.Image = ig;
+                    draw_grap(f,dr, 3, texbox);
+                   
+                    DrawGr();
+                }
+                 
+            };
         }
 
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
