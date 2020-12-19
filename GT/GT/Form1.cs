@@ -1112,6 +1112,25 @@ namespace GT
                 }
             }
         }
+        private double khoangCach(double x1,double y1,double x2,double y2)
+        {
+            return (Math.Sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)));
+        }
+
+        private List<double> duongThang(double x1,double x2,double y1,double y2)
+        {
+            
+            double _x = (y1 - y2) / (x1 - x2);
+            double _x1 = (x1 * y2 - x2 * y1) / (x1 - x2);
+            List<double> dth = new List<double>() { _x, _x1 };
+            return dth;
+        }
+        private List<double> duongTron(double a,double b,double x1,double y1)
+        {
+            double r = Math.Sqrt((a-x1)*(a-x1)+(b-y1)*(b-y1));
+            List<double> dtr = new List<double>() { a, b, r };
+            return dtr;
+        }
     }
     
 }
