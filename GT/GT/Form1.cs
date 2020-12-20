@@ -16,6 +16,7 @@ using System.IO;
 using System.Diagnostics;
 namespace GT
 {
+    enum mouse {none, export, s_point};
     public partial class Form1 : Form
     {
         float[] C_dv = { 1f, 2f, 5f};
@@ -27,14 +28,14 @@ namespace GT
         double dv = 1;
         const float MaxDv = 500, MinDv = 0.001f;
         Point u = new Point(0, 0);
-        Point LastMouse = new Point(0, 0);
+        Point LastMouse = new Point(0, 0), p_Export;
         Graphics g;
         Bitmap bitmap;
-        bool S = false, Dark = false, LuoiNho = true;
+        bool S = false, Dark = false, LuoiNho = true, export = false;
         int G = 10;
         const int E = 10000;
         const float Zoom = 1.1f;
-
+        mouse c_mouse = mouse.none;
 
         /* mảng lưu giá trị a,b,r cho đường tròn */
         public static float[] arr = new float[3];
@@ -88,15 +89,35 @@ namespace GT
 
             this.pictureBox1.MouseDown += (s, e) =>
             {
+                if (!S)
+                {
+                    export = false;
+                    p_Export = e.Location;
+                }
                 LastMouse = e.Location;
-                pictureBox1.Cursor = Cursors.NoMove2D;
-                S = true;
+                switch (c_mouse)
+                {
+                    case mouse.none:
+                        pictureBox1.Cursor = Cursors.SizeAll;
+                        S = true;
+                        break;
+                    case mouse.export:
+                        pictureBox1.Cursor = Cursors.Cross;
+                        S = true;
+                        break;
+                    case mouse.s_point:
+                        pictureBox1.Cursor = Cursors.Hand;
+                        break;
+                    default:
+                        break;
+                }
             };
 
             this.pictureBox1.MouseUp += (s, e) =>
             {
                 pictureBox1.Cursor = Cursors.Default;
                 S = false;
+                export = true;
             };
             this.DoubleBuffered = true;
 
@@ -104,12 +125,41 @@ namespace GT
 
         void _MouseMove(object sender, MouseEventArgs e)
         {
-            if (S)
+            switch (c_mouse)
             {
-                u.X = e.X - LastMouse.X;
-                u.Y = e.Y - LastMouse.Y;
-                LastMouse = e.Location;
-                DrawGr();
+                case mouse.none:
+                    if (S)
+                    {
+                        u.X = e.X - LastMouse.X;
+                        u.Y = e.Y - LastMouse.Y;
+                        LastMouse = e.Location;
+                        DrawGr();
+                    }
+                    break;
+                case mouse.export:
+                    if (S)
+                    {
+                        DrawGr();
+                        g.DrawRectangle(new Pen(theme.Bg1), new Rectangle(p_Export, new Size(e.X - p_Export.X, e.Y - p_Export.Y)));
+                    }
+                    else
+                    {
+                        if (export)
+                        {
+                            if(e.X - p_Export.X > 10 && e.Y - p_Export.Y > 10)
+                            {
+                                Rectangle rectangle = new Rectangle(p_Export, new Size(e.X - p_Export.X, e.Y - p_Export.Y));
+                                exportPic(rectangle);
+                            }
+                            export = !export;
+                        }
+                        DrawGr();
+                    }
+                    break;
+                case mouse.s_point:
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -317,11 +367,13 @@ namespace GT
 
             max_x = pictureBox1.Width;
             max_y = pictureBox1.Height;
+            if(c_mouse == mouse.none)
+            {
+                x0 += u.X;
+                y0 += u.Y;
+                u = new Point(0, 0);
+            }
 
-            x0 += u.X;
-            y0 += u.Y;
-
-            u = new Point(0, 0);
         }
 
         private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)
@@ -387,7 +439,24 @@ namespace GT
         {
             
         }
+        // ================================== Export ==========================================
+        void exportPic(Rectangle r)
+        {
+            Bitmap b_export = new Bitmap(r.Width, r.Height);
+            for (int i = 0; i < r.Height; i++)
+                for (int j = 0; j < r.Width; j++)
+                    b_export.SetPixel(j, i, bitmap.GetPixel(j + r.Location.X, i + r.Location.Y));
 
+
+            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                b_export.Save(saveFileDialog1.FileName);
+                saveFileDialog1.FileName = "";
+            }
+        }
        
         PointF[] SetGraph(Function a)
         {
@@ -448,8 +517,8 @@ namespace GT
             {
                 saveToolStripMenuItem.Enabled = false;
                 saveAsToolStripMenuItem.Enabled = false;
-                savetoolStripButton3.Enabled = false;
-                saveastoolStripButton4.Enabled = false;
+                savetoolStripButton.Enabled = false;
+                saveastoolStripButton.Enabled = false;
             }
         }
 
@@ -608,25 +677,29 @@ namespace GT
             };
         }
 
+        private void toolStripLabel1_Click_1(object sender, EventArgs e) => c_mouse = mouse.none;
+        private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
+        private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
+
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
             if (Dark)
             {
-                newtoolStripButton1.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80-dark.png");
-                Open.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144-dark.png");
-                savetoolStripButton3.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100-dark.png");
-                saveastoolStripButton4.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100-dark.png");
-                deletetoolStripButton2.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96-dark.png");
-                exittoolStripButton5.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52-dark.png");
+                newtoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80-dark.png");
+                opentoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144-dark.png");
+                savetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100-dark.png");
+                saveastoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100-dark.png");
+                deletetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96-dark.png");
+                exittoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52-dark.png");
             }
             else
             {
-                newtoolStripButton1.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80.png");
-                Open.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144.png");
-                savetoolStripButton3.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100.png");
-                saveastoolStripButton4.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100.png");
-                deletetoolStripButton2.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96.png");
-                exittoolStripButton5.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52.png");
+                newtoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80.png");
+                opentoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144.png");
+                savetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100.png");
+                saveastoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100.png");
+                deletetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96.png");
+                exittoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52.png");
             }
         }
 
@@ -787,8 +860,8 @@ namespace GT
             flowLayoutPanel1_SizeChanged(null, null);
             saveToolStripMenuItem.Enabled = true;
             saveAsToolStripMenuItem.Enabled = true;
-            savetoolStripButton3.Enabled = true;
-            saveastoolStripButton4.Enabled = true;
+            savetoolStripButton.Enabled = true;
+            saveastoolStripButton.Enabled = true;
         }
 
         private void SetColorItemList()
