@@ -167,62 +167,6 @@ namespace GT
             };
             return t;
         }
-        void themLabo(int n, PictureBox pt)
-        {
-            
-            Bac_n bac_N = new Bac_n(n);
-            Label name = new Label();
-            Button ve = new Button();
-            if (n > 0) n++;
-            else n = -n + 1;
-            name.Text = "Phương trình có dạng";
-            name.Size = new Size(170, 30);
-            name.Location = new Point(0, 0);
-            lb = new Label[n];
-            txt = new TextBox[n];
-            for (int i = 0; i < n; i++)
-            {
-                lb[i] = labo();
-                lb[i].Text = string.Format("Nhập {0}", (char)('a' + i));//"Nhập " + Convert.ToChar('a' + i);
-                lb[i].Location = new Point(0, i * 30 + 30);
-                txt[i] = txtBox();
-                txt[i].Location = new Point(100, i * 30 + 30);
-            }
-            ve.Text = "OK";
-            ve.Size = new Size(60, 30);
-            ve.Location = new Point(0, n * 30 + 30);
-            Form f = createFormInput();
-            f.Controls.Add(name);
-            f.Controls.Add(pt);
-            f.Controls.AddRange(lb);
-            f.Controls.AddRange(txt);
-            f.Controls.Add(ve);
-            ve.Click += (s, e) =>
-            {
-                float[] x = new float[n + 1];
-                for (int i = 0; i < n; i++)
-                {
-                    float o;
-                    if (!float.TryParse(txt[i].Text, out o))
-                    {
-                        MessageBox.Show("Nhập số", "Lỗi");
-                        return;
-                    }
-                    if (txt[i].Text == string.Empty)
-                    {
-                        MessageBox.Show("Nhập đầy đủ giá trị", "Lỗi");
-                        return;
-                    }
-                    x[i] = Convert.ToSingle(txt[i].Text);
-                }
-                bac_N.X = x;
-                a.Add(bac_N);
-                addListFcn();
-                f.Close();
-            };
-            f.ShowDialog();
-            DrawGr();
-        }
         void themLaboDuongTron(int n, PictureBox pt)
         {
             Button ve = new Button();
@@ -335,71 +279,6 @@ namespace GT
             this.Create();
         }
 
-        private void phươngTrìnhBậc1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt2 = new PictureBox();
-            pt2.Size = new Size(200, 50);
-            pt2.Location = new Point(190, 0);
-            pt2.BackColor = Color.White;
-            Image ig2 = Image.FromFile(@"..\\..\\Resources\\bac1.png");
-            pt2.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt2.Image = ig2;
-            int a3 = 1;
-            themLabo(a3, pt2);
-        }
-
-        private void phươngTrìnhBậc2ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt3 = new PictureBox();
-            pt3.Size = new Size(200, 50);
-            pt3.Location = new Point(190, 0);
-            pt3.BackColor = Color.White;
-            Image ig3 = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
-            pt3.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt3.Image = ig3;
-            int a4 = 2;
-            themLabo(a4, pt3);
-        }
-
-        private void phươngTrìnhBậc3ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt4 = new PictureBox();
-            pt4.Size = new Size(250, 50);
-            pt4.Location = new Point(190, 0);
-            pt4.BackColor = Color.White;
-            Image ig4 = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
-            pt4.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt4.Image = ig4;
-            int a5 = 3;
-            themLabo(a5, pt4);
-        }
-
-        private void phươngTrìnhBậc4ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt5 = new PictureBox();
-            pt5.Size = new Size(200, 50);
-            pt5.Location = new Point(190, 0);
-            pt5.BackColor = Color.White;
-            Image ig5 = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
-            pt5.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt5.Image = ig5;
-            int f = 4;
-            themLabo(f, pt5);
-        }
-
-        private void phươngTrìnhBậc5ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt6 = new PictureBox();
-            pt6.Size = new Size(250, 50);
-            pt6.Location = new Point(190, 0);
-            pt6.BackColor = Color.White;
-            Image ig6 = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
-            pt6.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt6.Image = ig6;
-            int a7 = 5;
-            themLabo(a7, pt6);
-        }
-
         private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PictureBox pt = new PictureBox();
@@ -411,19 +290,6 @@ namespace GT
             pt.Image = ig;
             int a1 = 3;
             themLaboDuongTron(a1, pt);
-        }
-
-        private void phươngTrìnhĐặcBiệtToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt1 = new PictureBox();
-            pt1.Size = new Size(200, 50);
-            pt1.Location = new Point(190, 0);
-            pt1.BackColor = Color.White;
-            Image ig1 = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
-            pt1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt1.Image = ig1;
-            int a2 = -1;
-            themLabo(a2, pt1);
         }
 
         private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -620,51 +486,7 @@ namespace GT
             float[] f = new float[n];
             a1.Click += (s4, e4) =>
             {
-                
-                
-                    Circle circe = new Circle();
-                    
-                    
-                    for (int i = 0; i < n; i++)
-                    {
-                        float o;
-                        if (t[i].Text == string.Empty)
-                        {
-                            MessageBox.Show("Nhập Đầy Đủ Giá Trị", "lỗi");
-                            return;
-                        }
-                        if (!float.TryParse(t[i].Text, out o))
-                        {
-                            MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
-                            return;
-                        }
-                        if (i == 2 && float.Parse(t[i].Text) < 0)
-                        {
-                            MessageBox.Show("R phải lớn hơn 0");
-                            return;
-                        }
-                        f[i] = float.Parse(t[i].Text);
-                    }
-
-                    circe.X = f;
-                    a.Add(circe);
-                    addListFcn();
-                    form.Close();
-                
-               
-            };
-        }
-        /***********************************************************************************************/
-        public void draw_grap1(Form form, Button a1, int n, TextBox[] t,int bac)
-        {
-            float[] f = new float[n];
-            a1.Click += (s4, e4) =>
-            {
-
-
-                Bac_n b = new Bac_n(bac);
-
-
+                Circle circe = new Circle();
                 for (int i = 0; i < n; i++)
                 {
                     float o;
@@ -677,19 +499,21 @@ namespace GT
                     {
                         MessageBox.Show("Giá Trị Phải Là Số", "Lỗi");
                         return;
-                    }                  
+                    }
+                    if (i == 2 && float.Parse(t[i].Text) < 0)
+                    {
+                        MessageBox.Show("R phải lớn hơn 0");
+                        return;
+                    }
                     f[i] = float.Parse(t[i].Text);
                 }
 
-                b.X = f;
-                a.Add(b);
+                circe.X = f;
+                a.Add(circe);
                 addListFcn();
                 form.Close();
-
-
             };
         }
-        /*******************************************************************************************************/
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new Form();
@@ -712,7 +536,7 @@ namespace GT
                 combobox.Items.Add(bac);
             }
             split.Panel1.Controls.Add(combobox);
-            /*****************************************************/
+
             Label l = new Label();
             l.Text = "Phương Trình Có Dạng";
             l.Size = new Size(180, 30);
@@ -732,9 +556,8 @@ namespace GT
             TextBox t4 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 180), Visible = false };
             TextBox t5 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 220), Visible = false };
             TextBox t6 = new TextBox() { Size = new Size(60, 30), Location = new Point(70, 260), Visible = false };
-            /*************************************************************************************************/
-            Button dr = new Button() { Text = "Draw", Size = new Size(70, 60), Location = new Point(180, 100), Visible = false,BackColor=Color.White };
 
+            Button dr = new Button() { Text = "Draw", Size = new Size(70, 60), Location = new Point(180, 100), Visible = false,BackColor=Color.White };
 
             PictureBox p = new PictureBox()
             {
@@ -743,7 +566,7 @@ namespace GT
                 Location = new Point(180, 0),
                 Visible = false
             };
-            /****************************************************/
+
             Label[] label = new Label[] {l1,l2,l3,l4,l5,l6 };
 
             TextBox[] texbox = new TextBox[] { t1, t2, t3, t4, t5, t6 };
@@ -754,7 +577,7 @@ namespace GT
             f.Controls.Add(split);
             f.Size = new Size(600, 400);
             f.Show();
-            /*****************************************************/
+            
             combobox.SelectedIndexChanged += (s, e1) =>
             {
                 if (combobox.SelectedItem.ToString() == "Phương Trình Đường Tròn")
@@ -781,140 +604,7 @@ namespace GT
                    
                     DrawGr();
                 }
-                 if (combobox.SelectedItem.ToString() == "Phương Trình Đặc Biệt")
-                {
-                    f.Size = new Size(570, 200);
-                    l.Visible = true;
-                    for(int i = 0; i < 2; i++)
-                    {
-                        label[i].Visible = true;
-                        texbox[i].Visible = true;
-                    }
-                    for (int i = 2 ; i < 6; i++)
-                    {
-                        label[i].Visible = false;
-                        texbox[i].Visible = false;
-                    }
-
-                    p.Visible = true;
-                    dr.Visible = true;
-                    
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (56).png");
-                    p.Image = ig;
-                    draw_grap1(f, dr, 2, texbox, -1);
-                    DrawGr();
-                }
-                else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 1")
-                {
-                    f.Size = new Size(570, 200);
-                    l.Visible = true;
-                    for (int i = 0; i < 2; i++)
-                    {
-                        label[i].Visible = true;
-                        texbox[i].Visible = true;
-                    }
-                    for (int i = 2; i < 6; i++)
-                    {
-                        label[i].Visible = false;
-                        texbox[i].Visible = false;
-                    }
-                   
-                    p.Visible = true;
-                    dr.Visible = true;
-
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\bac1.png");
-                    p.Image = ig;
-                    draw_grap1(f, dr, 2, texbox, 1);
-                    DrawGr();
-                }
-                else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 2")
-                {
-                    f.Size = new Size(650, 250);
-                    l.Visible = true;
-                    for (int i = 0; i < 3; i++)
-                    {
-                        label[i].Visible = true;
-                        texbox[i].Visible = true;
-                    }
-                    label[2].Text = "Nhập c";
-                    for (int i = 3; i < 6; i++)
-                    {
-                        label[i].Visible = false;
-                        texbox[i].Visible = false;
-                    }
-                    p.Visible = true;
-                    dr.Visible = true;
-
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\unnamed.jpg");
-                    p.Image = ig;
-                    draw_grap1(f, dr, 3, texbox, 2);
-                    DrawGr();
-                }
-                else if(combobox.SelectedItem.ToString()=="Phương Trình Bậc 3")
-                {
-                    f.Size = new Size(700, 300);
-                    l.Visible = true;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        label[i].Visible = true;
-                        texbox[i].Visible = true;
-                    }
-                    label[2].Text = "Nhập c";
-                    for (int i = 4; i < 6; i++)
-                    {
-                        label[i].Visible = false;
-                        texbox[i].Visible = false;
-                    }
-                    p.Visible = true;
-                    dr.Visible = true;
-
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (74).png");
-                    p.Image = ig;
-                    draw_grap1(f,dr,4,texbox,3);
-                    DrawGr();
-                }
-                else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 4")
-                {
-                    f.Size = new Size(800, 340);
-                    l.Visible = true;
-                    for (int i = 0; i < 5; i++)
-                    {
-                        label[i].Visible = true;
-                        texbox[i].Visible = true;
-                    }
-                    label[2].Text = "Nhập c";
-                    for (int i = 5; i < 6; i++)
-                    {
-                        label[i].Visible = false;
-                        texbox[i].Visible = false;
-                    }
-                    p.Visible = true;
-                    dr.Visible = true;
-
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (47).png");
-                    p.Image = ig;
-                    draw_grap1(f, dr, 5, texbox, 4);
-                    DrawGr();
-                }
-                else if (combobox.SelectedItem.ToString() == "Phương Trình Bậc 5")
-                {
-                    f.Size = new Size(820, 340);
-                    l.Visible = true;
-                    for (int i = 0; i < 6; i++)
-                    {
-                        label[i].Visible = true;
-                        texbox[i].Visible = true;
-                    }
-                    label[2].Text = "Nhập c";
-                   
-                    p.Visible = true;
-                    dr.Visible = true;
-
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\Screenshot (49).png");
-                    p.Image = ig;
-                    draw_grap1(f, dr, 6, texbox, 5);
-                    DrawGr();
-                }
+                 
             };
         }
 
