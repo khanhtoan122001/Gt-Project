@@ -91,6 +91,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(1187, 33);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            
             // 
             // newToolStripMenuItem
             // 

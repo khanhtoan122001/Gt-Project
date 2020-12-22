@@ -285,9 +285,10 @@ namespace GT
             pt.Size = new Size(200, 50);
             pt.Location = new Point(190, 0);
             pt.BackColor = Color.White;
-            Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
-            pt.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt.Image = ig;
+            pt.SizeMode = PictureBoxSizeMode.AutoSize;         
+            Image ig = Properties.Resources.lt_b2_chuong_3_sgk_hh_10_0;//Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                
+            pt.Image = ig;                    
             int a1 = 3;
             themLaboDuongTron(a1, pt);
         }
@@ -598,7 +599,7 @@ namespace GT
                                       
                     p.Visible = true;
                     dr.Visible = true;
-                    Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
+                    Image ig = Properties.Resources.lt_b2_chuong_3_sgk_hh_10_0;//Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
                     p.Image = ig;
                     draw_grap(f,dr, 3, texbox);
                    
@@ -662,6 +663,8 @@ namespace GT
                 c_i = true;
             }
         }
+
+       
 
         void VeLuoi()
         {
@@ -802,23 +805,23 @@ namespace GT
                 }
             }
         }
-        private double khoangCach(double x1,double y1,double x2,double y2)
+        private double khoangCach(Point a,Point b)
         {
-            return (Math.Sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)));
+            return (Math.Sqrt((a.X-b.X)*(a.X-b.X)+(a.Y-b.X)*(a.Y-a.Y)));
         }
 
-        private List<double> duongThang(double x1,double x2,double y1,double y2)
+        private List<double> duongThang(Point a,Point b)
         {
             
-            double _x = (y1 - y2) / (x1 - x2);
-            double _x1 = (x1 * y2 - x2 * y1) / (x1 - x2);
+            double _x = (a.Y - b.Y) / (a.X - b.X);
+            double _x1 = (a.X * b.Y - b.X * a.Y) / (a.X - b.X);
             List<double> dth = new List<double>() { _x, _x1 };
             return dth;
         }
-        private List<double> duongTron(double a,double b,double x1,double y1)
+        private List<double> duongTron(Point a,Point b)
         {
-            double r = Math.Sqrt((a-x1)*(a-x1)+(b-y1)*(b-y1));
-            List<double> dtr = new List<double>() { a, b, r };
+            double r = Math.Sqrt((a.X-b.X)*(a.X-b.X)+(a.Y-b.Y)*(a.Y-b.Y));
+            List<double> dtr = new List<double>() { a.X, a.Y, r };
             return dtr;
         }
     }

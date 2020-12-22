@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "project", "C:\Users\AD\OneD
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "C:\Users\AD\OneDrive\Desktop\nghiên cứu\Setup1\Setup1.vdproj", "{CD77FFA9-08BF-498E-A661-FE91FF51B818}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "đồ_Thị", "đồ_Thị\đồ_Thị.vdproj", "{D183A791-178A-4CE7-8DD6-FCE03C40B2F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{469BD308-2869-4A14-8F39-988A4AB97EA9}.Release|Any CPU.ActiveCfg = Release
 		{CD77FFA9-08BF-498E-A661-FE91FF51B818}.Debug|Any CPU.ActiveCfg = Debug
 		{CD77FFA9-08BF-498E-A661-FE91FF51B818}.Release|Any CPU.ActiveCfg = Release
+		{D183A791-178A-4CE7-8DD6-FCE03C40B2F6}.Debug|Any CPU.ActiveCfg = Debug
+		{D183A791-178A-4CE7-8DD6-FCE03C40B2F6}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
