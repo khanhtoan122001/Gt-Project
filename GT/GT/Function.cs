@@ -24,7 +24,7 @@ namespace Fcn
         protected float[] x;
         bool enable = true;
         protected Color f_color;
-
+        string save;
         public double Result
         {
             get
@@ -47,7 +47,7 @@ namespace Fcn
                 return (ArrayList)m_postfix.Clone();
             }
         }
-        //Download source code tại Sharecode.vn
+
         public EvaluateFunctionDelegate DefaultFunctionEvaluation
         {
             set
@@ -138,6 +138,8 @@ namespace Fcn
                             break;
                     }
                 }
+
+            save = equation;
 
             for (int i = 0; i < equation.Length; i++)
             {
@@ -702,7 +704,7 @@ namespace Fcn
         public virtual float f(float _x) => 0;
         public virtual string SaveString()
         {
-            return this.GetType().ToString();
+            return this.GetType().ToString() + "\n" + save;
         }
         protected bool m_bError = false;
         protected string m_sErrorDescription = "None";
@@ -710,6 +712,29 @@ namespace Fcn
         protected ArrayList m_equation = new ArrayList();
         protected ArrayList m_postfix = new ArrayList();
         protected EvaluateFunctionDelegate m_defaultFunctionEvaluation;
+    }
+    public class PointG : Function
+    {
+        private PointF location;
+        public string name;
+        public PointG() { }
+        public PointG(string name, Point p, Point xOy, int k, float dv)
+        {
+            this.name = name;
+            location.X = (float)(p.X - xOy.X) / k * dv;
+            location.Y = -(float)(p.Y - xOy.Y) / k * dv;
+        }
+        public PointF I
+        {
+            get
+            {
+                return location;
+            }
+        }
+        public override string ToString()
+        {
+            return string.Format("{2}({0}, {1})", location.X, location.Y, name);
+        }
     }
     class Circle : Function
     {
@@ -761,4 +786,4 @@ namespace Fcn
             return v + " = " + x[2] * x[2];
         }
     }
-}   //          (x - a)^2 + (y - b)^2 = R   =>  y = b + sqrt(R - (x - a)^2)
+}   
