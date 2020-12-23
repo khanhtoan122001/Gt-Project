@@ -718,6 +718,15 @@ namespace Fcn
         private PointF location;
         public string name;
         public PointG() { }
+        public PointG(string str)
+        {
+            int index = 0;
+            name = str.Substring(index, str.IndexOf('*', index));
+            index = str.IndexOf('*', index);
+            location.X = Convert.ToSingle(str.Substring(index + 1, str.IndexOf('*', index + 1) - index - 1));
+            index = str.IndexOf('*', index + 1);
+            location.Y = Convert.ToSingle(str.Substring(index + 1));
+        }
         public PointG(string name, Point p, Point xOy, int k, float dv)
         {
             this.name = name;
@@ -742,6 +751,18 @@ namespace Fcn
     }
     class Circle : Function
     {
+        public Circle() { }
+        public Circle(string str, int color)
+        {
+            x = new float[3];
+            int index = 0;
+            x[0] = Convert.ToSingle(str.Substring(index, str.IndexOf('*', index)));
+            index = str.IndexOf('*', index);
+            x[1] = Convert.ToSingle(str.Substring(index + 1, str.IndexOf('*', index + 1) - index - 1));
+            index = str.IndexOf('*', index + 1);
+            x[2] = Convert.ToSingle(str.Substring(index + 1));
+            this.color = Color.FromArgb(color);
+        }
         public PointF I
         {
             get
@@ -770,6 +791,7 @@ namespace Fcn
                 return x[2];
             }
         }
+
         public override string SaveString()
         {
             string v = string.Format("{0}*{1}*{2}", x[0], x[1], x[2]);

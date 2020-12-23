@@ -1,5 +1,6 @@
 ﻿using Fcn;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -191,8 +192,7 @@ namespace GT
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             flowLayoutPanel1_SizeChanged(null, null);
-            Create();
-
+            //Create();
         }
         /**********************************************************************************************************/
         public void DrawGr()
@@ -207,7 +207,10 @@ namespace GT
         private void Create()
         {
             pictureBox1.Refresh();
-            frmMain_Resize(null, null);
+            G = this.pictureBox1.Width * 5;
+            x0 = this.pictureBox1.Width / 2;
+            y0 = this.pictureBox1.Height / 2;
+            //frmMain_Resize(null, null);
             VeTruc();
         }
 
@@ -331,7 +334,7 @@ namespace GT
             G = this.pictureBox1.Width * 5;
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
-            Create();
+            //Create();
             DrawGr();
         }
 
@@ -380,6 +383,7 @@ namespace GT
             this.flowLayoutPanel1.BackColor = theme.Bg2;
             this.toolStrip1.BackColor = theme.Bg3;
             this.panel2.BackColor = theme.Bg3;
+            //this.toolStrip2.BackColor = theme.Bg3;
         }
         private void frmMain_Resize(object sender, EventArgs e)
         {
@@ -424,7 +428,7 @@ namespace GT
                         case "Fcn.PointG":
                             PointG pG = (PointG)ListFcn[i];
                             PointF lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
-                            g.FillEllipse(new SolidBrush(pG.color), lo.X, lo.Y, 10, 10);
+                            g.FillEllipse(new SolidBrush(theme.TextColor), lo.X, lo.Y, 10, 10);
                             g.DrawString(pG.name, new Font("Arial", 10), new SolidBrush(theme.TextColor), lo.X + 8, lo.Y + 8);
                             break;
                         default:
@@ -442,21 +446,13 @@ namespace GT
                 return;
             if (!isSave)
             {
-                saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+                saveFileDialog1.Filter = "GT files (*.GT)|*.GT";
                 saveFileDialog1.FilterIndex = 1;
                 saveFileDialog1.RestoreDirectory = true;
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    using (StreamWriter file = new StreamWriter(saveFileDialog1.FileName))
-                    {
-                        file.WriteLine(ListFcn.Count);
-                        foreach (Function i in ListFcn)
-                        {
-                            file.WriteLine("*=*=*");
-                            file.Write(i.SaveString());
-                        }
-                    }
+                    WriteToSave(saveFileDialog1.FileName);
                     pathFile = saveFileDialog1.FileName;
                     saveFileDialog1.FileName = "";
                     isSave = !isSave;
@@ -464,21 +460,23 @@ namespace GT
             }
             else
             {
-                using (StreamWriter file = new StreamWriter(pathFile))
-                {
-                    file.WriteLine(ListFcn.Count);
-                    foreach (Function i in ListFcn)
-                    {
-                        file.WriteLine("*=*=*");
-                        file.Write(i.SaveString());
-                    }
-                }
+                WriteToSave(pathFile);
             }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            openFileDialog1.FileName = "";
+
+            openFileDialog1.Filter = "GT files (*.GT)|*.GT";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.RestoreDirectory = true;
+
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                LoadFile(openFileDialog1.FileName);
+                openFileDialog1.FileName = "";
+            }
         }
         // ================================== Export ==========================================
         void exportPic(Rectangle r)
@@ -720,6 +718,7 @@ namespace GT
 
         private void toolStripLabel1_Click_1(object sender, EventArgs e) => c_mouse = mouse.none;
         private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
+        private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -731,21 +730,21 @@ namespace GT
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                using (StreamWriter file = new StreamWriter(saveFileDialog1.FileName))
-                {
-                    file.WriteLine(ListFcn.Count);
-                    foreach (Function i in ListFcn)
-                    {
-                        file.WriteLine("*=*=*");
-                        file.Write(i.SaveString());
-                    }
-                }
+                WriteToSave(saveFileDialog1.FileName);
                 pathFile = saveFileDialog1.FileName;
                 saveFileDialog1.FileName = " ";
             }
         }
 
-        private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            
+        }
+
+        private void toolStrip2_BackColorChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
@@ -946,6 +945,76 @@ namespace GT
             return string.Format("{0}{1}", name, countName == 0? "": countName.ToString());
         }
 
+        void WriteToSave(string fileName)
+        {
+            using (StreamWriter file = new StreamWriter(fileName))
+            {
+                file.WriteLine(Dark);
+                file.WriteLine(x0);
+                file.WriteLine(y0);
+                file.WriteLine(k);
+                file.WriteLine(dv);
+                file.WriteLine(name);
+                file.WriteLine(countName);
+                foreach (Function i in ListFcn)
+                {
+                    file.WriteLine("*=*=*");
+                    file.Write(i.SaveString());
+                }
+            }
+        }
+
+        void LoadFile(string path)
+        {
+            pathFile = path;
+            isSave = true;
+            StreamReader stream = new StreamReader(path);
+            List<string> listF = new List<string>();
+            while (!stream.EndOfStream)
+            {
+                listF.Add(stream.ReadLine());
+            }
+            Dark = Convert.ToBoolean(listF[0]);
+            if (Dark)
+                this.darkThemeToolStripMenuItem_CheckedChanged(null,null);
+            x0 = Convert.ToInt32(listF[1]);
+            y0 = Convert.ToInt32(listF[2]);
+            k = Convert.ToInt32(listF[3]);
+            dv = Convert.ToDouble(listF[4]);
+            name = Convert.ToChar(listF[5]);
+            countName = Convert.ToInt32(listF[6]);
+            int i = 0;
+            ListFcn.Clear();
+            while(i < listF.Count)
+            {
+                while (listF[i] != "*=*=*")
+                {
+                    DrawGr();
+                    if (i == listF.Count - 1) return;
+                    i++;
+                }
+                int j = i + 1;
+                switch (listF[j])
+                {
+                    case "Fcn.Circle":
+                        ListFcn.Add(new Circle(listF[j + 1], Convert.ToInt32(listF[j + 2])));
+                        break;
+                    case "Fcn.Function":
+                        Function data = new Function();
+                        data.Parse(listF[j + 1]);
+                        ListFcn.Add(data);
+                        break;
+                    case "Fcn.PointG":
+                        ListFcn.Add(new PointG(listF[j + 1]));
+                        ListFcn[ListFcn.Count - 1].color = theme.TextColor;
+                        break;
+                    default:
+                        break;
+                }
+                addListFcn();
+                i++;
+            }
+        }
     }
     
 }
