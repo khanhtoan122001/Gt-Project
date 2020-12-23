@@ -18,13 +18,13 @@ namespace Fcn
         }
     }
     public delegate Symbol EvaluateFunctionDelegate(string name, params Object[] args);
-    public abstract class Function
+    public class Function
     {
         private Random random = new Random();
         protected float[] x;
         bool enable = true;
         protected Color f_color;
-        string save;
+        string str_save;
         public double Result
         {
             get
@@ -139,7 +139,7 @@ namespace Fcn
                     }
                 }
 
-            save = equation;
+            str_save = equation;
 
             for (int i = 0; i < equation.Length; i++)
             {
@@ -704,7 +704,7 @@ namespace Fcn
         public virtual float f(float _x) => 0;
         public virtual string SaveString()
         {
-            return this.GetType().ToString() + "\n" + save;
+            return this.GetType().ToString() + "\n" + str_save;
         }
         protected bool m_bError = false;
         protected string m_sErrorDescription = "None";
@@ -730,6 +730,10 @@ namespace Fcn
             {
                 return location;
             }
+        }
+        public override string SaveString()
+        {
+            return string.Format("{0}\n{1}\n", this.GetType().ToString(), string.Format("{0}*{1}*{2}", name, location.X, location.Y));
         }
         public override string ToString()
         {
@@ -769,7 +773,7 @@ namespace Fcn
         public override string SaveString()
         {
             string v = string.Format("{0}*{1}*{2}", x[0], x[1], x[2]);
-            return string.Format("{0}\n{1}\n{2}\n",base.SaveString(), v, color.ToArgb());
+            return string.Format("{0}\n{1}\n{2}\n", this.GetType().ToString(), v, color.ToArgb());
         }
         public override string ToString()
         {

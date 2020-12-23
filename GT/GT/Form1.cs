@@ -21,6 +21,7 @@ namespace GT
     {
         float[] C_dv = { 1f, 2f, 5f};
         Theme theme = new Theme();
+        string pathFile = string.Empty;
         const int MaxZoom = 180, Normal = 100; 
         List<Function> ListFcn = new List<Function>();
         List<UserControl1> ListFcnControls = new List<UserControl1>();
@@ -32,7 +33,7 @@ namespace GT
         char name = 'Z';
         Graphics g;
         Bitmap MainBitmap;
-        bool isMouseDown = false, Dark = false, LuoiNho = true, SwExport = false;
+        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false;
         int G = 10;
         const int E = 10000;
         const float Zoom = 1.1f;
@@ -439,17 +440,34 @@ namespace GT
         {
             if (ListFcn.Count == 0)
                 return;
-            
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (!isSave)
             {
-                using (StreamWriter file = new StreamWriter(saveFileDialog1.FileName))
+                saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+                saveFileDialog1.FilterIndex = 1;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter file = new StreamWriter(saveFileDialog1.FileName))
+                    {
+                        file.WriteLine(ListFcn.Count);
+                        foreach (Function i in ListFcn)
+                        {
+                            file.WriteLine("*=*=*");
+                            file.Write(i.SaveString());
+                        }
+                    }
+                    pathFile = saveFileDialog1.FileName;
+                    saveFileDialog1.FileName = "";
+                    isSave = !isSave;
+                }
+            }
+            else
+            {
+                using (StreamWriter file = new StreamWriter(pathFile))
                 {
                     file.WriteLine(ListFcn.Count);
-                    foreach(Function i in ListFcn)
+                    foreach (Function i in ListFcn)
                     {
                         file.WriteLine("*=*=*");
                         file.Write(i.SaveString());
@@ -702,6 +720,30 @@ namespace GT
 
         private void toolStripLabel1_Click_1(object sender, EventArgs e) => c_mouse = mouse.none;
         private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ListFcn.Count == 0)
+                return;
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog1.FilterIndex = 1;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter file = new StreamWriter(saveFileDialog1.FileName))
+                {
+                    file.WriteLine(ListFcn.Count);
+                    foreach (Function i in ListFcn)
+                    {
+                        file.WriteLine("*=*=*");
+                        file.Write(i.SaveString());
+                    }
+                }
+                pathFile = saveFileDialog1.FileName;
+                saveFileDialog1.FileName = " ";
+            }
+        }
 
         private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
 
