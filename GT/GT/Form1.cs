@@ -129,6 +129,7 @@ namespace GT
                     else
                         ListFcn[ListFcn.Count - 1].color = Color.Black;
                     addListFcn();
+                    DrawGr();
                 }
                 SwExport = true;
             };
@@ -348,6 +349,8 @@ namespace GT
             ListFcnControls.Add(create_UserControl1());
             flowLayoutPanel1.Controls.Add(ListFcnControls[ListFcnControls.Count - 1]);
             flowLayoutPanel1_SizeChanged(null, null);
+            isSave = false;
+            pathFile = "";
             this.Create();
         }
 
@@ -1014,21 +1017,21 @@ namespace GT
 
         void WriteToSave(string fileName)
         {
-            using (StreamWriter file = new StreamWriter(fileName))
+            StreamWriter file = new StreamWriter(fileName);
+            file.WriteLine(Dark);
+            file.WriteLine(x0);
+            file.WriteLine(y0);
+            file.WriteLine(k);
+            file.WriteLine(dv);
+            file.WriteLine(name);
+            file.WriteLine(countName);
+            foreach (Function i in ListFcn)
             {
-                file.WriteLine(Dark);
-                file.WriteLine(x0);
-                file.WriteLine(y0);
-                file.WriteLine(k);
-                file.WriteLine(dv);
-                file.WriteLine(name);
-                file.WriteLine(countName);
-                foreach (Function i in ListFcn)
-                {
-                    file.WriteLine("*=*=*");
-                    file.Write(i.SaveString());
-                }
+                file.WriteLine("*=*=*");
+                file.Write(i.SaveString());
             }
+            file.Close();
+            file.Dispose();
         }
 
         void LoadFile(string path)
@@ -1041,6 +1044,13 @@ namespace GT
             {
                 listF.Add(stream.ReadLine());
             }
+            if (listF.Count < 7)
+            {
+                listF.Clear();
+                stream.Close();
+                stream.Dispose();
+                return;
+            }
             Dark = Convert.ToBoolean(listF[0]);
             if (Dark)
                 this.darkThemeToolStripMenuItem_CheckedChanged(null,null);
@@ -1052,12 +1062,22 @@ namespace GT
             countName = Convert.ToInt32(listF[6]);
             int i = 0;
             ListFcn.Clear();
+            ListFcnControls.Clear();
+            flowLayoutPanel1.Controls.Clear();
+            //flowLayoutPanel1.Refresh();
+            ListFcnControls.Add(create_UserControl1());
             while(i < listF.Count)
             {
                 while (listF[i] != "*=*=*")
                 {
                     DrawGr();
-                    if (i == listF.Count - 1) return;
+                    if (i == listF.Count - 1)
+                    {
+                        listF.Clear();
+                        stream.Close();
+                        stream.Dispose();
+                        return;
+                    }
                     i++;
                 }
                 int j = i + 1;
@@ -1068,14 +1088,15 @@ namespace GT
                         break;
                     case "Fcn.Function":
                         Function data = new Function();
+                        data.color = Color.FromArgb(Convert.ToInt32(listF[j + 2]));
+                        data.Parse(listF[j + 1]);
+                        data.Infix2Postfix();
                         data.arr = data.Variables;
                         data.EvaluatePostfix();
-                        data.Parse(listF[j + 1]);
                         ListFcn.Add(data);
                         break;
                     case "Fcn.PointG":
-                        ListFcn.Add(new PointG(listF[j + 1]));
-                        ListFcn[ListFcn.Count - 1].color = theme.TextColor;
+                        ListFcn.Add(new PointG(listF[j + 1], listF[j+2]));
                         break;
                     default:
                         break;
@@ -1083,6 +1104,8 @@ namespace GT
                 addListFcn();
                 i++;
             }
+            
+            return;
         }
     }
     

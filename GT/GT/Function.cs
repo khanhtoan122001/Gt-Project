@@ -727,7 +727,7 @@ namespace Fcn
         }
         public virtual string SaveString()
         {
-            return this.GetType().ToString() + "\n" + str_save;
+            return this.GetType().ToString() + "\n" + str_save + "\n" + color.ToArgb() + "\n";
         }
         protected bool m_bError = false;
         protected string m_sErrorDescription = "None";
@@ -741,7 +741,7 @@ namespace Fcn
         private PointF location;
         public string name;
         public PointG() { }
-        public PointG(string str)
+        public PointG(string str, string color)
         {
             int index = 0;
             name = str.Substring(index, str.IndexOf('*', index));
@@ -749,6 +749,7 @@ namespace Fcn
             location.X = Convert.ToSingle(str.Substring(index + 1, str.IndexOf('*', index + 1) - index - 1));
             index = str.IndexOf('*', index + 1);
             location.Y = Convert.ToSingle(str.Substring(index + 1));
+            this.color = Color.FromArgb(Convert.ToInt32(color));
         }
         public PointG(string name, Point p, Point xOy, int k, float dv)
         {
@@ -765,7 +766,7 @@ namespace Fcn
         }
         public override string SaveString()
         {
-            return string.Format("{0}\n{1}\n", this.GetType().ToString(), string.Format("{0}*{1}*{2}", name, location.X, location.Y));
+            return string.Format("{0}\n{1}\n", this.GetType().ToString(), string.Format("{0}*{1}*{2}\n{3}", name, location.X, location.Y, color.ToArgb()));
         }
         public override string ToString()
         {
