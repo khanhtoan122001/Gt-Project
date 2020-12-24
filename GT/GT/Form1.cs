@@ -906,11 +906,11 @@ namespace GT
                     Color a = new Color();
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {
-                        //r = dlg.Color.R;
-                        //g = dlg.Color.G;
-                        //b = dlg.Color.B;
-                        //a = Color.FromArgb(r, g, b);
-                        n.color = (Color)dlg.Color;
+                        r = dlg.Color.R;
+                        g = dlg.Color.G;
+                        b = dlg.Color.B;
+                        a = Color.FromArgb(r, g, b);
+                        n.color = a;
                         n.Change_Color();
                         ListFcn[Convert.ToInt32(n.Tag)].color = a;
                         DrawGr();
