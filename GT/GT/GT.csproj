@@ -283,6 +283,7 @@
     <None Include="Resources\icons8-save-100-dark.png" />
     <None Include="Resources\icons8-save-as-100.png" />
     <None Include="Resources\icons8-save-as-100-dark.png" />
+    <Content Include="Resources\ColorWheel.png" />
     <Content Include="Resources\Screenshot %2874%29.png" />
   </ItemGroup>
   <ItemGroup>

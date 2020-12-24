@@ -24,11 +24,10 @@ namespace GT
             InitializeComponent();
             selected = false;
             gPath.AddEllipse(7, 7, pictureBox1.Width - 14, pictureBox1.Width - 14);
-            this.pictureBox1.Region = new Region(gPath);
-            
+            this.pictureBox1.Region = new Region(gPath);            
         }
 
-        public void Change_Color()
+        public void Set_Color()
         {
             b = new Bitmap(this.Width, this.Height);
             g = Graphics.FromImage(b);
@@ -39,7 +38,21 @@ namespace GT
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-             
+            //if (this.Tag != null) 
+            //{
+            //    ColorDialog dlg = new ColorDialog();
+            //    int r, g, b;
+            //    Color a = new Color();
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        r = dlg.Color.R;
+            //        g = dlg.Color.G;
+            //        b = dlg.Color.B;
+            //        a = Color.FromArgb(r, g, b);
+            //    }
+            //    this.color = a;
+            //    this.Change_Color();
+            //}            
         }
 
         private void UserControl1_Click(object sender, EventArgs e)
@@ -83,6 +96,12 @@ namespace GT
                 ControlPaint.DrawBorder(g, r, Color.FromArgb(0, 0, 0), ButtonBorderStyle.Solid);
             }
             this.BackgroundImage = b;
+        }
+
+        public void UserControl1_DoubleClick(object sender, EventArgs e)
+        {
+            textBox1.Enabled = !textBox1.Enabled;
+            textBox1.ReadOnly = !textBox1.ReadOnly;
         }
     }
 }

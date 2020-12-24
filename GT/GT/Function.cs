@@ -18,13 +18,14 @@ namespace Fcn
         }
     }
     public delegate Symbol EvaluateFunctionDelegate(string name, params Object[] args);
-    public abstract class Function
+    public class Function
     {
         private Random random = new Random();
         protected float[] x;
         bool enable = true;
         protected Color f_color;
-
+        string str_save;
+        public ArrayList arr;
         public double Result
         {
             get
@@ -47,7 +48,25 @@ namespace Fcn
                 return (ArrayList)m_postfix.Clone();
             }
         }
-        //Download source code tại Sharecode.vn
+        public double f(double x)
+        {
+            //return Math.Tan(x);
+
+            Symbol sl;
+            sl.m_type = Fcn.Type.Variable;
+            sl.m_name = "x";
+            sl.m_value = x;
+
+            arr[0] = sl;
+            this.Variables = arr;
+            this.EvaluatePostfix();
+
+            if (this.Error)
+            {
+                return double.NaN;
+            }
+            return this.Result;
+        }
         public EvaluateFunctionDelegate DefaultFunctionEvaluation
         {
             set
@@ -138,6 +157,8 @@ namespace Fcn
                             break;
                     }
                 }
+
+            str_save = equation;
 
             for (int i = 0; i < equation.Length; i++)
             {
@@ -699,10 +720,14 @@ namespace Fcn
         {
             color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
-        public virtual float f(float _x) => 0;
+        //public virtual float f(float _x) => 0;
+        public override string ToString()
+        {
+            return str_save;
+        }
         public virtual string SaveString()
         {
-            return this.GetType().ToString();
+            return this.GetType().ToString() + "\n" + str_save + "\n" + color.ToArgb() + "\n";
         }
         protected bool m_bError = false;
         protected string m_sErrorDescription = "None";
@@ -711,8 +736,57 @@ namespace Fcn
         protected ArrayList m_postfix = new ArrayList();
         protected EvaluateFunctionDelegate m_defaultFunctionEvaluation;
     }
+    public class PointG : Function
+    {
+        private PointF location;
+        public string name;
+        public PointG() { }
+        public PointG(string str, string color)
+        {
+            int index = 0;
+            name = str.Substring(index, str.IndexOf('*', index));
+            index = str.IndexOf('*', index);
+            location.X = Convert.ToSingle(str.Substring(index + 1, str.IndexOf('*', index + 1) - index - 1));
+            index = str.IndexOf('*', index + 1);
+            location.Y = Convert.ToSingle(str.Substring(index + 1));
+            this.color = Color.FromArgb(Convert.ToInt32(color));
+        }
+        public PointG(string name, Point p, Point xOy, int k, float dv)
+        {
+            this.name = name;
+            location.X = (float)(p.X - xOy.X) / k * dv;
+            location.Y = -(float)(p.Y - xOy.Y) / k * dv;
+        }
+        public PointF I
+        {
+            get
+            {
+                return location;
+            }
+        }
+        public override string SaveString()
+        {
+            return string.Format("{0}\n{1}\n", this.GetType().ToString(), string.Format("{0}*{1}*{2}\n{3}", name, location.X, location.Y, color.ToArgb()));
+        }
+        public override string ToString()
+        {
+            return string.Format("{2}({0}, {1})", location.X, location.Y, name);
+        }
+    }
     class Circle : Function
     {
+        public Circle() { }
+        public Circle(string str, int color)
+        {
+            x = new float[3];
+            int index = 0;
+            x[0] = Convert.ToSingle(str.Substring(index, str.IndexOf('*', index)));
+            index = str.IndexOf('*', index);
+            x[1] = Convert.ToSingle(str.Substring(index + 1, str.IndexOf('*', index + 1) - index - 1));
+            index = str.IndexOf('*', index + 1);
+            x[2] = Convert.ToSingle(str.Substring(index + 1));
+            this.color = Color.FromArgb(color);
+        }
         public PointF I
         {
             get
@@ -741,10 +815,11 @@ namespace Fcn
                 return x[2];
             }
         }
+
         public override string SaveString()
         {
             string v = string.Format("{0}*{1}*{2}", x[0], x[1], x[2]);
-            return string.Format("{0}\n{1}\n{2}\n",base.SaveString(), v, color.ToArgb());
+            return string.Format("{0}\n{1}\n{2}\n", this.GetType().ToString(), v, color.ToArgb());
         }
         public override string ToString()
         {
@@ -761,4 +836,4 @@ namespace Fcn
             return v + " = " + x[2] * x[2];
         }
     }
-}   //          (x - a)^2 + (y - b)^2 = R   =>  y = b + sqrt(R - (x - a)^2)
+}   

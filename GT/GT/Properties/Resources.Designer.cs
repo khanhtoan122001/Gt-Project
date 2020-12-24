@@ -133,6 +133,16 @@ namespace GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_file_801 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-add-file-801", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_delete_bin_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8-delete-bin-96", resourceCulture);
