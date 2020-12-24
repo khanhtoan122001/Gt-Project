@@ -723,7 +723,7 @@ namespace GT
         private void toolStripLabel1_Click_1(object sender, EventArgs e) => c_mouse = mouse.none;
         private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
         private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
-
+       
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ListFcn.Count == 0)
@@ -805,7 +805,15 @@ namespace GT
             }
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
 
         void VeLuoi()
         {
