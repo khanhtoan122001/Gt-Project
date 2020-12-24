@@ -897,6 +897,26 @@ namespace GT
                     ListFcn[(int)n.Tag].Enable = !ListFcn[(int)n.Tag].Enable;
                 DrawGr();
             };
+            n.pictureBox1.Click += (s, e) =>
+            {
+                if (n.Tag != null)
+                {
+                    ColorDialog dlg = new ColorDialog();
+                    int r, g, b;
+                    Color a = new Color();
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        r = dlg.Color.R;
+                        g = dlg.Color.G;
+                        b = dlg.Color.B;
+                        a = Color.FromArgb(r, g, b);
+                        n.color = a;
+                        n.Change_Color();
+                        ListFcn[Convert.ToInt32(n.Tag)].color = a;
+                        DrawGr();
+                    }
+                }
+            };
             return n;
         }
 

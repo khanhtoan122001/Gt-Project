@@ -38,21 +38,21 @@ namespace GT
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (this.Tag != null) 
-            {
-                ColorDialog dlg = new ColorDialog();
-                int r, g, b;
-                Color a = new Color();
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    r = dlg.Color.R;
-                    g = dlg.Color.G;
-                    b = dlg.Color.B;
-                    a = Color.FromArgb(r, g, b);
-                }
-                this.color = a;
-                this.Change_Color();
-            }            
+            //if (this.Tag != null) 
+            //{
+            //    ColorDialog dlg = new ColorDialog();
+            //    int r, g, b;
+            //    Color a = new Color();
+            //    if (dlg.ShowDialog() == DialogResult.OK)
+            //    {
+            //        r = dlg.Color.R;
+            //        g = dlg.Color.G;
+            //        b = dlg.Color.B;
+            //        a = Color.FromArgb(r, g, b);
+            //    }
+            //    this.color = a;
+            //    this.Change_Color();
+            //}            
         }
 
         private void UserControl1_Click(object sender, EventArgs e)
