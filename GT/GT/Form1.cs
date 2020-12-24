@@ -428,7 +428,7 @@ namespace GT
                         case "Fcn.PointG":
                             PointG pG = (PointG)ListFcn[i];
                             PointF lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
-                            g.FillEllipse(new SolidBrush(theme.TextColor), lo.X, lo.Y, 10, 10);
+                            g.FillEllipse(new SolidBrush(pG.color), lo.X, lo.Y, 10, 10);
                             g.DrawString(pG.name, new Font("Arial", 10), new SolidBrush(theme.TextColor), lo.X + 8, lo.Y + 8);
                             break;
                         default:
@@ -906,11 +906,11 @@ namespace GT
                     Color a = new Color();
                     if (dlg.ShowDialog() == DialogResult.OK)
                     {
-                        r = dlg.Color.R;
-                        g = dlg.Color.G;
-                        b = dlg.Color.B;
-                        a = Color.FromArgb(r, g, b);
-                        n.color = a;
+                        //r = dlg.Color.R;
+                        //g = dlg.Color.G;
+                        //b = dlg.Color.B;
+                        //a = Color.FromArgb(r, g, b);
+                        n.color = (Color)dlg.Color;
                         n.Change_Color();
                         ListFcn[Convert.ToInt32(n.Tag)].color = a;
                         DrawGr();
