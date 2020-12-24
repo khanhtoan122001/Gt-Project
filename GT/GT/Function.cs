@@ -25,6 +25,7 @@ namespace Fcn
         bool enable = true;
         protected Color f_color;
         string str_save;
+        public ArrayList arr;
         public double Result
         {
             get
@@ -47,7 +48,25 @@ namespace Fcn
                 return (ArrayList)m_postfix.Clone();
             }
         }
+        public double f(double x)
+        {
+            //return Math.Tan(x);
 
+            Symbol sl;
+            sl.m_type = Fcn.Type.Variable;
+            sl.m_name = "x";
+            sl.m_value = x;
+
+            arr[0] = sl;
+            this.Variables = arr;
+            this.EvaluatePostfix();
+
+            if (this.Error)
+            {
+                return double.NaN;
+            }
+            return this.Result;
+        }
         public EvaluateFunctionDelegate DefaultFunctionEvaluation
         {
             set
@@ -701,7 +720,11 @@ namespace Fcn
         {
             color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
-        public virtual float f(float _x) => 0;
+        //public virtual float f(float _x) => 0;
+        public override string ToString()
+        {
+            return str_save;
+        }
         public virtual string SaveString()
         {
             return this.GetType().ToString() + "\n" + str_save;

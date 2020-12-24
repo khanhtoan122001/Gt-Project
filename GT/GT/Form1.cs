@@ -506,7 +506,7 @@ namespace GT
             {
                 float x, y;
                 x = ((mx / Convert.ToSingle(G)) * Convert.ToSingle(p) - x0) / Convert.ToSingle(k) * (float)dv;
-                y = a.f(x);
+                y = (float)a.f((double)x);
                 float _x = (x / (float)dv * k) + x0;
                 float _y = -(y / (float)dv * k) + y0;
                 pGraph[p] = new PointF(_x, _y);
@@ -911,21 +911,68 @@ namespace GT
                         b = dlg.Color.B;
                         a = Color.FromArgb(r, g, b);
                         n.color = a;
-                        n.Change_Color();
+                        n.Set_Color();
                         ListFcn[Convert.ToInt32(n.Tag)].color = a;
                         DrawGr();
                     }
                 }
             };
+            n.textBox1.KeyDown += (s, e) =>
+            {
+                Refresh_ListFcn();
+                if (e.KeyValue == 13)
+                {
+                    Function fn = new Function();
+                    if (n.Tag == null)
+                    {
+                        fn.Parse(n.textBox1.Text.ToLower());
+                        fn.Infix2Postfix();
+                        fn.arr = fn.Variables;
+                        if (fn.arr.Count != 1)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            if (fn.arr[0].ToString() != "x")
+                            {
+                                MessageBox.Show("Biểu thức không hợp lệ. Vui lòng nhập lại !\n\nVí dụ: (sin(x)+3)/(x+4)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                        n.UserControl1_DoubleClick(null,null);
+                        ListFcn.Add(fn);
+                        addListFcn();
+                    }
+                    else
+                    {
+                        ListFcn[(int)n.Tag].Parse(n.textBox1.Text.ToLower());
+                        ListFcn[(int)n.Tag].Infix2Postfix();
+                        ListFcn[(int)n.Tag].arr = ListFcn[(int)n.Tag].Variables;
+                        if (ListFcn[(int)n.Tag].arr.Count != 1)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            if (ListFcn[(int)n.Tag].arr[0].ToString() != "x")
+                            {
+                                MessageBox.Show("Biểu thức không hợp lệ. Vui lòng nhập lại !\n\nVí dụ: (sin(x)+3)/(x+4)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
+                    DrawGr();
+                }
+            };
             return n;
         }
-
         private void Refresh_ListFcn()
         {
             for(int i = 0; i < ListFcnControls.Count - 1; i++)
             {
                 ListFcnControls[i].color = ListFcn[i].color;
-                ListFcnControls[i].Change_Color();
+                ListFcnControls[i].Set_Color();
                 ListFcnControls[i].Tag = i;
             }
         }
@@ -950,7 +997,7 @@ namespace GT
                 if(i.Tag != null)
                 {
                     i.color = ListFcn[(int)i.Tag].color;
-                    i.Change_Color();
+                    i.Set_Color();
                 }
             }
         }
@@ -1021,6 +1068,8 @@ namespace GT
                         break;
                     case "Fcn.Function":
                         Function data = new Function();
+                        data.arr = data.Variables;
+                        data.EvaluatePostfix();
                         data.Parse(listF[j + 1]);
                         ListFcn.Add(data);
                         break;

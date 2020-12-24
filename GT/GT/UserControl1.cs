@@ -27,7 +27,7 @@ namespace GT
             this.pictureBox1.Region = new Region(gPath);            
         }
 
-        public void Change_Color()
+        public void Set_Color()
         {
             b = new Bitmap(this.Width, this.Height);
             g = Graphics.FromImage(b);
@@ -96,6 +96,12 @@ namespace GT
                 ControlPaint.DrawBorder(g, r, Color.FromArgb(0, 0, 0), ButtonBorderStyle.Solid);
             }
             this.BackgroundImage = b;
+        }
+
+        public void UserControl1_DoubleClick(object sender, EventArgs e)
+        {
+            textBox1.Enabled = !textBox1.Enabled;
+            textBox1.ReadOnly = !textBox1.ReadOnly;
         }
     }
 }

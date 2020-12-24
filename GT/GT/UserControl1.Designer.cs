@@ -76,9 +76,10 @@
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.textBox1.Location = new System.Drawing.Point(59, 6);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(275, 34);
+            this.textBox1.Size = new System.Drawing.Size(275, 45);
             this.textBox1.TabIndex = 1;
             // 
             // UserControl1
@@ -94,6 +95,7 @@
             this.Load += new System.EventHandler(this.UserControl1_Load);
             this.SizeChanged += new System.EventHandler(this.UserControl1_SizeChanged);
             this.Click += new System.EventHandler(this.UserControl1_Click);
+            this.DoubleClick += new System.EventHandler(this.UserControl1_DoubleClick);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
