@@ -932,8 +932,6 @@ namespace GT
                     if (n.Tag == null)
                     {
                         fn.Parse(n.textBox1.Text.ToLower());
-                        fn.Infix2Postfix();
-                        fn.arr = fn.Variables;
                         if (fn.arr.Count != 1)
                         {
                             return;
@@ -953,8 +951,6 @@ namespace GT
                     else
                     {
                         ListFcn[(int)n.Tag].Parse(n.textBox1.Text.ToLower());
-                        ListFcn[(int)n.Tag].Infix2Postfix();
-                        ListFcn[(int)n.Tag].arr = ListFcn[(int)n.Tag].Variables;
                         if (ListFcn[(int)n.Tag].arr.Count != 1)
                         {
                             return;
@@ -1093,9 +1089,6 @@ namespace GT
                         Function data = new Function();
                         data.color = Color.FromArgb(Convert.ToInt32(listF[j + 2]));
                         data.Parse(listF[j + 1]);
-                        data.Infix2Postfix();
-                        data.arr = data.Variables;
-                        data.EvaluatePostfix();
                         ListFcn.Add(data);
                         break;
                     case "Fcn.PointG":

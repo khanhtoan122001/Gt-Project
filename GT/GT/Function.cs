@@ -296,6 +296,9 @@ namespace Fcn
                 }
                 m_equation.Add(ctSymbol);
             }
+            this.Infix2Postfix();
+            this.arr = this.Variables;
+            this.EvaluatePostfix();
         }
         public void Infix2Postfix()
         {
