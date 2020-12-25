@@ -692,6 +692,18 @@ namespace GT
         private void toolStripLabel1_Click_1(object sender, EventArgs e) => c_mouse = mouse.none;
         private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
         private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
+        /*****************************************************************************************************************************/
+        private void toolStripLabel4_Click(object sender, EventArgs e)
+        {
+            Function f = new Function();
+           
+            f.Parse("3x+2");
+            
+            ListFcn.Add(f);
+            addListFcn();
+            DrawGr();
+        }
+        /*****************************************************************************************************************************/
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ListFcn.Count == 0)
@@ -862,6 +874,7 @@ namespace GT
                     ListFcn[(int)n.Tag].Enable = !ListFcn[(int)n.Tag].Enable;
                 DrawGr();
             };
+            
             n.pictureBox1.Click += (s, e) =>
             {
                 if (n.Tag != null)
@@ -941,6 +954,7 @@ namespace GT
         {
             ListFcnControls.Add(create_UserControl1());
             ListFcnControls[ListFcnControls.Count - 2].textBox1.Text = ListFcn[ListFcn.Count - 1].ToString();
+           
             flowLayoutPanel1.Controls.Add(ListFcnControls[ListFcnControls.Count - 1]);
             Refresh_ListFcn();
             flowLayoutPanel1_SizeChanged(null, null);
@@ -989,7 +1003,9 @@ namespace GT
             file.Close();
             file.Dispose();
         }
+        /**************************************************************************************************************/
 
+        /****************************************************************************************************************/
         void LoadFile(string path)
         {
             pathFile = path;

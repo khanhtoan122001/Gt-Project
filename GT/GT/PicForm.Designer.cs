@@ -41,6 +41,7 @@ namespace GT
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -158,7 +159,8 @@ namespace GT
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.toolStripLabel2,
-            this.toolStripLabel3});
+            this.toolStripLabel3,
+            this.toolStripLabel4});
             this.toolStrip2.Location = new System.Drawing.Point(471, 9);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(320, 71);
@@ -194,6 +196,14 @@ namespace GT
             this.toolStripLabel3.Size = new System.Drawing.Size(46, 68);
             this.toolStripLabel3.Text = "Point";
             this.toolStripLabel3.Click += new System.EventHandler(this.toolStripLabel3_Click);
+            //*******************************************************************************************************
+            this.toolStripLabel4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
+            this.toolStripLabel4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(46, 68);
+            this.toolStripLabel4.Text = "duong thang";
+            this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
             // panel1
             // 
@@ -307,6 +317,7 @@ namespace GT
         private System.Windows.Forms.ToolStripButton toolStripLabel1;
         private System.Windows.Forms.ToolStripButton toolStripLabel2;
         private System.Windows.Forms.ToolStripButton toolStripLabel3;
+        private System.Windows.Forms.ToolStripButton toolStripLabel4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
