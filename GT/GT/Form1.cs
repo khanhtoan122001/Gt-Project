@@ -22,6 +22,7 @@ namespace GT
     {
         public Form1()
         {
+           
             InitializeComponent();
             this.newToolStripMenuItem1_Click(null, null);
         }
