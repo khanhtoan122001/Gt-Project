@@ -39,6 +39,8 @@ namespace GT
         const int E = 10000;
         const float Zoom = 1.1f;
         mouse c_mouse = mouse.none;
+
+        
         
         /* mảng lưu giá trị a,b,r cho đường tròn */
         public static float[] arr = new float[3];
@@ -51,9 +53,11 @@ namespace GT
         public static float[] arr6 = new float[6];//bậc 5
         public static bool[] flat = new bool[] {false,false,false,false,false,false,false};
 
+        
 
         public Form1()
         {
+           
             InitializeComponent();
 
             ListFcnControls.Add(create_UserControl1());
@@ -402,7 +406,6 @@ namespace GT
             }
             
         }
-
         private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)
         {
             int io = 0;
@@ -413,10 +416,8 @@ namespace GT
                 i.Width = flowLayoutPanel1.Width - 7 - io;
             }
         }
-
         private void VeDoThi()
         {
-
             for (int i = 0; i < ListFcn.Count; i++)
             {
                 if (ListFcn[i].Enable)
@@ -431,7 +432,7 @@ namespace GT
                             break;
                         case "Fcn.PointG":
                             PointG pG = (PointG)ListFcn[i];
-                            PointF lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
+                            PointF lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);                        
                             g.FillEllipse(new SolidBrush(pG.color), lo.X, lo.Y, 10, 10);
                             g.DrawString(pG.name, new Font("Arial", 10), new SolidBrush(theme.TextColor), lo.X + 8, lo.Y + 8);
                             break;
@@ -807,13 +808,13 @@ namespace GT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Function f = new Function();           
+            f.Parse("2x+2");               
+            ListFcn.Add(f);
+            //addListFcn();
+            DrawGr();
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         void VeLuoi()
         {
