@@ -37,7 +37,7 @@ namespace GT
         {
             PicForm picForm = new PicForm();
             picForm.MdiParent = this;
-            picForm.openToolStripMenuItem_Click(null, null);
+            picForm.openToolStripMenuItem_Click(null, null);          
             picForm.Show();
         }
 
@@ -54,7 +54,7 @@ namespace GT
         {
             
             double _x = (a.Y - b.Y) / (a.X - b.X);
-            double _x1 = (a.X * b.Y - b.X * a.Y) / (a.X - b.X);
+            double _x1 = (a.X * b.Y - b.X * a.Y) / (a.X - b.X);            
             List<double> dth = new List<double>() { _x, _x1 };
             return dth;
         }

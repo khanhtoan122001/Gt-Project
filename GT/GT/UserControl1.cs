@@ -66,6 +66,8 @@ namespace GT
                 if (selected)
                 {
                     ControlPaint.DrawBorder(g, r, Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
+                    
+                    //MessageBox.Show(this.textBox1.Text);
                 }
                 else
                 {
