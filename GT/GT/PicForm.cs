@@ -855,12 +855,25 @@ namespace GT
                         if (b == null)
                             b = (PointG)ListFcn[i];
                         else
+                        {
+                            MessageBox.Show("phải chọn 2 điểm","sai rồi",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                            
                             return;
+                        }
                     }
+                    //else if (a != null && b != null)
+                    //{
+                    //    MessageBox.Show("phải chọn 2 điểm");
+                    //    return;
+                    //}
                 }
 
             }
-            if (a == null || b == null) return;
+            if (a == null || b == null)
+            {
+                MessageBox.Show("phải chọn 2 điểm", "sai rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             float _b =(float) EX1_funtion(a, b);
             MessageBox.Show(_b.ToString());
         }
