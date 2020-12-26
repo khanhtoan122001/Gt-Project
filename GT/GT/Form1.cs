@@ -17,7 +17,7 @@ using System.IO;
 using System.Diagnostics;
 namespace GT
 {
-    enum mouse {none, export, s_point};
+    enum mouse {none, export, s_point, dr_Circle, dr_Line};
     public partial class Form1 : Form
     {
         public Form1()

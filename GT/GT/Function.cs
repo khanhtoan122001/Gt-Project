@@ -784,9 +784,19 @@ namespace Fcn
             return string.Format("{2}({0}, {1})", location.X, location.Y, name);
         }
     }
-    class Circle : Function
+    public class Circle : Function
     {
-        public Circle() { }
+        public Circle() 
+        {
+            x = new float[3];
+        }
+        public Circle(PointG a, PointG b)
+        {
+            x = new float[3];
+            x[0] = a.I.X;
+            x[1] = a.I.Y;
+            x[2] = (float)Math.Sqrt((a.I.X - b.I.X) * (a.I.X - b.I.X) + (a.I.Y - b.I.Y) * (a.I.Y - b.I.Y));
+        } 
         public Circle(string str, int color)
         {
             x = new float[3];
@@ -811,6 +821,7 @@ namespace Fcn
             {
                 return x[0];
             }
+            set => x[0] = value;
         }
         public float B
         {
@@ -818,6 +829,7 @@ namespace Fcn
             {
                 return x[1];
             }
+            set => x[1] = value;
         }
         public float R
         {
@@ -825,6 +837,7 @@ namespace Fcn
             {
                 return x[2];
             }
+            set => x[2] = value;
         }
 
         public override string SaveString()

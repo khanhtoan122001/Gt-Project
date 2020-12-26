@@ -32,17 +32,16 @@ namespace GT
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0), p_Export;
         List<PointG> GD = new List<PointG>();
+        PointG p1_Dr_Circle, p2_Dr_Circle;
         char nameP = 'Z', nameF = 'e';
         Graphics g;
         Bitmap MainBitmap;
-        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false, isMove = false;
+        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false, isMove = false, DrCircleDone = false;
         int G = 10;
         string str_nameF = "f";
         const int E = 10000;
         const float Zoom = 1.1f;
         mouse c_mouse = mouse.none;
-
-        PointG _a, _b;
 
         /* mảng lưu giá trị a,b,r cho đường tròn */
         public static float[] arr = new float[3];
@@ -124,8 +123,11 @@ namespace GT
                         pictureBox1.Cursor = Cursors.Hand;
                         DrawGr();
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
-
-                        /******************************************************************************************************************/
+                        break;
+                    case mouse.dr_Circle:
+                        pictureBox1.Cursor = Cursors.Hand;
+                        DrawGr();
+                        g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
                         break;
                     default:
                         break;
@@ -137,6 +139,7 @@ namespace GT
                 pictureBox1.Cursor = Cursors.Default;
                 isMouseDown = false;
                 isMove = false;
+                CheckDr();
                 if (c_mouse == mouse.s_point)
                 {
                     ListFcn.Add(new PointG(PointName(), e.Location, new Point(x0, y0), k, (float)dv));
@@ -146,6 +149,22 @@ namespace GT
                         ListFcn[ListFcn.Count - 1].color = Color.Black;
                     addListFcn();
                     DrawGr();
+                }
+                if (c_mouse == mouse.dr_Circle)
+                {
+                    if (p1_Dr_Circle == null)
+                    {
+                        p1_Dr_Circle = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
+                    }
+                    else if (p2_Dr_Circle == null) 
+                    {
+                        p2_Dr_Circle = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
+                        ListFcn.Add(new Circle(p1_Dr_Circle, p2_Dr_Circle));
+                        addListFcn();
+                        CheckDr();
+                        c_mouse = mouse.none;
+                        DrawGr();
+                    }
                 }
                 SwExport = true;
             };
@@ -172,7 +191,7 @@ namespace GT
                         {
                             u.X = e.X - LastMouse.X;
                             u.Y = e.Y - LastMouse.Y;
-                            if(e.Location != LastMouse)
+                            if (e.Location != LastMouse)
                             {
                                 PointG pG = (PointG)ListFcn[pointSelect];
                                 pG.I = new PointF(pG.I.X + (float)(u.X) / k * (float)dv, pG.I.Y + -(float)(u.Y) / k * (float)dv);
@@ -218,6 +237,8 @@ namespace GT
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
                     }
                     break;
+                case mouse.dr_Circle:
+
                 default:
                     break;
             }
@@ -238,7 +259,7 @@ namespace GT
         public void DrawGr()
         {
             pictureBox1.Refresh();
-
+            CheckDr();
             frmMain_Resize(null, null);
             VeTruc();
             VeDoThi();
@@ -468,6 +489,23 @@ namespace GT
                             PaintGraph(pGraph, i);
                             break;
                     }
+                }
+            }
+            if(c_mouse == mouse.dr_Circle)
+            {
+                PointG pG;
+                PointF lo;
+                if(p1_Dr_Circle != null)
+                {
+                    pG = p1_Dr_Circle;
+                    lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
+                    g.FillEllipse(new SolidBrush(pG.color), lo.X, lo.Y, 10, 10);
+                }
+                if(p2_Dr_Circle != null)
+                {
+                    pG = p2_Dr_Circle;
+                    lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
+                    g.FillEllipse(new SolidBrush(pG.color), lo.X, lo.Y, 10, 10);
                 }
             }
         }
@@ -738,17 +776,18 @@ namespace GT
 
             };
         }
-        private void toolStripLabel1_Click_1(object sender, EventArgs e) => c_mouse = mouse.none;
-        private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
-        private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
+        private void toolStripLabel1_Click_1(object sender, EventArgs e) { c_mouse = mouse.none; DrawGr(); }
+        private void toolStripLabel2_Click(object sender, EventArgs e) { c_mouse = mouse.export; DrawGr(); }
+        private void toolStripLabel3_Click(object sender, EventArgs e) { c_mouse = mouse.s_point; DrawGr(); }
         /*****************************************************************************************************************************/
 
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
+            DrawGr();
             Function f = new Function();
             PointG a, b;
             a = b = null;
-            
+
             for (int i = 0; i < ListFcn.Count; i++)
             {
                 if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
@@ -768,16 +807,16 @@ namespace GT
 
             }
             if (a == null || b == null) return;
-            f.Parse(Ex_function(a,b));
+            f.Parse(Ex_function(a, b));
             f.name = FunctionName();
-           // f.Parse("2x+2");
+            // f.Parse("2x+2");
             ListFcn.Add(f);
 
             addListFcn();
             DrawGr();
         }
-        
-        string Ex_function(PointG a,PointG b)
+
+        string Ex_function(PointG a, PointG b)
         {
             string function = string.Empty;
             float _x = (a.I.Y - b.I.Y) / (a.I.X - b.I.X);
@@ -787,55 +826,12 @@ namespace GT
             function = string.Format("{0}x{1}", _x, _x1 < 0 ? _x1.ToString() : "+" + _x1.ToString());
             return function;
         }
-
-        private void toolStripLabel5_Click(object sender, EventArgs e)
-        {
-           for(int i = 0; i < ListFcn.Count; i++)
-            {
-                if(ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG" )
-                {
-                    _a = (PointG)ListFcn[i];
-                }
-            }          
-        }
-
-        double EX1_funtion(PointG a,PointG b)
-        {
-            double funtion;
-            funtion = Math.Sqrt((a.I.X - b.I.X) * (a.I.X - b.I.X) + (a.I.Y - b.I.Y) * (a.I.Y - b.I.Y));
-
-
-            return funtion;
-        }
         private void toolStripLabel6_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < ListFcn.Count; i++)
-            {
-                if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
-                {
-                    if ((PointG)ListFcn[i] != _a)
-                    {
-                        _b = (PointG)ListFcn[i];
-                    }
-                }
-
-            }
-            Circle ci = new Circle();
-            float[] x = new float[3];
-            if (_a == null || _b == null) return;
-            x[0] = _a.I.X;
-            x[1] = _a.I.Y;
-            x[2] = (float)EX1_funtion(_a, _b);
-
-            ci.X = x;
-
-            ListFcn.Add(ci);
-
-            addListFcn();
-            DrawGr();
-           
-
+            p1_Dr_Circle = p2_Dr_Circle = null;
+            c_mouse = mouse.dr_Circle;
         }
+
         /*****************************************************************************************************************************/
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -852,21 +848,10 @@ namespace GT
                 saveFileDialog1.FileName = " ";
             }
         }
-        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-        private void toolStrip2_BackColorChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
-
-       
 
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
@@ -1252,6 +1237,15 @@ namespace GT
                 }
             }
             return -1;
+        }
+        void CheckDr()
+        {
+            if (c_mouse != mouse.dr_Circle)
+            {
+                if (p1_Dr_Circle != null) ListFcn.Remove(p1_Dr_Circle);
+                if (p2_Dr_Circle != null) ListFcn.Remove(p2_Dr_Circle);
+                p1_Dr_Circle = p2_Dr_Circle = null;
+            }
         }
     }
     
