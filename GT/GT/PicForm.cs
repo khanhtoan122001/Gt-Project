@@ -709,8 +709,7 @@ namespace GT
             Function f = new Function();
             PointG a, b;
             a = b = null;
-            //List<PointG> a = new List<PointG>();
-            //List<_dth> dth = new List<_dth>();
+            
             for (int i = 0; i < ListFcn.Count; i++)
             {
                 if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
@@ -751,12 +750,15 @@ namespace GT
 
         private void toolStripLabel5_Click(object sender, EventArgs e)
         {
-            Function f = new Function();
+           
+            Circle ci = new Circle();
+            float[] x = new float[3];
             PointG a, b;
             a = b = null;
-            for(int i = 0; i < ListFcn.Count; i++)
+
+            for (int i = 0; i < ListFcn.Count; i++)
             {
-                if(ListFcnControls[i].selected && ListFcn.GetType().ToString() == "Fcn.PointG")
+                if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
                 {
                     if (a == null)
                     {
@@ -770,22 +772,27 @@ namespace GT
                             return;
                     }
                 }
+
             }
-            if (a == null || b == null)
-            {
-                return;
-            }
-            //f.Parse(EX1_funtion(a, b));
-            f.Parse("2x2+x+2");
-            ListFcn.Add(f);
+            if (a == null || b == null) return;
+
+
+            x[0] = a.I.X;
+            x[1] = a.I.Y;
+            x[2] = (float)EX1_funtion(a, b);
+
+            ci.X = x;
+
+            ListFcn.Add(ci);
 
             addListFcn();
             DrawGr();
         }
 
-        string EX1_funtion(PointG a,PointG b)
+        double EX1_funtion(PointG a,PointG b)
         {
-            string funtion = string.Empty;
+            double funtion;
+            funtion = Math.Sqrt((a.I.X - b.I.X) * (a.I.X - b.I.X) + (a.I.Y - b.I.Y) * (a.I.Y - b.I.Y));
 
 
             return funtion;
