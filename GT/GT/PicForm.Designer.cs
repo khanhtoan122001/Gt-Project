@@ -242,11 +242,7 @@ namespace GT
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-<<<<<<< HEAD
             this.flowLayoutPanel1.Size = new System.Drawing.Size(258, 355);
-=======
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(323, 371);
->>>>>>> 85ad49bed1a15e28c2432d8c9b1b3a8930a8522c
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             // 
