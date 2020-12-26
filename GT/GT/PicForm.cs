@@ -42,6 +42,8 @@ namespace GT
         const float Zoom = 1.1f;
         mouse c_mouse = mouse.none;
 
+        PointG _a, _b;
+
         /* mảng lưu giá trị a,b,r cho đường tròn */
         public static float[] arr = new float[3];
         /*mảng lưu các giá trị cho các đường khác*/
@@ -746,8 +748,7 @@ namespace GT
             Function f = new Function();
             PointG a, b;
             a = b = null;
-            //List<PointG> a = new List<PointG>();
-            //List<_dth> dth = new List<_dth>();
+            
             for (int i = 0; i < ListFcn.Count; i++)
             {
                 if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
@@ -786,6 +787,55 @@ namespace GT
             function = string.Format("{0}x{1}", _x, _x1 < 0 ? _x1.ToString() : "+" + _x1.ToString());
             return function;
         }
+
+        private void toolStripLabel5_Click(object sender, EventArgs e)
+        {
+           for(int i = 0; i < ListFcn.Count; i++)
+            {
+                if(ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG" )
+                {
+                    _a = (PointG)ListFcn[i];
+                }
+            }          
+        }
+
+        double EX1_funtion(PointG a,PointG b)
+        {
+            double funtion;
+            funtion = Math.Sqrt((a.I.X - b.I.X) * (a.I.X - b.I.X) + (a.I.Y - b.I.Y) * (a.I.Y - b.I.Y));
+
+
+            return funtion;
+        }
+        private void toolStripLabel6_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < ListFcn.Count; i++)
+            {
+                if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
+                {
+                    if ((PointG)ListFcn[i] != _a)
+                    {
+                        _b = (PointG)ListFcn[i];
+                    }
+                }
+
+            }
+            Circle ci = new Circle();
+            float[] x = new float[3];
+            if (_a == null || _b == null) return;
+            x[0] = _a.I.X;
+            x[1] = _a.I.Y;
+            x[2] = (float)EX1_funtion(_a, _b);
+
+            ci.X = x;
+
+            ListFcn.Add(ci);
+
+            addListFcn();
+            DrawGr();
+           
+
+        }
         /*****************************************************************************************************************************/
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -810,6 +860,14 @@ namespace GT
         {
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
             if (Dark)
@@ -945,6 +1003,7 @@ namespace GT
             for (int n = 0; n < i; n++)
                 r *= 10;
             return r;
+            
         }
         UserControl1 create_UserControl1()
         {
@@ -958,8 +1017,10 @@ namespace GT
                 DrawGr();
             };
             
+
             n.pictureBox1.Click += (s, e) =>
             {
+                
                 if (n.Tag != null)
                 {
                     ColorDialog dlg = new ColorDialog();
@@ -976,7 +1037,7 @@ namespace GT
                         ListFcn[Convert.ToInt32(n.Tag)].color = a;
                         DrawGr();
                     }
-                }
+                }              
             };
             n.textBox1.KeyDown += (s, e) =>
             {

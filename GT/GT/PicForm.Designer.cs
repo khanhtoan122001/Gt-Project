@@ -42,6 +42,7 @@ namespace GT
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -50,6 +51,7 @@ namespace GT
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -160,7 +162,9 @@ namespace GT
             this.toolStripLabel1,
             this.toolStripLabel2,
             this.toolStripLabel3,
-            this.toolStripLabel4});
+            this.toolStripLabel4,
+            this.toolStripLabel5,
+            this.toolStripLabel6});
             this.toolStrip2.Location = new System.Drawing.Point(471, 9);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(516, 71);
@@ -205,6 +209,19 @@ namespace GT
             this.toolStripLabel4.Size = new System.Drawing.Size(40, 68);
             this.toolStripLabel4.Text = "Line";
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
+            // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel5.Image")));
+            this.toolStripLabel5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolStripLabel5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripLabel5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(93, 68);
+            this.toolStripLabel5.Text = "CenterCircle";
+            this.toolStripLabel5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripLabel5.Click += new System.EventHandler(this.toolStripLabel5_Click);
             // 
             // panel1
             // 
@@ -271,10 +288,22 @@ namespace GT
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
+            this.toolStripLabel6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(50, 68);
+            this.toolStripLabel6.Text = "Circle";
+            this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
             // 
             // PicForm
             // 
@@ -327,5 +356,7 @@ namespace GT
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripButton toolStripLabel5;
+        private System.Windows.Forms.ToolStripButton toolStripLabel6;
     }
 }
