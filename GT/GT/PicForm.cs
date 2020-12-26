@@ -748,6 +748,48 @@ namespace GT
             function = string.Format("{0}x{1}", _x, _x1 < 0 ? _x1.ToString() : "+" + _x1.ToString());
             return function;
         }
+
+        private void toolStripLabel5_Click(object sender, EventArgs e)
+        {
+            Function f = new Function();
+            PointG a, b;
+            a = b = null;
+            for(int i = 0; i < ListFcn.Count; i++)
+            {
+                if(ListFcnControls[i].selected && ListFcn.GetType().ToString() == "Fcn.PointG")
+                {
+                    if (a == null)
+                    {
+                        a = (PointG)ListFcn[i];
+                    }
+                    else
+                    {
+                        if (b == null)
+                            b = (PointG)ListFcn[i];
+                        else
+                            return;
+                    }
+                }
+            }
+            if (a == null || b == null)
+            {
+                return;
+            }
+            //f.Parse(EX1_funtion(a, b));
+            f.Parse("2x2+x+2");
+            ListFcn.Add(f);
+
+            addListFcn();
+            DrawGr();
+        }
+
+        string EX1_funtion(PointG a,PointG b)
+        {
+            string funtion = string.Empty;
+
+
+            return funtion;
+        }
         /*****************************************************************************************************************************/
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -772,6 +814,9 @@ namespace GT
         {
 
         }
+
+       
+
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
         {
             if (Dark)

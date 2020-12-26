@@ -42,6 +42,7 @@ namespace GT
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel5 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -160,7 +161,8 @@ namespace GT
             this.toolStripLabel1,
             this.toolStripLabel2,
             this.toolStripLabel3,
-            this.toolStripLabel4});
+            this.toolStripLabel4,
+            this.toolStripLabel5});
             this.toolStrip2.Location = new System.Drawing.Point(471, 9);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(516, 71);
@@ -206,6 +208,19 @@ namespace GT
             this.toolStripLabel4.Text = "Line";
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
+            // toolStripLabel5
+            // 
+            this.toolStripLabel5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel5.Image")));
+            this.toolStripLabel5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolStripLabel5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripLabel5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLabel5.Name = "toolStripLabel5";
+            this.toolStripLabel5.Size = new System.Drawing.Size(50, 68);
+            this.toolStripLabel5.Text = "Circle";
+            this.toolStripLabel5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripLabel5.Click += new System.EventHandler(this.toolStripLabel5_Click);
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -242,7 +257,7 @@ namespace GT
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(258, 355);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(323, 371);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             // 
@@ -327,5 +342,6 @@ namespace GT
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripButton toolStripLabel5;
     }
 }
