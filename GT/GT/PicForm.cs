@@ -26,16 +26,18 @@ namespace GT
         const int MaxZoom = 180, Normal = 100;
         List<Function> ListFcn = new List<Function>();
         List<UserControl1> ListFcnControls = new List<UserControl1>();
-        int max_x, max_y, x0, y0, k = 120, idv = 0, countName = -1;
+        int max_x, max_y, x0, y0, k = 120, idv = 0, countName = -1, pointSelect = -1;
         double dv = 1;
         const float MaxDv = 500, MinDv = 0.001f;
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0), p_Export;
-        char name = 'Z';
+        List<PointG> GD = new List<PointG>();
+        char nameP = 'Z', nameF = 'e';
         Graphics g;
         Bitmap MainBitmap;
-        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false;
+        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false, isMove = false;
         int G = 10;
+        string str_nameF = "f";
         const int E = 10000;
         const float Zoom = 1.1f;
         mouse c_mouse = mouse.none;
@@ -98,10 +100,20 @@ namespace GT
                 }
                 LastMouse = e.Location;
                 isMouseDown = true;
+                pointSelect = PointSelect((PointF)e.Location);
                 switch (c_mouse)
                 {
                     case mouse.none:
-                        pictureBox1.Cursor = Cursors.SizeAll;
+                        if (pointSelect == -1)
+                        {
+                            pictureBox1.Cursor = Cursors.SizeAll;
+                            isMove = true;
+                        }
+                        else
+                        {
+                            pictureBox1.Cursor = Cursors.Hand;
+                            isMove = false;
+                        }
                         break;
                     case mouse.export:
                         pictureBox1.Cursor = Cursors.Cross;
@@ -122,6 +134,7 @@ namespace GT
             {
                 pictureBox1.Cursor = Cursors.Default;
                 isMouseDown = false;
+                isMove = false;
                 if (c_mouse == mouse.s_point)
                 {
                     ListFcn.Add(new PointG(PointName(), e.Location, new Point(x0, y0), k, (float)dv));
@@ -146,10 +159,34 @@ namespace GT
                 case mouse.none:
                     if (isMouseDown)
                     {
-                        u.X = e.X - LastMouse.X;
-                        u.Y = e.Y - LastMouse.Y;
-                        LastMouse = e.Location;
-                        DrawGr();
+                        if (isMove)
+                        {
+                            u.X = e.X - LastMouse.X;
+                            u.Y = e.Y - LastMouse.Y;
+                            LastMouse = e.Location;
+                            DrawGr();
+                        }
+                        else
+                        {
+                            u.X = e.X - LastMouse.X;
+                            u.Y = e.Y - LastMouse.Y;
+                            if(e.Location != LastMouse)
+                            {
+                                PointG pG = (PointG)ListFcn[pointSelect];
+                                pG.I = new PointF(pG.I.X + (float)(u.X) / k * (float)dv, pG.I.Y + -(float)(u.Y) / k * (float)dv);
+                                LastMouse = e.Location;
+                                u = new Point(0, 0);
+                                Refresh_ListFcn();
+                            }
+                            DrawGr();
+                        }
+                    }
+                    else
+                    {
+                        if (PointSelect(e.Location) != -1)
+                            pictureBox1.Cursor = Cursors.Hand;
+                        else
+                            pictureBox1.Cursor = Cursors.Default;
                     }
                     break;
                 case mouse.export:
@@ -730,7 +767,8 @@ namespace GT
 
             }
             if (a == null || b == null) return;
-            f.Parse(Ex_function(a,b));       
+            f.Parse(Ex_function(a,b));
+            f.name = FunctionName();
            // f.Parse("2x+2");
             ListFcn.Add(f);
 
@@ -962,6 +1000,7 @@ namespace GT
                             }
                         }
                         n.UserControl1_DoubleClick(null, null);
+                        fn.name = FunctionName();
                         ListFcn.Add(fn);
                         addListFcn();
                     }
@@ -990,6 +1029,7 @@ namespace GT
         {
             for (int i = 0; i < ListFcnControls.Count - 1; i++)
             {
+                ListFcnControls[i].textBox1.Text = ListFcn[i].ToString();
                 ListFcnControls[i].color = ListFcn[i].color;
                 ListFcnControls[i].Set_Color();
                 ListFcnControls[i].Tag = i;
@@ -1021,13 +1061,27 @@ namespace GT
         }
         string PointName()
         {
-            if (name == 'Z')
+            if (nameP == 'Z')
             {
-                name = 'A';
+                nameP = 'A';
                 countName++;
             }
-            else name++;
-            return string.Format("{0}{1}", name, countName == 0 ? "" : countName.ToString());
+            else nameP++;
+            return string.Format("{0}{1}", nameP, countName == 0 ? "" : countName.ToString());
+        }
+        
+        string FunctionName()
+        {
+            if (nameF == 'z')
+            {
+                nameF = 'f';
+                str_nameF += nameF;
+            }
+            else {
+                nameF++;
+                str_nameF = str_nameF.Substring(0,str_nameF.Length - 1) + nameF;
+            }
+            return str_nameF;
         }
 
         void WriteToSave(string fileName)
@@ -1038,7 +1092,7 @@ namespace GT
             file.WriteLine(y0);
             file.WriteLine(k);
             file.WriteLine(dv);
-            file.WriteLine(name);
+            file.WriteLine(nameP);
             file.WriteLine(countName);
             foreach (Function i in ListFcn)
             {
@@ -1075,7 +1129,7 @@ namespace GT
             y0 = Convert.ToInt32(listF[2]);
             k = Convert.ToInt32(listF[3]);
             dv = Convert.ToDouble(listF[4]);
-            name = Convert.ToChar(listF[5]);
+            nameP = Convert.ToChar(listF[5]);
             countName = Convert.ToInt32(listF[6]);
             int i = 0;
             ListFcn.Clear();
@@ -1121,5 +1175,23 @@ namespace GT
 
             return;
         }
+        int PointSelect(PointF p)
+        {
+            for(int i = 0; i < ListFcn.Count; i++)
+            {
+                if(ListFcn[i].GetType().ToString() == "Fcn.PointG")
+                {
+                    PointG pG = (PointG)ListFcn[i];
+                    PointF lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
+                    RectangleF rect = new RectangleF(lo, new SizeF(10, 10));
+                    if (rect.Contains(p))
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
     }
+    
 }
