@@ -85,6 +85,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\forminput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,14 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Resources\forminput.resx">
       <DependentUpon>forminput.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,58 +138,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Bo-suu-tap-dong-ho-tissot-moi-nhat-1024x914.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\unnamed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bang-chi-dan-loi-thoat-hiem-mica.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\download.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\246-2463623_cafe-menu-logo-png.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\246-2463623_cafe-menu-logo-png1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\RIfFuT3h.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\lt-b2-chuong-3-sgk-hh-10-0.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Screenshot %2846%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\maxresdefault.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\unnamed.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\unnamed %281%29.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Screenshot %2847%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Screenshot %2849%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Screenshot %2854%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Screenshot %2855%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Screenshot %2856%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\bac1.png" />
     <None Include="Resources\icons8-add-file-80.png" />
     <None Include="Resources\icons8-add-file-80-dark.png" />
     <None Include="Resources\icons8-delete-bin-96.png" />
@@ -202,8 +150,6 @@
     <None Include="Resources\icons8-save-100-dark.png" />
     <None Include="Resources\icons8-save-as-100.png" />
     <None Include="Resources\icons8-save-as-100-dark.png" />
-    <Content Include="Resources\ColorWheel.png" />
-    <Content Include="Resources\Screenshot %2874%29.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

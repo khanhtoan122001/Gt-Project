@@ -36,7 +36,7 @@ namespace GT
         char nameP = 'Z', nameF = 'e';
         Graphics g;
         Bitmap MainBitmap;
-        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false, isMove = false, DrCircleDone = false;
+        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false, isMove = false;
         int G = 10;
         string str_nameF = "f";
         const int E = 10000;
@@ -238,7 +238,12 @@ namespace GT
                     }
                     break;
                 case mouse.dr_Circle:
-
+                    if (isMouseDown)
+                    {
+                        DrawGr();
+                        g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
+                    }
+                    break;
                 default:
                     break;
             }
@@ -499,13 +504,13 @@ namespace GT
                 {
                     pG = p1_Dr_Circle;
                     lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
-                    g.FillEllipse(new SolidBrush(pG.color), lo.X, lo.Y, 10, 10);
+                    g.FillEllipse(new SolidBrush(Color.Blue), lo.X, lo.Y, 10, 10);
                 }
                 if(p2_Dr_Circle != null)
                 {
                     pG = p2_Dr_Circle;
                     lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
-                    g.FillEllipse(new SolidBrush(pG.color), lo.X, lo.Y, 10, 10);
+                    g.FillEllipse(new SolidBrush(Color.Blue), lo.X, lo.Y, 10, 10);
                 }
             }
         }
