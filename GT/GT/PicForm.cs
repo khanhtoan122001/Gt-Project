@@ -798,6 +798,34 @@ namespace GT
            
 
         }
+        private void toolStripLabel7_Click(object sender, EventArgs e)
+        {
+            Function f = new Function();
+            PointG a, b;
+            a = b = null;
+
+            for (int i = 0; i < ListFcn.Count; i++)
+            {
+                if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
+                {
+                    if (a == null)
+                    {
+                        a = (PointG)ListFcn[i];
+                    }
+                    else
+                    {
+                        if (b == null)
+                            b = (PointG)ListFcn[i];
+                        else
+                            return;
+                    }
+                }
+
+            }
+            if (a == null || b == null) return;
+            float _b =(float) EX1_funtion(a, b);
+            MessageBox.Show(_b.ToString());
+        }
         /*****************************************************************************************************************************/
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -822,6 +850,8 @@ namespace GT
         {
 
         }
+
+      
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {

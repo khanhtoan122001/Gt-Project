@@ -43,6 +43,8 @@ namespace GT
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel7 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,7 +53,6 @@ namespace GT
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -164,7 +165,8 @@ namespace GT
             this.toolStripLabel3,
             this.toolStripLabel4,
             this.toolStripLabel5,
-            this.toolStripLabel6});
+            this.toolStripLabel6,
+            this.toolStripLabel7});
             this.toolStrip2.Location = new System.Drawing.Point(471, 9);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(516, 71);
@@ -222,6 +224,27 @@ namespace GT
             this.toolStripLabel5.Text = "CenterCircle";
             this.toolStripLabel5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripLabel5.Click += new System.EventHandler(this.toolStripLabel5_Click);
+            // 
+            // toolStripLabel6
+            // 
+            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
+            this.toolStripLabel6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLabel6.Name = "toolStripLabel6";
+            this.toolStripLabel6.Size = new System.Drawing.Size(50, 68);
+            this.toolStripLabel6.Text = "Circle";
+            this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
+            // 
+            // toolStripLabel7
+            // 
+            this.toolStripLabel7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel7.Image")));
+            this.toolStripLabel7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripLabel7.Name = "toolStripLabel7";
+            this.toolStripLabel7.Size = new System.Drawing.Size(70, 68);
+            this.toolStripLabel7.Text = "Distance";
+            this.toolStripLabel7.Click += new System.EventHandler(this.toolStripLabel7_Click);
             // 
             // panel1
             // 
@@ -294,17 +317,6 @@ namespace GT
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
-            this.toolStripLabel6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(50, 68);
-            this.toolStripLabel6.Text = "Circle";
-            this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
-            // 
             // PicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -358,5 +370,6 @@ namespace GT
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripButton toolStripLabel5;
         private System.Windows.Forms.ToolStripButton toolStripLabel6;
+        private System.Windows.Forms.ToolStripButton toolStripLabel7;
     }
 }
