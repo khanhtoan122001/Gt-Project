@@ -801,13 +801,20 @@ namespace GT
                         if (b == null)
                             b = (PointG)ListFcn[i];
                         else
+                        {
+                            MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
+                        }
                     }
                 }
 
             }
-            if (a == null || b == null) return;
-            f.Parse(Ex_function(a, b));
+            if (a == null || b == null)
+            {
+                MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            f.Parse(Ex_function(a,b));
             f.name = FunctionName();
             // f.Parse("2x+2");
             ListFcn.Add(f);
@@ -831,7 +838,51 @@ namespace GT
             p1_Dr_Circle = p2_Dr_Circle = null;
             c_mouse = mouse.dr_Circle;
         }
+        private void toolStripLabel7_Click(object sender, EventArgs e)
+        {
+            Function f = new Function();
+            PointG a, b;
+            a = b = null;
 
+            for (int i = 0; i < ListFcn.Count; i++)
+            {
+                if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
+                {
+                    if (a == null)
+                    {
+                        a = (PointG)ListFcn[i];
+                    }
+                    else
+                    {
+                        if (b == null)
+                            b = (PointG)ListFcn[i];
+                        else
+                        {
+                            MessageBox.Show("phải chọn 2 điểm","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                            
+                            return;
+                        }
+                    }
+                    //else if (a != null && b != null)
+                    //{
+                    //    MessageBox.Show("phải chọn 2 điểm");
+                    //    return;
+                    //}
+                }
+
+            }
+            if (a == null || b == null)
+            {
+                MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            float _b = EX1_funtion(a, b);
+            MessageBox.Show(_b.ToString());
+        }
+        float EX1_funtion(PointG a, PointG b)
+        {
+            return (float)Math.Sqrt((a.I.X - b.I.X) * (a.I.X - b.I.X) + (a.I.Y - b.I.Y) * (a.I.Y - b.I.Y));
+        }
         /*****************************************************************************************************************************/
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -848,6 +899,17 @@ namespace GT
                 saveFileDialog1.FileName = " ";
             }
         }
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+        private void toolStrip2_BackColorChanged(object sender, EventArgs e)
+        {
+
+        }
+
+      
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
