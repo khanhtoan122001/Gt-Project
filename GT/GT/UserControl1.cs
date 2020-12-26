@@ -13,6 +13,7 @@ namespace GT
 {
     public partial class UserControl1 : UserControl
     {
+
         //Image img = Image.FromFile(@"..\\..\\Resources\\ColorWheel.png");
         Bitmap b;
         Graphics g;
