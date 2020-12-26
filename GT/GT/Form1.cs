@@ -64,5 +64,13 @@ namespace GT
             List<double> dtr = new List<double>() { a.X, a.Y, r };
             return dtr;
         }
+
+        private void darkThemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach(PicForm i in this.MdiChildren)
+            {
+                i.darkThemeToolStripMenuItem_CheckedChanged();
+            }
+        }
     }
 }

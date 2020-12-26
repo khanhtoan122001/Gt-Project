@@ -62,7 +62,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1187, 33);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            
             // 
             // newToolStripMenuItem
             // 
@@ -78,21 +77,21 @@
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(224, 30);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(144, 30);
             this.newToolStripMenuItem1.Text = "New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(144, 30);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 30);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -119,8 +118,9 @@
             // 
             this.darkThemeToolStripMenuItem.CheckOnClick = true;
             this.darkThemeToolStripMenuItem.Name = "darkThemeToolStripMenuItem";
-            this.darkThemeToolStripMenuItem.Size = new System.Drawing.Size(195, 30);
+            this.darkThemeToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.darkThemeToolStripMenuItem.Text = "Dark theme";
+            this.darkThemeToolStripMenuItem.Click += new System.EventHandler(this.darkThemeToolStripMenuItem_Click);
             // 
             // lướiToolStripMenuItem
             // 
@@ -128,7 +128,7 @@
             this.lướiToolStripMenuItem.CheckOnClick = true;
             this.lướiToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.lướiToolStripMenuItem.Name = "lướiToolStripMenuItem";
-            this.lướiToolStripMenuItem.Size = new System.Drawing.Size(195, 30);
+            this.lướiToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.lướiToolStripMenuItem.Text = "Lưới";
             // 
             // listToolStripMenuItem
@@ -137,7 +137,7 @@
             this.listToolStripMenuItem.CheckOnClick = true;
             this.listToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.listToolStripMenuItem.Name = "listToolStripMenuItem";
-            this.listToolStripMenuItem.Size = new System.Drawing.Size(195, 30);
+            this.listToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.listToolStripMenuItem.Text = "List";
             // 
             // buttonToolStripMenuItem
@@ -146,7 +146,7 @@
             this.buttonToolStripMenuItem.CheckOnClick = true;
             this.buttonToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.buttonToolStripMenuItem.Name = "buttonToolStripMenuItem";
-            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(195, 30);
+            this.buttonToolStripMenuItem.Size = new System.Drawing.Size(224, 30);
             this.buttonToolStripMenuItem.Text = "Button";
             // 
             // imageList1
@@ -163,6 +163,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(1187, 612);
             this.Controls.Add(this.menuStrip1);

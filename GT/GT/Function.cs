@@ -160,6 +160,11 @@ namespace Fcn
 
             str_save = equation;
 
+            if(equation[0] == '-')
+            {
+                equation = "0" + equation; 
+            }
+
             for (int i = 0; i < equation.Length; i++)
             {
                 switch (state)

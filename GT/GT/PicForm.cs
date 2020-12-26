@@ -128,6 +128,8 @@ namespace GT
                 SwExport = true;
             };
 
+            
+
             this.DoubleBuffered = true;
         }
         void _MouseMove(object sender, MouseEventArgs e)
@@ -180,6 +182,7 @@ namespace GT
         }
         public void Form1_Load(object sender, EventArgs e)
         {
+
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             flowLayoutPanel1_SizeChanged(null, null);
@@ -350,7 +353,7 @@ namespace GT
             int a1 = 3;
             themLaboDuongTron(a1, pt);
         }
-        private void darkThemeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        public void darkThemeToolStripMenuItem_CheckedChanged()
         {
             Dark = !Dark;
             theme.ChangeAll();
@@ -1009,7 +1012,7 @@ namespace GT
             }
             Dark = Convert.ToBoolean(listF[0]);
             if (Dark)
-                this.darkThemeToolStripMenuItem_CheckedChanged(null, null);
+                this.darkThemeToolStripMenuItem_CheckedChanged();
             x0 = Convert.ToInt32(listF[1]);
             y0 = Convert.ToInt32(listF[2]);
             k = Convert.ToInt32(listF[3]);
