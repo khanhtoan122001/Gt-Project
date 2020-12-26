@@ -110,7 +110,7 @@ namespace GT
                         pictureBox1.Cursor = Cursors.Hand;
                         DrawGr();
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
-                       
+
                         /******************************************************************************************************************/
                         break;
                     default:
@@ -135,7 +135,7 @@ namespace GT
                 SwExport = true;
             };
 
-            
+
 
             this.DoubleBuffered = true;
         }
@@ -703,7 +703,7 @@ namespace GT
         private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
         private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
         /*****************************************************************************************************************************/
-        
+
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
             Function f = new Function();
@@ -729,6 +729,7 @@ namespace GT
                 }
 
             }
+            if (a == null || b == null) return;
             f.Parse(Ex_function(a,b));       
            // f.Parse("2x+2");
             ListFcn.Add(f);
