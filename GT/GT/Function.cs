@@ -25,7 +25,13 @@ namespace Fcn
         bool enable = true;
         protected Color f_color;
         string str_save;
+        string Name;
         public ArrayList arr;
+        public string name
+        {
+            set => Name = value;
+            get => Name;
+        }
         public double Result
         {
             get
@@ -731,7 +737,7 @@ namespace Fcn
         //public virtual float f(float _x) => 0;
         public override string ToString()
         {
-            return str_save;
+            return Name + "(x) = " + str_save;
         }
         public virtual string SaveString()
         {
@@ -747,7 +753,6 @@ namespace Fcn
     public class PointG : Function
     {
         private PointF location;
-        public string name;
         public PointG() { }
         public PointG(string str, string color)
         {
@@ -767,10 +772,8 @@ namespace Fcn
         }
         public PointF I
         {
-            get
-            {
-                return location;
-            }
+            get => location;
+            set => location = value;
         }
         public override string SaveString()
         {

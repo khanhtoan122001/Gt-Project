@@ -52,7 +52,6 @@ namespace GT
 
         private List<double> duongThang(Point a,Point b)
         {
-            
             double _x = (a.Y - b.Y) / (a.X - b.X);
             double _x1 = (a.X * b.Y - b.X * a.Y) / (a.X - b.X);            
             List<double> dth = new List<double>() { _x, _x1 };
