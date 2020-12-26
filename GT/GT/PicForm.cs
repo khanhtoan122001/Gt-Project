@@ -762,12 +762,19 @@ namespace GT
                         if (b == null)
                             b = (PointG)ListFcn[i];
                         else
+                        {
+                            MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
+                        }
                     }
                 }
 
             }
-            if (a == null || b == null) return;
+            if (a == null || b == null)
+            {
+                MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             f.Parse(Ex_function(a,b));
             f.name = FunctionName();
            // f.Parse("2x+2");
@@ -856,7 +863,7 @@ namespace GT
                             b = (PointG)ListFcn[i];
                         else
                         {
-                            MessageBox.Show("phải chọn 2 điểm","sai rồi",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                            MessageBox.Show("phải chọn 2 điểm","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             
                             return;
                         }
@@ -871,7 +878,7 @@ namespace GT
             }
             if (a == null || b == null)
             {
-                MessageBox.Show("phải chọn 2 điểm", "sai rồi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             float _b =(float) EX1_funtion(a, b);
