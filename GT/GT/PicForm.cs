@@ -13,6 +13,11 @@ using Fcn;
 
 namespace GT
 {
+    public struct _dth
+    {
+        public bool a1;
+        public PointG a;
+    }
     public partial class PicForm : Form
     {
         float[] C_dv = { 1f, 2f, 5f };
@@ -105,6 +110,8 @@ namespace GT
                         pictureBox1.Cursor = Cursors.Hand;
                         DrawGr();
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
+                       
+                        /******************************************************************************************************************/
                         break;
                     default:
                         break;
@@ -693,15 +700,49 @@ namespace GT
         private void toolStripLabel2_Click(object sender, EventArgs e) => c_mouse = mouse.export;
         private void toolStripLabel3_Click(object sender, EventArgs e) => c_mouse = mouse.s_point;
         /*****************************************************************************************************************************/
+        
         private void toolStripLabel4_Click(object sender, EventArgs e)
         {
             Function f = new Function();
-           
-            f.Parse("3x+2");
-            
+            PointG a, b;
+            a = b = null;
+            //List<PointG> a = new List<PointG>();
+            //List<_dth> dth = new List<_dth>();
+            for (int i = 0; i < ListFcn.Count; i++)
+            {
+                if (ListFcnControls[i].selected && ListFcn[i].GetType().ToString() == "Fcn.PointG")
+                {
+                    if (a == null)
+                    {
+                        a = (PointG)ListFcn[i];
+                    }
+                    else
+                    {
+                        if (b == null)
+                            b = (PointG)ListFcn[i];
+                        else
+                            return;
+                    }
+                }
+
+            }
+            f.Parse(Ex_function(a,b));       
+           // f.Parse("2x+2");
             ListFcn.Add(f);
+
             addListFcn();
             DrawGr();
+        }
+        
+        string Ex_function(PointG a,PointG b)
+        {
+            string function = string.Empty;
+            float _x = (a.I.Y - b.I.Y) / (a.I.X - b.I.X);
+            float _x1 = (a.I.X * b.I.Y - b.I.X * a.I.Y) / (a.I.X - b.I.X);
+
+
+            function = string.Format("{0}x{1}", _x, _x1 < 0 ? _x1.ToString() : "+" + _x1.ToString());
+            return function;
         }
         /*****************************************************************************************************************************/
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)

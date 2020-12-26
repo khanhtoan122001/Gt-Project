@@ -44,9 +44,9 @@ namespace GT
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
@@ -163,7 +163,7 @@ namespace GT
             this.toolStripLabel4});
             this.toolStrip2.Location = new System.Drawing.Point(471, 9);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(320, 71);
+            this.toolStrip2.Size = new System.Drawing.Size(516, 71);
             this.toolStrip2.TabIndex = 6;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -196,13 +196,14 @@ namespace GT
             this.toolStripLabel3.Size = new System.Drawing.Size(46, 68);
             this.toolStripLabel3.Text = "Point";
             this.toolStripLabel3.Click += new System.EventHandler(this.toolStripLabel3_Click);
-            //*******************************************************************************************************
+            // 
+            // toolStripLabel4
+            // 
             this.toolStripLabel4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel4.Image")));
             this.toolStripLabel4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(46, 68);
-            this.toolStripLabel4.Text = "duong thang";
+            this.toolStripLabel4.Size = new System.Drawing.Size(40, 68);
+            this.toolStripLabel4.Text = "Line";
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
             // panel1
@@ -214,7 +215,7 @@ namespace GT
             this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Location = new System.Drawing.Point(12, 83);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 355);
+            this.panel1.Size = new System.Drawing.Size(972, 371);
             this.panel1.TabIndex = 7;
             // 
             // splitContainer1
@@ -231,9 +232,19 @@ namespace GT
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(776, 355);
-            this.splitContainer1.SplitterDistance = 258;
+            this.splitContainer1.Size = new System.Drawing.Size(972, 371);
+            this.splitContainer1.SplitterDistance = 323;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(323, 371);
+            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             // 
             // splitContainer2
             // 
@@ -246,7 +257,7 @@ namespace GT
             // 
             this.splitContainer2.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer2.Panel2Collapsed = true;
-            this.splitContainer2.Size = new System.Drawing.Size(514, 355);
+            this.splitContainer2.Size = new System.Drawing.Size(645, 371);
             this.splitContainer2.SplitterDistance = 171;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -256,20 +267,10 @@ namespace GT
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(514, 355);
+            this.pictureBox1.Size = new System.Drawing.Size(645, 371);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(258, 355);
-            this.flowLayoutPanel1.TabIndex = 0;
-            this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             // 
             // openFileDialog1
             // 
@@ -279,7 +280,7 @@ namespace GT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(996, 466);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
