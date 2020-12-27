@@ -166,5 +166,41 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circle %28dark%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\distance %28dark%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\distance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-collect-96 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-collect-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-coupon-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-coupon-100-dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-drag-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-drag-96-dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Line %28dark%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Line.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

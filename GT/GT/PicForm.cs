@@ -1097,7 +1097,6 @@ namespace GT
                     ListFcn[(int)n.Tag].Enable = !ListFcn[(int)n.Tag].Enable;
                 DrawGr();
             };
-            
 
             n.pictureBox1.Click += (s, e) =>
             {

@@ -1,8 +1,0 @@
-using System;
-namespace kkk {
-class Program{
-static void Main(string [] r){
- Console.WriteLine(");
- Console.WriteLine(");
- Console.WriteLine(");
-}}}
