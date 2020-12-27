@@ -764,6 +764,7 @@ namespace Fcn
             location.Y = Convert.ToSingle(str.Substring(index + 1));
             this.color = Color.FromArgb(Convert.ToInt32(color));
         }
+        
         public PointG(string name, Point p, Point xOy, int k, float dv)
         {
             this.name = name;
@@ -789,6 +790,93 @@ namespace Fcn
         public Circle() 
         {
             x = new float[3];
+            x[0] = x[1] = x[2] = float.NaN;
+        }
+        public bool parse(string str)
+        {
+            str = str.ToLower();
+            str = str.Trim();
+            int nPos;
+            while ((nPos = str.IndexOf(' ')) != -1)
+                str = str.Remove(nPos, 1);
+            
+            int c;
+            float va;
+            int ch;
+            while (true)
+            {
+                if (float.IsNaN(x[0]) || float.IsNaN(x[1]))
+                    if (str[0] != '(') return false;
+                int i;
+                string s;
+                if (float.IsNaN(x[0]) && float.IsNaN(x[1]))
+                    s = ")^2+";
+                else
+                {
+                    if (float.IsNaN(x[0]) || float.IsNaN(x[1]))
+                    {
+                        s = ")^2";
+                    }
+                    else
+                    {
+                        if (float.TryParse(str.Substring(1), out va))
+                        {
+                            x[2] = (float)Math.Sqrt(va);
+                            return true;
+                        }
+                        else return false;
+                    }
+                }
+                i = str.IndexOf(s);
+                if (i == -1) return false;
+                string v = str.Substring(1, i - 1);
+                ch = -1;c = 0;
+                for (int j = 0; j < v.Length; j++)
+                {
+                    if (Char.IsLetter(v[j]))
+                    {
+                        if (v[j] != 'x' && v[j] != 'y')
+                            return false;
+                        if (ch == -1) c++;
+                        else return false;
+                        if (c != 1) return false;
+                        ch = j;
+                    }
+                }
+                if (v[ch] == 'x')
+                {
+                    if (!float.IsNaN(x[0])) return false;
+                    if (ch == 0)
+                    {
+                        if (float.TryParse(v.Substring(ch + 1), out va))
+                            x[0] = -va;
+                        else return false;
+                    }
+                    else
+                    {
+                        if (float.TryParse(v.Substring(0, ch - 1), out va))
+                            x[0] = -va;
+                        else return false;
+                    }
+                }
+                else
+                {
+                    if (!float.IsNaN(x[1])) return false;
+                    if (ch == 0)
+                    {
+                        if (float.TryParse(v.Substring(ch + 1), out va))
+                            x[1] = -va;
+                        else return false;
+                    }
+                    else
+                    {
+                        if (float.TryParse(v.Substring(0, ch - 1), out va))
+                            x[1] = -va;
+                        else return false;
+                    }
+                }
+                str = str.Substring(i + s.Length);
+            }
         }
         public Circle(PointG a, PointG b)
         {
@@ -823,6 +911,7 @@ namespace Fcn
             }
             set => x[0] = value;
         }
+        
         public float B
         {
             get

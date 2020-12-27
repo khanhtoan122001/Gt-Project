@@ -37,7 +37,7 @@ namespace GT
         {
             PicForm picForm = new PicForm();
             picForm.MdiParent = this;
-            picForm.openToolStripMenuItem_Click(null, null);          
+            picForm.openToolStripMenuItem_Click(null, null);
             picForm.Show();
         }
 

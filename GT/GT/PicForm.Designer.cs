@@ -221,17 +221,6 @@ namespace GT
             this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
             // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
-            this.toolStripLabel6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(50, 68);
-            this.toolStripLabel6.Text = "Circle";
-            this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
-            // 
             // toolStripLabel7
             // 
             this.toolStripLabel7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -323,7 +312,8 @@ namespace GT
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PicForm";
-            this.Text = "PicForm";
+            this.Text = "New Work Table";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PicForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.toolStrip1.ResumeLayout(false);
