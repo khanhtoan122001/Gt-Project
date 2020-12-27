@@ -38,6 +38,11 @@ namespace GT
             PicForm picForm = new PicForm();
             picForm.MdiParent = this;
             picForm.openToolStripMenuItem_Click(null, null);
+            if (picForm.pathFile == "")
+            {
+                picForm.Dispose();
+                return;
+            }
             picForm.Show();
         }
 

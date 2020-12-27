@@ -22,7 +22,7 @@ namespace GT
     {
         float[] C_dv = { 1f, 2f, 5f };
         Theme theme = new Theme();
-        string pathFile = string.Empty;
+        public string pathFile = string.Empty;
         const int MaxZoom = 180, Normal = 100;
         List<Function> ListFcn = new List<Function>();
         List<UserControl1> ListFcnControls = new List<UserControl1>();
@@ -162,7 +162,6 @@ namespace GT
                         ListFcn.Add(new Circle(p1_Dr, p2_Dr));
                         addListFcn();
                         CheckDr();
-                        c_mouse = mouse.none;
                         DrawGr();
                     }
                 }
@@ -180,7 +179,6 @@ namespace GT
                         ListFcn.Add(f);
                         addListFcn();
                         CheckDr();
-                        c_mouse = mouse.none;
                         DrawGr();
                     }
                 }
@@ -432,6 +430,7 @@ namespace GT
         }
         private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)
         {
+            Refresh_ListFcn();
             int io = 0;
             if ((ListFcnControls.Count * new UserControl1().Height - flowLayoutPanel1.Height) > 0)
                 io = 13;
@@ -898,9 +897,7 @@ namespace GT
                 GraphicsUnit.Pixel);
                 i.BackgroundImage = bitmap;
                 if (i == e.ClickedItem)
-                {
                     ControlPaint.DrawBorder(g, new Rectangle(0, 0, i.Width, i.Height), Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
-                }
             }
         }
 
@@ -1046,7 +1043,7 @@ namespace GT
             };
             n.textBox1.KeyDown += (s, e) =>
             {
-                Refresh_ListFcn();
+                //Refresh_ListFcn();
                 if (e.KeyValue == 13)
                 {
                     Function fn = new Function();
@@ -1057,6 +1054,8 @@ namespace GT
                         {
                             ListFcn.Add(cir);
                             addListFcn();
+                            DrawGr();
+                            n.UserControl1_DoubleClick(null, null);
                             return;
                         }
                         fn.Parse(n.textBox1.Text.ToLower());
@@ -1079,7 +1078,9 @@ namespace GT
                     }
                     else
                     {
-                        ListFcn[(int)n.Tag].Parse(n.textBox1.Text.ToLower());
+                        string text = n.textBox1.Text;
+                        text = text.Substring(text.IndexOf('=') + 1);
+                        ListFcn[(int)n.Tag].Parse(text.ToLower());
                         if (ListFcn[(int)n.Tag].arr.Count != 1)
                         {
                             return;
@@ -1092,6 +1093,7 @@ namespace GT
                                 return;
                             }
                         }
+                        n.UserControl1_DoubleClick(null, null);
                     }
                     DrawGr();
                 }
@@ -1112,7 +1114,6 @@ namespace GT
         {
             ListFcnControls.Add(create_UserControl1());
             ListFcnControls[ListFcnControls.Count - 2].textBox1.Text = ListFcn[ListFcn.Count - 1].ToString();
-           
             flowLayoutPanel1.Controls.Add(ListFcnControls[ListFcnControls.Count - 1]);
             Refresh_ListFcn();
             flowLayoutPanel1_SizeChanged(null, null);

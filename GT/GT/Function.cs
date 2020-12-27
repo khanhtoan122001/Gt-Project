@@ -799,7 +799,26 @@ namespace Fcn
             int nPos;
             while ((nPos = str.IndexOf(' ')) != -1)
                 str = str.Remove(nPos, 1);
-            
+            if (str.IndexOf("x^2") != -1)
+            {
+                x[0] = 0;
+                if (str.IndexOf("x^2") == 0)
+                    str = str.Substring(4);
+                else
+                    str = str.Substring(0, str.IndexOf("x^2") - 1) + str.Substring(str.IndexOf("x^2") + 3);
+            }
+            if (str.IndexOf("y^2") != -1)
+            {
+                x[1] = 0;
+                if (str.IndexOf("y^2") == 0)
+                {
+                    if (str[3] == '=')
+                        str = str.Substring(3);
+                    else str = str.Substring(4);
+                }
+                else
+                    str = str.Substring(0, str.IndexOf("y^2") - 1) + str.Substring(str.IndexOf("y^2") + 3);
+            }
             int c;
             float va;
             int ch;
