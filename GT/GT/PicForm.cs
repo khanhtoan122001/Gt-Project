@@ -160,6 +160,7 @@ namespace GT
                     {
                         p2_Dr = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
                         ListFcn.Add(new Circle(p1_Dr, p2_Dr));
+                        p1_Dr = p2_Dr = null;
                         addListFcn();
                         CheckDr();
                         DrawGr();
@@ -176,6 +177,7 @@ namespace GT
                         p2_Dr = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
                         Function f = new Function();
                         f.Parse(Ex_function(p1_Dr, p2_Dr));
+                        p1_Dr = p2_Dr = null;
                         ListFcn.Add(f);
                         addListFcn();
                         CheckDr();
@@ -1271,8 +1273,6 @@ namespace GT
         {
             if (c_mouse != mouse.dr_Circle && c_mouse != mouse.dr_Line)
             {
-                if (p1_Dr != null) ListFcn.Remove(p1_Dr);
-                if (p2_Dr != null) ListFcn.Remove(p2_Dr);
                 p1_Dr = p2_Dr = null;
             }
         }
