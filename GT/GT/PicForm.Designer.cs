@@ -39,6 +39,10 @@ namespace GT
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
@@ -52,11 +56,6 @@ namespace GT
             this.saveastoolStripButton = new System.Windows.Forms.ToolStripLabel();
             this.deletetoolStripButton = new System.Windows.Forms.ToolStripLabel();
             this.exittoolStripButton = new System.Windows.Forms.ToolStripLabel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -67,8 +66,8 @@ namespace GT
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -86,7 +85,7 @@ namespace GT
             this.toolStrip1.Location = new System.Drawing.Point(9, 9);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(338, 71);
+            this.toolStrip1.Size = new System.Drawing.Size(409, 71);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.BackColorChanged += new System.EventHandler(this.toolStrip1_BackColorChanged);
@@ -105,9 +104,9 @@ namespace GT
             this.toolStripLabel4,
             this.toolStripLabel6,
             this.toolStripLabel7});
-            this.toolStrip2.Location = new System.Drawing.Point(347, 9);
+            this.toolStrip2.Location = new System.Drawing.Point(418, 9);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(352, 71);
+            this.toolStrip2.Size = new System.Drawing.Size(384, 71);
             this.toolStrip2.TabIndex = 6;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -171,6 +170,56 @@ namespace GT
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.checkBox4);
+            this.panel2.Controls.Add(this.checkBox3);
+            this.panel2.Controls.Add(this.checkBox2);
+            this.panel2.Location = new System.Drawing.Point(805, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(179, 65);
+            this.panel2.TabIndex = 8;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Checked = true;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.Location = new System.Drawing.Point(8, 3);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(52, 21);
+            this.checkBox4.TabIndex = 7;
+            this.checkBox4.Text = "List";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.listToolStripMenuItem_Click);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(8, 41);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(117, 21);
+            this.checkBox3.TabIndex = 6;
+            this.checkBox3.Text = "Đường kẻ lưới";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.lướiToolStripMenuItem_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(112, 3);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(57, 21);
+            this.checkBox2.TabIndex = 5;
+            this.checkBox2.Text = "Lưới";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckStateChanged);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -186,11 +235,12 @@ namespace GT
             // toolStripLabel1
             // 
             this.toolStripLabel1.AutoSize = false;
+            this.toolStripLabel1.BackgroundImage = global::GT.Properties.Resources.icons8_drag_96;
             this.toolStripLabel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripLabel1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(61, 68);
+            this.toolStripLabel1.Size = new System.Drawing.Size(50, 50);
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click_1);
             // 
             // toolStripLabel2
@@ -202,55 +252,60 @@ namespace GT
             this.toolStripLabel2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel2.Image")));
             this.toolStripLabel2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(52, 68);
+            this.toolStripLabel2.Size = new System.Drawing.Size(50, 50);
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
             // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.AutoSize = false;
+            this.toolStripLabel3.BackgroundImage = global::GT.Properties.Resources.icons8_collect_96;
             this.toolStripLabel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.toolStripLabel3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
             this.toolStripLabel3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(42, 68);
+            this.toolStripLabel3.Size = new System.Drawing.Size(50, 50);
             this.toolStripLabel3.Click += new System.EventHandler(this.toolStripLabel3_Click);
             // 
             // toolStripLabel4
             // 
             this.toolStripLabel4.AutoSize = false;
+            this.toolStripLabel4.BackgroundImage = global::GT.Properties.Resources.Line1;
             this.toolStripLabel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.toolStripLabel4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripLabel4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(36, 68);
+            this.toolStripLabel4.Size = new System.Drawing.Size(50, 50);
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
             // toolStripLabel6
             // 
             this.toolStripLabel6.AutoSize = false;
+            this.toolStripLabel6.BackgroundImage = global::GT.Properties.Resources.circle;
+            this.toolStripLabel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
             this.toolStripLabel6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(46, 68);
-            this.toolStripLabel6.Text = "Circle";
+            this.toolStripLabel6.Size = new System.Drawing.Size(50, 50);
             this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
             // 
             // toolStripLabel7
             // 
             this.toolStripLabel7.AutoSize = false;
+            this.toolStripLabel7.BackgroundImage = global::GT.Properties.Resources.distance;
             this.toolStripLabel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.toolStripLabel7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripLabel7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel7.Name = "toolStripLabel7";
-            this.toolStripLabel7.Size = new System.Drawing.Size(66, 68);
+            this.toolStripLabel7.Size = new System.Drawing.Size(50, 50);
             this.toolStripLabel7.Click += new System.EventHandler(this.toolStripLabel7_Click);
             // 
             // newtoolStripButton
             // 
             this.newtoolStripButton.AutoSize = false;
+            this.newtoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_add_file_801;
             this.newtoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.newtoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.newtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -262,6 +317,7 @@ namespace GT
             // opentoolStripButton
             // 
             this.opentoolStripButton.AutoSize = false;
+            this.opentoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_opened_folder_144;
             this.opentoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.opentoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.opentoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -272,6 +328,7 @@ namespace GT
             // savetoolStripButton
             // 
             this.savetoolStripButton.AutoSize = false;
+            this.savetoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_save_100;
             this.savetoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.savetoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.savetoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -282,6 +339,7 @@ namespace GT
             // saveastoolStripButton
             // 
             this.saveastoolStripButton.AutoSize = false;
+            this.saveastoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_save_as_100;
             this.saveastoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.saveastoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.saveastoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -292,6 +350,7 @@ namespace GT
             // deletetoolStripButton
             // 
             this.deletetoolStripButton.AutoSize = false;
+            this.deletetoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_delete_bin_96;
             this.deletetoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.deletetoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.deletetoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -302,75 +361,13 @@ namespace GT
             // exittoolStripButton
             // 
             this.exittoolStripButton.AutoSize = false;
+            this.exittoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_exit_52;
             this.exittoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.exittoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.exittoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.exittoolStripButton.Name = "exittoolStripButton";
             this.exittoolStripButton.Size = new System.Drawing.Size(51, 51);
             this.exittoolStripButton.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.checkBox4);
-            this.panel2.Controls.Add(this.checkBox3);
-            this.panel2.Controls.Add(this.checkBox2);
-            this.panel2.Controls.Add(this.checkBox1);
-            this.panel2.Location = new System.Drawing.Point(702, 12);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(282, 65);
-            this.panel2.TabIndex = 8;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Checked = true;
-            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox4.Location = new System.Drawing.Point(112, 41);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(52, 21);
-            this.checkBox4.TabIndex = 7;
-            this.checkBox4.Text = "List";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.listToolStripMenuItem_Click);
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(112, 3);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(117, 21);
-            this.checkBox3.TabIndex = 6;
-            this.checkBox3.Text = "Đường kẻ lưới";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.lướiToolStripMenuItem_Click);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(8, 41);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(57, 21);
-            this.checkBox2.TabIndex = 5;
-            this.checkBox2.Text = "Lưới";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckStateChanged);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(8, 2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(60, 21);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Dark";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // PicForm
             // 
@@ -400,9 +397,9 @@ namespace GT
             this.splitContainer2.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -435,6 +432,5 @@ namespace GT
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
