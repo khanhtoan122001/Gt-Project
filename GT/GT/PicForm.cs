@@ -57,6 +57,8 @@ namespace GT
         {
             InitializeComponent();
 
+
+
             ListFcnControls.Add(create_UserControl1());
 
             flowLayoutPanel1.Controls.Add(ListFcnControls[ListFcnControls.Count - 1]);
@@ -265,7 +267,9 @@ namespace GT
         }
         public void Form1_Load(object sender, EventArgs e)
         {
-
+            LoadToolstrip1();
+            foreach (ToolStripItem i in toolStrip2.Items)
+                i.BackgroundImage = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             flowLayoutPanel1_SizeChanged(null, null);
@@ -880,6 +884,26 @@ namespace GT
             darkThemeToolStripMenuItem_CheckedChanged();
         }
 
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            toolStrip1.Refresh();
+            foreach(ToolStripItem i in toolStrip2.Items)
+            {
+                Image img = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+                Bitmap bitmap = new Bitmap(50, 50);
+                Graphics g = Graphics.FromImage(bitmap);
+                g.DrawImage(img,
+                new Rectangle(new Point(0,0), bitmap.Size),
+                new Rectangle(0, 0, img.Width, img.Height),
+                GraphicsUnit.Pixel);
+                i.BackgroundImage = bitmap;
+                if (i == e.ClickedItem)
+                {
+                    ControlPaint.DrawBorder(g, new Rectangle(0, 0, i.Width, i.Height), Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
+                }
+            }
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -901,39 +925,14 @@ namespace GT
             }
         }
 
-        private void toolStrip1_BackColorChanged(object sender, EventArgs e)
+        private void LoadToolstrip1()
         {
-            if (Dark)
-            {
-                newtoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80-dark.png");
-                opentoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144-dark.png");
-                savetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100-dark.png");
-                saveastoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100-dark.png");
-                deletetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96-dark.png");
-                exittoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52-dark.png");
-            }
-            else
-            {
                 newtoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80.png");
                 opentoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144.png");
                 savetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100.png");
                 saveastoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100.png");
                 deletetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96.png");
                 exittoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52.png");
-            }
-        }
-        Form createFormInput()
-        {
-            Form f = new Form();
-            f.AutoSize = true;
-            f.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            f.Font = new Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            f.Margin = new System.Windows.Forms.Padding(4);
-            f.Name = "formInput";
-            f.Text = "formInput";
-            f.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            f.ResumeLayout(false);
-            return f;
         }
         void SetDv(bool c_i)
         {

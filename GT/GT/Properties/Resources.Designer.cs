@@ -143,29 +143,9 @@ namespace GT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_collect_96 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-collect-96", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_collect_96__1_ {
             get {
                 object obj = ResourceManager.GetObject("icons8-collect-96 (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_coupon_100 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-coupon-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,16 +176,6 @@ namespace GT.Properties {
         internal static System.Drawing.Bitmap icons8_delete_bin_96_dark {
             get {
                 object obj = ResourceManager.GetObject("icons8-delete-bin-96-dark", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_drag_96 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-drag-96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
