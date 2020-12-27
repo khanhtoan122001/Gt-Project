@@ -1068,6 +1068,7 @@ namespace GT
                     {
                         if (ptg.parse(n.textBox1.Text))
                         {
+                            ptg.name = PointName();
                             ListFcn.Add(ptg);
                             addListFcn();
                             DrawGr();
@@ -1133,6 +1134,7 @@ namespace GT
                                 return;
                             }
                         }
+                        fn.name = FunctionName();
                         if (ListFcn[(int)n.Tag].GetType().ToString() != "Fcn.Function")
                             ListFcn[(int)n.Tag] = fn;
                         Refresh_ListFcn();
