@@ -321,6 +321,7 @@ namespace GT
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PicForm";
             this.Text = "PicForm";
             this.Load += new System.EventHandler(this.Form1_Load);
