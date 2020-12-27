@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GT", "GT\GT.csproj", "{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup\Setup1\Setup1\Setup1.vdproj", "{3A303783-B0CB-4C94-AF2B-E6170575DE38}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "GT\Setup\Setup.vdproj", "{7515D52F-1EF5-4B2B-8532-6FF62E977A9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEF02A9E-B9E1-4D2A-ACCE-B8ABDA820AB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A303783-B0CB-4C94-AF2B-E6170575DE38}.Debug|Any CPU.ActiveCfg = Debug
-		{3A303783-B0CB-4C94-AF2B-E6170575DE38}.Release|Any CPU.ActiveCfg = Release
+		{7515D52F-1EF5-4B2B-8532-6FF62E977A9A}.Debug|Any CPU.ActiveCfg = Debug
+		{7515D52F-1EF5-4B2B-8532-6FF62E977A9A}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
