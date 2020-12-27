@@ -52,6 +52,11 @@ namespace GT
             this.saveastoolStripButton = new System.Windows.Forms.ToolStripLabel();
             this.deletetoolStripButton = new System.Windows.Forms.ToolStripLabel();
             this.exittoolStripButton = new System.Windows.Forms.ToolStripLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,6 +68,7 @@ namespace GT
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -80,9 +86,10 @@ namespace GT
             this.toolStrip1.Location = new System.Drawing.Point(9, 9);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(462, 71);
+            this.toolStrip1.Size = new System.Drawing.Size(338, 71);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.BackColorChanged += new System.EventHandler(this.toolStrip1_BackColorChanged);
             // 
             // toolStrip2
             // 
@@ -98,9 +105,9 @@ namespace GT
             this.toolStripLabel4,
             this.toolStripLabel6,
             this.toolStripLabel7});
-            this.toolStrip2.Location = new System.Drawing.Point(471, 9);
+            this.toolStrip2.Location = new System.Drawing.Point(347, 9);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(516, 71);
+            this.toolStrip2.Size = new System.Drawing.Size(352, 71);
             this.toolStrip2.TabIndex = 6;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -118,6 +125,7 @@ namespace GT
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.GrayText;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -131,7 +139,7 @@ namespace GT
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(972, 371);
-            this.splitContainer1.SplitterDistance = 273;
+            this.splitContainer1.SplitterDistance = 193;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -140,7 +148,7 @@ namespace GT
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(273, 371);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(193, 371);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             // 
@@ -155,7 +163,7 @@ namespace GT
             // 
             this.splitContainer2.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer2.Panel2Collapsed = true;
-            this.splitContainer2.Size = new System.Drawing.Size(695, 371);
+            this.splitContainer2.Size = new System.Drawing.Size(775, 371);
             this.splitContainer2.SplitterDistance = 171;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -169,7 +177,7 @@ namespace GT
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(695, 371);
+            this.pictureBox1.Size = new System.Drawing.Size(775, 371);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
@@ -301,11 +309,75 @@ namespace GT
             this.exittoolStripButton.Size = new System.Drawing.Size(51, 51);
             this.exittoolStripButton.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.checkBox4);
+            this.panel2.Controls.Add(this.checkBox3);
+            this.panel2.Controls.Add(this.checkBox2);
+            this.panel2.Controls.Add(this.checkBox1);
+            this.panel2.Location = new System.Drawing.Point(702, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(282, 65);
+            this.panel2.TabIndex = 8;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Checked = true;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.Location = new System.Drawing.Point(112, 41);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(52, 21);
+            this.checkBox4.TabIndex = 7;
+            this.checkBox4.Text = "List";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.listToolStripMenuItem_Click);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(112, 3);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(117, 21);
+            this.checkBox3.TabIndex = 6;
+            this.checkBox3.Text = "Đường kẻ lưới";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.lướiToolStripMenuItem_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(8, 41);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(57, 21);
+            this.checkBox2.TabIndex = 5;
+            this.checkBox2.Text = "Lưới";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckStateChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(8, 2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(60, 21);
+            this.checkBox1.TabIndex = 4;
+            this.checkBox1.Text = "Dark";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // PicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 466);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
@@ -329,6 +401,8 @@ namespace GT
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -357,5 +431,10 @@ namespace GT
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripLabel toolStripLabel7;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

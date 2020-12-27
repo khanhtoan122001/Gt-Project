@@ -36,7 +36,7 @@ namespace GT
         char nameP = 'Z', nameF = 'e';
         Graphics g;
         Bitmap MainBitmap;
-        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false, isMove = false;
+        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, Luoi = true, SwExport = false, isMove = false;
         int G = 10;
         string str_nameF = "f";
         const int E = 10000;
@@ -290,88 +290,6 @@ namespace GT
             //frmMain_Resize(null, null);
             VeTruc();
         }
-        Label[] lb;
-        TextBox[] txt;
-        Label labo()
-        {
-            Label n = new Label();
-
-            n.Size = new Size(60, 30);
-
-            return n;
-        }
-        TextBox txtBox()
-        {
-            TextBox t = new TextBox();
-            t.Size = new Size(60, 30);
-            t.BackColor = Color.White;
-            t.KeyDown += (s, e) =>
-
-            {
-                if (e.KeyValue == 13)
-                {
-                    SendKeys.Send("{TAB}");
-                }
-            };
-            return t;
-        }
-        void themLaboDuongTron(int n, PictureBox pt)
-        {
-            Button ve = new Button();
-            ve.Text = "OK";
-
-            Label name = new Label();
-            name.Text = "Phương trình có dạng";
-            name.Size = new Size(180, 30);
-            name.Location = new Point(0, 0);
-            lb = new Label[n];
-            txt = new TextBox[n];
-            for (int i = 0; i < 3; i++)
-            {
-                lb[i] = labo();
-
-                lb[i].Location = new Point(0, i * 30 + 30);
-                txt[i] = txtBox();
-                txt[i].Location = new Point(100, i * 30 + 30);
-            }
-            lb[0].Text = "Nhập a";
-            lb[1].Text = "Nhập b";
-            lb[2].Text = "Nhập R";
-            Form f = createFormInput();
-            ve.Size = new Size(60, 30);
-            ve.Location = new Point(0, n * 30 + 30);
-            f.Controls.Add(pt);
-            f.Controls.Add(name);
-            f.Controls.AddRange(lb);
-            f.Controls.AddRange(txt);
-            f.Controls.Add(ve);
-            ve.Click += (s, e) =>
-            {
-                Circle circle = new Circle();
-                float[] x = new float[n];
-                for (int i = 0; i < n; i++)
-                {
-                    if (txt[i].Text == string.Empty)
-                    {
-                        MessageBox.Show("Nhập đầy đủ giá trị", "Lỗi");
-                        return;
-                    }
-                    x[i] = Convert.ToSingle(txt[i].Text);
-                    if (i == 2) if (x[i] < 0)
-                        {
-                            MessageBox.Show("R phải lớn hơn 0");
-                            return;
-                        }
-                }
-                circle.X = x;
-
-                ListFcn.Add(circle);
-                addListFcn();
-                f.Close();
-            };
-            f.ShowDialog();
-            DrawGr();
-        }
         /***************************************************************************************************************************/
         private void VeTruc()
         {
@@ -395,6 +313,42 @@ namespace GT
                 g.DrawString("O", f, br, x0, y0);
                 g.DrawString("x", f, br, max_x - 20, y0 - 20);
                 g.DrawString("y", f, br, x0 - 20, 1);
+                int i, yd, xd;
+                Pen pen_x = new Pen(theme.TextColor);
+                for (i = x0 + k; i < max_x; i += k)
+                {
+                    yd = y0;
+                    if (y0 < 0) yd = 3;
+                    if (y0 > max_y) yd = max_y - 20;
+                    g.DrawLine(pen_x, i, yd - 2, i, yd + 2);
+                    g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
+                }
+                for (i = x0 - k; i > 0; i -= k)
+                {
+                    yd = y0;
+                    if (y0 < 0) yd = 3;
+                    if (y0 > max_y) yd = max_y - 20;
+                    g.DrawLine(pen_x, i, yd - 2, i, yd + 2);
+                    g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
+                }
+                for (i = y0 + k; i < max_y; i += k)
+                {
+                    xd = x0;
+                    if (x0 < 0) xd = 3;
+                    if (x0 > max_x) xd = max_x - 20;
+                    g.DrawLine(pen_x, x0 - 2, i, x0 + 2, i);
+                    g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
+                }
+                for (i = y0 - k; i > 0; i -= k)
+                {
+                    xd = x0;
+                    if (x0 < 0) xd = 3;
+                    if (x0 > max_x) xd = max_x - 20;
+                    g.DrawLine(pen_x, x0 - 2, i, x0 + 2, i);
+                    g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
+                }
+
+                //VeLuoi();
             }
         }
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -438,18 +392,6 @@ namespace GT
             pathFile = "";
             this.Text = "New work Table";
             this.Create();
-        }
-        private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt = new PictureBox();
-            pt.Size = new Size(200, 50);
-            pt.Location = new Point(190, 0);
-            pt.BackColor = Color.White;
-            Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
-            pt.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt.Image = ig;
-            int a1 = 3;
-            themLaboDuongTron(a1, pt);
         }
         public void darkThemeToolStripMenuItem_CheckedChanged()
         {
@@ -655,17 +597,6 @@ namespace GT
                 //saveAsToolStripMenuItem.Enabled = false;
                 savetoolStripButton.Enabled = false;
                 saveastoolStripButton.Enabled = false;
-            }
-        }
-        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox1.Image.Save(saveFileDialog1.FileName);
-                saveFileDialog1.FileName = "";
             }
         }
         private void lướiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -944,9 +875,30 @@ namespace GT
             }
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            darkThemeToolStripMenuItem_CheckedChanged();
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox2_CheckStateChanged(object sender, EventArgs e)
+        {
+            if(checkBox2.Checked)
+            {
+                checkBox3.Checked = true;
+                Luoi = true;
+                DrawGr();
+            }
+            else
+            {
+                checkBox3.Checked = false;
+                Luoi = false;
+                DrawGr();
+            }
         }
 
         private void toolStrip1_BackColorChanged(object sender, EventArgs e)
@@ -1003,46 +955,20 @@ namespace GT
         }
         void VeLuoi()
         {
-            Pen pen_x = new Pen(theme.Nest, 2);
-            Pen pen_n = new Pen(theme.Tail, 1);
-            int i, xd = 0, yd = 0;
-            float n = ((float)k / 5);
-            Brush br = new SolidBrush(theme.TextColor);
-            Font f = new Font("Arial", 12);
-
-            for (i = x0 + k; i < max_x; i += k)
+            if (Luoi)
             {
-                yd = y0;
-                if (y0 < 0) yd = 3;
-                if (y0 > max_y) yd = max_y - 20;
-                g.DrawLine(pen_x, i, 0, i, max_y);
-                g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
+                Pen pen_x = new Pen(theme.Nest, 2);
+                int i;
+                for (i = x0 + k; i < max_x; i += k)
+                    g.DrawLine(pen_x, i, 0, i, max_y);
+                for (i = x0 - k; i > 0; i -= k)
+                    g.DrawLine(pen_x, i, 0, i, max_y);
+                for (i = y0 + k; i < max_y; i += k)
+                    g.DrawLine(pen_x, 0, i, max_x, i);
+                for (i = y0 - k; i > 0; i -= k)
+                    g.DrawLine(pen_x, 0, i, max_x, i);
+                if (LuoiNho) VeLuoiNho();
             }
-            for (i = x0 - k; i > 0; i -= k)
-            {
-                yd = y0;
-                if (y0 < 0) yd = 3;
-                if (y0 > max_y) yd = max_y - 20;
-                g.DrawLine(pen_x, i, 0, i, max_y);
-                g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
-            }
-            for (i = y0 + k; i < max_y; i += k)
-            {
-                xd = x0;
-                if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 20;
-                g.DrawLine(pen_x, 0, i, max_x, i);
-                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
-            }
-            for (i = y0 - k; i > 0; i -= k)
-            {
-                xd = x0;
-                if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 20;
-                g.DrawLine(pen_x, 0, i, max_x, i);
-                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
-            }
-            if (LuoiNho) VeLuoiNho();
         }
         private void VeLuoiNho()
         {
