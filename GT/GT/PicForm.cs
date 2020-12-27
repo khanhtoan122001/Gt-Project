@@ -57,8 +57,6 @@ namespace GT
         {
             InitializeComponent();
 
-
-
             ListFcnControls.Add(create_UserControl1());
 
             flowLayoutPanel1.Controls.Add(ListFcnControls[ListFcnControls.Count - 1]);
@@ -269,7 +267,22 @@ namespace GT
         {
             LoadToolstrip1();
             foreach (ToolStripItem i in toolStrip2.Items)
-                i.BackgroundImage = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+            {
+                if(i == toolStripLabel1)
+                {
+                    Image img = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+                    Bitmap bitmap = new Bitmap(50, 50);
+                    Graphics g = Graphics.FromImage(bitmap);
+                    g.DrawImage(img,
+                    new Rectangle(new Point(0, 0), bitmap.Size),
+                    new Rectangle(0, 0, img.Width, img.Height),
+                    GraphicsUnit.Pixel);
+                    i.BackgroundImage = bitmap;
+                    ControlPaint.DrawBorder(g, new Rectangle(0, 0, i.Width, i.Height), Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
+                }    
+                else
+                   i.BackgroundImage = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+            }
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             flowLayoutPanel1_SizeChanged(null, null);
@@ -1050,8 +1063,17 @@ namespace GT
                 {
                     Function fn = new Function();
                     Circle cir = new Circle();
+                    PointG ptg = new PointG();
                     if (n.Tag == null)
                     {
+                        if (ptg.parse(n.textBox1.Text))
+                        {
+                            ListFcn.Add(ptg);
+                            addListFcn();
+                            DrawGr();
+                            n.UserControl1_DoubleClick(null, null);
+                            return;
+                        }
                         if (cir.parse(n.textBox1.Text.ToLower()))
                         {
                             ListFcn.Add(cir);
@@ -1081,20 +1103,39 @@ namespace GT
                     else
                     {
                         string text = n.textBox1.Text;
+                        if (ptg.parse(text))
+                        {
+                            ListFcn[(int)n.Tag] = ptg;
+                            n.UserControl1_DoubleClick(null, null);
+                            Refresh_ListFcn();
+                            DrawGr();
+                            return;
+                        }
+                        if (cir.parse(text))
+                        {
+                            ListFcn[(int)n.Tag] = cir;
+                            n.UserControl1_DoubleClick(null, null);
+                            Refresh_ListFcn();
+                            DrawGr();
+                            return;
+                        }
                         text = text.Substring(text.IndexOf('=') + 1);
-                        ListFcn[(int)n.Tag].Parse(text.ToLower());
-                        if (ListFcn[(int)n.Tag].arr.Count != 1)
+                        fn.Parse(text.ToLower());
+                        if (fn.arr.Count != 1)
                         {
                             return;
                         }
                         else
                         {
-                            if (ListFcn[(int)n.Tag].arr[0].ToString() != "x")
+                            if (fn.arr[0].ToString() != "x")
                             {
                                 MessageBox.Show("Biểu thức không hợp lệ. Vui lòng nhập lại !\n\nVí dụ: (sin(x)+3)/(x+4)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
+                        if (ListFcn[(int)n.Tag].GetType().ToString() != "Fcn.Function")
+                            ListFcn[(int)n.Tag] = fn;
+                        Refresh_ListFcn();
                         n.UserControl1_DoubleClick(null, null);
                     }
                     DrawGr();

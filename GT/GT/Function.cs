@@ -765,6 +765,26 @@ namespace Fcn
             this.color = Color.FromArgb(Convert.ToInt32(color));
         }
         
+        public bool parse(string str)
+        {
+            str = str.ToLower();
+            if (str.IndexOf(',') == -1 || str.IndexOf('(') == -1 || str.IndexOf(')') == -1)
+                return false;
+            str.Substring(str.IndexOf('('));
+            foreach (char i in str)
+                if (char.IsLetter(i))
+                    return false;
+            float va;
+            if (float.TryParse(str.Substring(1, str.IndexOf(',') - 1), out va))
+                location.X = va;
+            else return false;
+            str = str.Substring(str.IndexOf(',') + 1);
+            str = str.Substring(0, str.Length - 1);
+            if (float.TryParse(str, out va))
+                location.Y = va;
+            else return false;
+            return true;
+        }
         public PointG(string name, Point p, Point xOy, int k, float dv)
         {
             this.name = name;
@@ -794,6 +814,7 @@ namespace Fcn
         }
         public bool parse(string str)
         {
+            if(str.IndexOf('=') == -1) return false;
             str = str.ToLower();
             str = str.Trim();
             int nPos;
@@ -801,7 +822,7 @@ namespace Fcn
                 str = str.Remove(nPos, 1);
             if (str.IndexOf("x^2") != -1)
             {
-                x[0] = 0;
+                x[0] = 0f;
                 if (str.IndexOf("x^2") == 0)
                     str = str.Substring(4);
                 else
@@ -809,7 +830,7 @@ namespace Fcn
             }
             if (str.IndexOf("y^2") != -1)
             {
-                x[1] = 0;
+                x[1] = 0f;
                 if (str.IndexOf("y^2") == 0)
                 {
                     if (str[3] == '=')
@@ -960,6 +981,8 @@ namespace Fcn
             else a = " + " + x[0];
             if (x[1] > 0) b = " - " + x[1];
             else b = " + " + x[1];
+            if (x[0] == 0f) a = string.Empty;
+            if (x[1] == 0f) b = string.Empty;
             string v = string.Empty;
             if (a != string.Empty) v += string.Format("(x{0})^2 + ", a);
             else v += "x^2 + ";
