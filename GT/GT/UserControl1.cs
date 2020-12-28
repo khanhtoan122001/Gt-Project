@@ -79,11 +79,6 @@ namespace GT
             }
         }
 
-        private void UserControl1_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void UserControl1_SizeChanged(object sender, EventArgs e)
         {
             r = new Rectangle(0, 0, this.Width, this.Height);

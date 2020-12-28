@@ -91,7 +91,6 @@
             this.Controls.Add(this.textBox1);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(393, 56);
-            this.Load += new System.EventHandler(this.UserControl1_Load);
             this.SizeChanged += new System.EventHandler(this.UserControl1_SizeChanged);
             this.Click += new System.EventHandler(this.UserControl1_Click);
             this.DoubleClick += new System.EventHandler(this.UserControl1_DoubleClick);

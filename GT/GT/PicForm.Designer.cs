@@ -38,12 +38,12 @@ namespace GT
             this.deletetoolStripButton = new System.Windows.Forms.ToolStripLabel();
             this.exittoolStripButton = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabel7 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabel7 = new System.Windows.Forms.ToolStripLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -52,6 +52,10 @@ namespace GT
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,6 +67,7 @@ namespace GT
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -80,14 +85,13 @@ namespace GT
             this.toolStrip1.Location = new System.Drawing.Point(9, 9);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip1.Size = new System.Drawing.Size(462, 71);
+            this.toolStrip1.Size = new System.Drawing.Size(409, 71);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // newtoolStripButton
             // 
             this.newtoolStripButton.AutoSize = false;
-            this.newtoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_add_file_801;
             this.newtoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.newtoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.newtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -99,7 +103,6 @@ namespace GT
             // opentoolStripButton
             // 
             this.opentoolStripButton.AutoSize = false;
-            this.opentoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_opened_folder_144;
             this.opentoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.opentoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.opentoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -110,7 +113,6 @@ namespace GT
             // savetoolStripButton
             // 
             this.savetoolStripButton.AutoSize = false;
-            this.savetoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_save_100;
             this.savetoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.savetoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.savetoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -121,7 +123,6 @@ namespace GT
             // saveastoolStripButton
             // 
             this.saveastoolStripButton.AutoSize = false;
-            this.saveastoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_save_as_100;
             this.saveastoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.saveastoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.saveastoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -132,7 +133,6 @@ namespace GT
             // deletetoolStripButton
             // 
             this.deletetoolStripButton.AutoSize = false;
-            this.deletetoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_delete_bin_96;
             this.deletetoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.deletetoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.deletetoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -143,7 +143,6 @@ namespace GT
             // exittoolStripButton
             // 
             this.exittoolStripButton.AutoSize = false;
-            this.exittoolStripButton.BackgroundImage = global::GT.Properties.Resources.icons8_exit_52;
             this.exittoolStripButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.exittoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.exittoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -165,81 +164,79 @@ namespace GT
             this.toolStripLabel4,
             this.toolStripLabel6,
             this.toolStripLabel7});
-            this.toolStrip2.Location = new System.Drawing.Point(471, 9);
+            this.toolStrip2.Location = new System.Drawing.Point(418, 9);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(516, 71);
+            this.toolStrip2.Size = new System.Drawing.Size(384, 71);
             this.toolStrip2.TabIndex = 6;
             this.toolStrip2.Text = "toolStrip2";
+            this.toolStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip2_ItemClicked);
             // 
             // toolStripLabel1
             // 
-            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
+            this.toolStripLabel1.AutoSize = false;
+            this.toolStripLabel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripLabel1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(49, 68);
-            this.toolStripLabel1.Text = "None";
+            this.toolStripLabel1.Size = new System.Drawing.Size(50, 50);
+            this.toolStripLabel1.Text = "drag.png";
+            this.toolStripLabel1.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click_1);
             // 
             // toolStripLabel2
             // 
-            this.toolStripLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel2.Image")));
+            this.toolStripLabel2.AutoSize = false;
+            this.toolStripLabel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripLabel2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(56, 68);
-            this.toolStripLabel2.Text = "Export";
+            this.toolStripLabel2.Size = new System.Drawing.Size(50, 50);
+            this.toolStripLabel2.Text = "coupon.png";
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
             // 
             // toolStripLabel3
             // 
-            this.toolStripLabel3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.Image")));
+            this.toolStripLabel3.AutoSize = false;
+            this.toolStripLabel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripLabel3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(46, 68);
-            this.toolStripLabel3.Text = "Point";
+            this.toolStripLabel3.Size = new System.Drawing.Size(50, 50);
+            this.toolStripLabel3.Text = "collect.png";
             this.toolStripLabel3.Click += new System.EventHandler(this.toolStripLabel3_Click);
             // 
             // toolStripLabel4
             // 
-            this.toolStripLabel4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripLabel4.AutoSize = false;
+            this.toolStripLabel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripLabel4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(40, 68);
-            this.toolStripLabel4.Text = "Line";
+            this.toolStripLabel4.Size = new System.Drawing.Size(50, 50);
+            this.toolStripLabel4.Text = "line.png";
             this.toolStripLabel4.Click += new System.EventHandler(this.toolStripLabel4_Click);
             // 
             // toolStripLabel6
             // 
-            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
+            this.toolStripLabel6.AutoSize = false;
+            this.toolStripLabel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripLabel6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(50, 68);
-            this.toolStripLabel6.Text = "Circle";
-            this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
-            // 
-            // toolStripLabel6
-            // 
-            this.toolStripLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel6.Image")));
-            this.toolStripLabel6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripLabel6.Name = "toolStripLabel6";
-            this.toolStripLabel6.Size = new System.Drawing.Size(50, 68);
-            this.toolStripLabel6.Text = "Circle";
+            this.toolStripLabel6.Size = new System.Drawing.Size(50, 50);
+            this.toolStripLabel6.Text = "circle.png";
             this.toolStripLabel6.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.toolStripLabel6.Click += new System.EventHandler(this.toolStripLabel6_Click);
             // 
             // toolStripLabel7
             // 
-            this.toolStripLabel7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripLabel7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel7.Image")));
+            this.toolStripLabel7.AutoSize = false;
+            this.toolStripLabel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripLabel7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripLabel7.Name = "toolStripLabel7";
-            this.toolStripLabel7.Size = new System.Drawing.Size(70, 68);
-            this.toolStripLabel7.Text = "Distance";
+            this.toolStripLabel7.Size = new System.Drawing.Size(50, 50);
+            this.toolStripLabel7.Text = "distance.png";
             this.toolStripLabel7.Click += new System.EventHandler(this.toolStripLabel7_Click);
             // 
             // panel1
@@ -256,6 +253,7 @@ namespace GT
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.GrayText;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -269,7 +267,7 @@ namespace GT
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(972, 371);
-            this.splitContainer1.SplitterDistance = 273;
+            this.splitContainer1.SplitterDistance = 193;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -278,7 +276,7 @@ namespace GT
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(273, 371);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(193, 371);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.SizeChanged += new System.EventHandler(this.flowLayoutPanel1_SizeChanged);
             // 
@@ -293,7 +291,7 @@ namespace GT
             // 
             this.splitContainer2.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer2.Panel2Collapsed = true;
-            this.splitContainer2.Size = new System.Drawing.Size(695, 371);
+            this.splitContainer2.Size = new System.Drawing.Size(775, 371);
             this.splitContainer2.SplitterDistance = 171;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -303,7 +301,7 @@ namespace GT
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(695, 371);
+            this.pictureBox1.Size = new System.Drawing.Size(775, 371);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
@@ -313,17 +311,70 @@ namespace GT
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.checkBox4);
+            this.panel2.Controls.Add(this.checkBox3);
+            this.panel2.Controls.Add(this.checkBox2);
+            this.panel2.Location = new System.Drawing.Point(805, 12);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(179, 65);
+            this.panel2.TabIndex = 8;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Checked = true;
+            this.checkBox4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox4.Location = new System.Drawing.Point(8, 3);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(52, 21);
+            this.checkBox4.TabIndex = 7;
+            this.checkBox4.Text = "List";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.listToolStripMenuItem_Click);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(8, 41);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(117, 21);
+            this.checkBox3.TabIndex = 6;
+            this.checkBox3.Text = "Đường kẻ lưới";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.lướiToolStripMenuItem_Click);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox2.Location = new System.Drawing.Point(112, 3);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(57, 21);
+            this.checkBox2.TabIndex = 5;
+            this.checkBox2.Text = "Lưới";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckStateChanged);
+            // 
             // PicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 466);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PicForm";
-            this.Text = "PicForm";
+            this.ShowIcon = false;
+            this.Text = "New Work Table";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PicForm_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.toolStrip1.ResumeLayout(false);
@@ -339,6 +390,8 @@ namespace GT
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -353,10 +406,6 @@ namespace GT
         private System.Windows.Forms.ToolStripLabel deletetoolStripButton;
         private System.Windows.Forms.ToolStripLabel exittoolStripButton;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripButton toolStripLabel1;
-        private System.Windows.Forms.ToolStripButton toolStripLabel2;
-        private System.Windows.Forms.ToolStripButton toolStripLabel3;
-        private System.Windows.Forms.ToolStripButton toolStripLabel4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -365,7 +414,15 @@ namespace GT
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.ToolStripButton toolStripLabel6;
-        private System.Windows.Forms.ToolStripButton toolStripLabel7;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel6;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel7;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

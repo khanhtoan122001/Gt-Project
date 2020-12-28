@@ -22,7 +22,7 @@ namespace GT
     {
         float[] C_dv = { 1f, 2f, 5f };
         Theme theme = new Theme();
-        string pathFile = string.Empty;
+        public string pathFile = string.Empty;
         const int MaxZoom = 180, Normal = 100;
         List<Function> ListFcn = new List<Function>();
         List<UserControl1> ListFcnControls = new List<UserControl1>();
@@ -32,11 +32,11 @@ namespace GT
         Point u = new Point(0, 0);
         Point LastMouse = new Point(0, 0), p_Export;
         List<PointG> GD = new List<PointG>();
-        PointG p1_Dr_Circle, p2_Dr_Circle;
+        PointG p1_Dr, p2_Dr;
         char nameP = 'Z', nameF = 'e';
         Graphics g;
         Bitmap MainBitmap;
-        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, SwExport = false, isMove = false;
+        bool isMouseDown = false, isSave = false, Dark = false, LuoiNho = true, Luoi = true, SwExport = false, isMove = false;
         int G = 10;
         string str_nameF = "f";
         const int E = 10000;
@@ -124,12 +124,10 @@ namespace GT
                         DrawGr();
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
                         break;
-                    case mouse.dr_Circle:
+                    default:
                         pictureBox1.Cursor = Cursors.Hand;
                         DrawGr();
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
-                        break;
-                    default:
                         break;
                 }
             };
@@ -152,25 +150,40 @@ namespace GT
                 }
                 if (c_mouse == mouse.dr_Circle)
                 {
-                    if (p1_Dr_Circle == null)
+                    if (p1_Dr == null)
                     {
-                        p1_Dr_Circle = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
+                        p1_Dr = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
                     }
-                    else if (p2_Dr_Circle == null) 
+                    else if (p2_Dr == null) 
                     {
-                        p2_Dr_Circle = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
-                        ListFcn.Add(new Circle(p1_Dr_Circle, p2_Dr_Circle));
+                        p2_Dr = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
+                        ListFcn.Add(new Circle(p1_Dr, p2_Dr));
+                        p1_Dr = p2_Dr = null;
                         addListFcn();
                         CheckDr();
-                        c_mouse = mouse.none;
+                        DrawGr();
+                    }
+                }
+                if (c_mouse == mouse.dr_Line)
+                {
+                    if (p1_Dr == null)
+                    {
+                        p1_Dr = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
+                    }
+                    else if (p2_Dr == null)
+                    {
+                        p2_Dr = new PointG("", e.Location, new Point(x0, y0), k, (float)dv);
+                        Function f = new Function();
+                        f.Parse(Ex_function(p1_Dr, p2_Dr));
+                        p1_Dr = p2_Dr = null;
+                        ListFcn.Add(f);
+                        addListFcn();
+                        CheckDr();
                         DrawGr();
                     }
                 }
                 SwExport = true;
             };
-
-
-
             this.DoubleBuffered = true;
         }
         void _MouseMove(object sender, MouseEventArgs e)
@@ -237,14 +250,12 @@ namespace GT
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
                     }
                     break;
-                case mouse.dr_Circle:
+                default:
                     if (isMouseDown)
                     {
                         DrawGr();
                         g.FillEllipse(new SolidBrush(Color.Blue), new Rectangle(new Point(e.X - 5, e.Y - 5), new Size(10, 10)));
                     }
-                    break;
-                default:
                     break;
             }
         }
@@ -254,7 +265,24 @@ namespace GT
         }
         public void Form1_Load(object sender, EventArgs e)
         {
-
+            LoadToolstrip1();
+            foreach (ToolStripItem i in toolStrip2.Items)
+            {
+                if(i == toolStripLabel1)
+                {
+                    Image img = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+                    Bitmap bitmap = new Bitmap(50, 50);
+                    Graphics g = Graphics.FromImage(bitmap);
+                    g.DrawImage(img,
+                    new Rectangle(new Point(0, 0), bitmap.Size),
+                    new Rectangle(0, 0, img.Width, img.Height),
+                    GraphicsUnit.Pixel);
+                    i.BackgroundImage = bitmap;
+                    ControlPaint.DrawBorder(g, new Rectangle(0, 0, i.Width, i.Height), Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
+                }    
+                else
+                   i.BackgroundImage = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+            }
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
             flowLayoutPanel1_SizeChanged(null, null);
@@ -279,88 +307,6 @@ namespace GT
             //frmMain_Resize(null, null);
             VeTruc();
         }
-        Label[] lb;
-        TextBox[] txt;
-        Label labo()
-        {
-            Label n = new Label();
-
-            n.Size = new Size(60, 30);
-
-            return n;
-        }
-        TextBox txtBox()
-        {
-            TextBox t = new TextBox();
-            t.Size = new Size(60, 30);
-            t.BackColor = Color.White;
-            t.KeyDown += (s, e) =>
-
-            {
-                if (e.KeyValue == 13)
-                {
-                    SendKeys.Send("{TAB}");
-                }
-            };
-            return t;
-        }
-        void themLaboDuongTron(int n, PictureBox pt)
-        {
-            Button ve = new Button();
-            ve.Text = "OK";
-
-            Label name = new Label();
-            name.Text = "Phương trình có dạng";
-            name.Size = new Size(180, 30);
-            name.Location = new Point(0, 0);
-            lb = new Label[n];
-            txt = new TextBox[n];
-            for (int i = 0; i < 3; i++)
-            {
-                lb[i] = labo();
-
-                lb[i].Location = new Point(0, i * 30 + 30);
-                txt[i] = txtBox();
-                txt[i].Location = new Point(100, i * 30 + 30);
-            }
-            lb[0].Text = "Nhập a";
-            lb[1].Text = "Nhập b";
-            lb[2].Text = "Nhập R";
-            Form f = createFormInput();
-            ve.Size = new Size(60, 30);
-            ve.Location = new Point(0, n * 30 + 30);
-            f.Controls.Add(pt);
-            f.Controls.Add(name);
-            f.Controls.AddRange(lb);
-            f.Controls.AddRange(txt);
-            f.Controls.Add(ve);
-            ve.Click += (s, e) =>
-            {
-                Circle circle = new Circle();
-                float[] x = new float[n];
-                for (int i = 0; i < n; i++)
-                {
-                    if (txt[i].Text == string.Empty)
-                    {
-                        MessageBox.Show("Nhập đầy đủ giá trị", "Lỗi");
-                        return;
-                    }
-                    x[i] = Convert.ToSingle(txt[i].Text);
-                    if (i == 2) if (x[i] < 0)
-                        {
-                            MessageBox.Show("R phải lớn hơn 0");
-                            return;
-                        }
-                }
-                circle.X = x;
-
-                ListFcn.Add(circle);
-                addListFcn();
-                f.Close();
-            };
-            f.ShowDialog();
-            DrawGr();
-        }
         /***************************************************************************************************************************/
         private void VeTruc()
         {
@@ -384,6 +330,42 @@ namespace GT
                 g.DrawString("O", f, br, x0, y0);
                 g.DrawString("x", f, br, max_x - 20, y0 - 20);
                 g.DrawString("y", f, br, x0 - 20, 1);
+                int i, yd, xd;
+                Pen pen_x = new Pen(theme.TextColor);
+                for (i = x0 + k; i < max_x; i += k)
+                {
+                    yd = y0;
+                    if (y0 < 0) yd = 3;
+                    if (y0 > max_y) yd = max_y - 20;
+                    g.DrawLine(pen_x, i, yd - 2, i, yd + 2);
+                    g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
+                }
+                for (i = x0 - k; i > 0; i -= k)
+                {
+                    yd = y0;
+                    if (y0 < 0) yd = 3;
+                    if (y0 > max_y) yd = max_y - 20;
+                    g.DrawLine(pen_x, i, yd - 2, i, yd + 2);
+                    g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
+                }
+                for (i = y0 + k; i < max_y; i += k)
+                {
+                    xd = x0;
+                    if (x0 < 0) xd = 3;
+                    if (x0 > max_x) xd = max_x - 20;
+                    g.DrawLine(pen_x, x0 - 2, i, x0 + 2, i);
+                    g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
+                }
+                for (i = y0 - k; i > 0; i -= k)
+                {
+                    xd = x0;
+                    if (x0 < 0) xd = 3;
+                    if (x0 > max_x) xd = max_x - 20;
+                    g.DrawLine(pen_x, x0 - 2, i, x0 + 2, i);
+                    g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
+                }
+
+                //VeLuoi();
             }
         }
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -401,6 +383,20 @@ namespace GT
         }
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (pathFile != "" || ListFcn.Count != 0)
+            {
+                switch (MessageBox.Show("Bạn có muốn lưu thay đổi của bạn?", "Save", MessageBoxButtons.YesNoCancel))
+                {
+                    case DialogResult.Yes:
+                        this.saveToolStripMenuItem_Click(null, null);
+                        break;
+                    case DialogResult.No:
+                    case DialogResult.Cancel:
+                        return;
+                    default:
+                        break;
+                }
+            }
             pictureBox1.Refresh();
             ListFcn.Clear();
             ListFcnControls.Clear();
@@ -411,19 +407,8 @@ namespace GT
             flowLayoutPanel1_SizeChanged(null, null);
             isSave = false;
             pathFile = "";
+            this.Text = "New work Table";
             this.Create();
-        }
-        private void phươngTrìnhĐườngTrònToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            PictureBox pt = new PictureBox();
-            pt.Size = new Size(200, 50);
-            pt.Location = new Point(190, 0);
-            pt.BackColor = Color.White;
-            Image ig = Image.FromFile(@"..\\..\\Resources\\lt-b2-chuong-3-sgk-hh-10-0.jpg");
-            pt.SizeMode = PictureBoxSizeMode.AutoSize;
-            pt.Image = ig;
-            int a1 = 3;
-            themLaboDuongTron(a1, pt);
         }
         public void darkThemeToolStripMenuItem_CheckedChanged()
         {
@@ -460,6 +445,7 @@ namespace GT
         }
         private void flowLayoutPanel1_SizeChanged(object sender, EventArgs e)
         {
+            Refresh_ListFcn();
             int io = 0;
             if ((ListFcnControls.Count * new UserControl1().Height - flowLayoutPanel1.Height) > 0)
                 io = 13;
@@ -500,15 +486,15 @@ namespace GT
             {
                 PointG pG;
                 PointF lo;
-                if(p1_Dr_Circle != null)
+                if(p1_Dr != null)
                 {
-                    pG = p1_Dr_Circle;
+                    pG = p1_Dr;
                     lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
                     g.FillEllipse(new SolidBrush(Color.Blue), lo.X, lo.Y, 10, 10);
                 }
-                if(p2_Dr_Circle != null)
+                if(p2_Dr != null)
                 {
-                    pG = p2_Dr_Circle;
+                    pG = p2_Dr;
                     lo = new PointF(pG.I.X / (float)dv * k + x0 - 5, -pG.I.Y / (float)dv * k + y0 - 5);
                     g.FillEllipse(new SolidBrush(Color.Blue), lo.X, lo.Y, 10, 10);
                 }
@@ -520,7 +506,7 @@ namespace GT
                 return;
             if (!isSave)
             {
-                saveFileDialog1.Filter = "GT files (*.GT)|*.GT";
+                saveFileDialog1.Filter = "GT files (*.gt)|*.gt";
                 saveFileDialog1.FilterIndex = 1;
                 saveFileDialog1.RestoreDirectory = true;
 
@@ -539,9 +525,10 @@ namespace GT
         }
         public void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             openFileDialog1.FileName = "";
 
-            openFileDialog1.Filter = "GT files (*.GT)|*.GT";
+            openFileDialog1.Filter = "GT files (*.gt)|*.gt";
             openFileDialog1.FilterIndex = 1;
             openFileDialog1.RestoreDirectory = true;
 
@@ -628,17 +615,6 @@ namespace GT
                 //saveAsToolStripMenuItem.Enabled = false;
                 savetoolStripButton.Enabled = false;
                 saveastoolStripButton.Enabled = false;
-            }
-        }
-        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            saveFileDialog1.Filter = "jpg files (*.jpg)|*.jpg|png files (*.png)|*.png";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox1.Image.Save(saveFileDialog1.FileName);
-                saveFileDialog1.FileName = "";
             }
         }
         private void lướiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -805,25 +781,19 @@ namespace GT
                     {
                         if (b == null)
                             b = (PointG)ListFcn[i];
-                        else
-                        {
-                            MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
                     }
                 }
 
             }
             if (a == null || b == null)
             {
-                MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                c_mouse = mouse.dr_Line;
                 return;
             }
             f.Parse(Ex_function(a,b));
             f.name = FunctionName();
             // f.Parse("2x+2");
             ListFcn.Add(f);
-
             addListFcn();
             DrawGr();
             c_mouse = mouse.dr_Line;
@@ -841,7 +811,7 @@ namespace GT
         }
         private void toolStripLabel6_Click(object sender, EventArgs e)
         {
-            p1_Dr_Circle = p2_Dr_Circle = null;
+            p1_Dr = p2_Dr = null;
             c_mouse = mouse.dr_Circle;
         }
         private void toolStripLabel7_Click(object sender, EventArgs e)
@@ -864,8 +834,6 @@ namespace GT
                             b = (PointG)ListFcn[i];
                         else
                         {
-                            MessageBox.Show("phải chọn 2 điểm","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                            
                             return;
                         }
                     }
@@ -879,11 +847,11 @@ namespace GT
             }
             if (a == null || b == null)
             {
-                MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("phải chọn 2 điểm", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             float _b = EX1_funtion(a, b);
-            MessageBox.Show(_b.ToString());
+            MessageBox.Show(string.Format("{0}{1} = {2}",a.name,b.name,_b.ToString()));
         }
         float EX1_funtion(PointG a, PointG b)
         {
@@ -894,7 +862,7 @@ namespace GT
         {
             if (ListFcn.Count == 0)
                 return;
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt";
+            saveFileDialog1.Filter = "GT files (*.gt)|*.gt";
             saveFileDialog1.FilterIndex = 1;
             saveFileDialog1.RestoreDirectory = true;
 
@@ -905,55 +873,79 @@ namespace GT
                 saveFileDialog1.FileName = " ";
             }
         }
+
+        private void PicForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(pathFile != "" || ListFcn.Count != 0)
+            {
+                switch(MessageBox.Show("Bạn có muốn lưu thay đổi của bạn?", "Save", MessageBoxButtons.YesNoCancel))
+                {
+                    case DialogResult.Yes:
+                        this.saveToolStripMenuItem_Click(null, null);
+                        break;
+                    case DialogResult.No:
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            darkThemeToolStripMenuItem_CheckedChanged();
+        }
+
         private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
+            toolStrip1.Refresh();
+            foreach(ToolStripItem i in toolStrip2.Items)
+            {
+                Image img = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+                Bitmap bitmap = new Bitmap(50, 50);
+                Graphics g = Graphics.FromImage(bitmap);
+                g.DrawImage(img,
+                new Rectangle(new Point(0,0), bitmap.Size),
+                new Rectangle(0, 0, img.Width, img.Height),
+                GraphicsUnit.Pixel);
+                i.BackgroundImage = bitmap;
+                if (i == e.ClickedItem)
+                    ControlPaint.DrawBorder(g, new Rectangle(0, 0, i.Width, i.Height), Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
+            }
         }
-        private void toolStrip2_BackColorChanged(object sender, EventArgs e)
-        {
-
-        }
-
-      
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void toolStrip1_BackColorChanged(object sender, EventArgs e)
+        private void checkBox2_CheckStateChanged(object sender, EventArgs e)
         {
-            if (Dark)
+            if(checkBox2.Checked)
             {
-                newtoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80-dark.png");
-                opentoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144-dark.png");
-                savetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100-dark.png");
-                saveastoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100-dark.png");
-                deletetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96-dark.png");
-                exittoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52-dark.png");
+                checkBox3.Checked = true;
+                Luoi = true;
+                DrawGr();
             }
             else
             {
+                checkBox3.Checked = false;
+                Luoi = false;
+                DrawGr();
+            }
+        }
+
+        private void LoadToolstrip1()
+        {
                 newtoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80.png");
                 opentoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144.png");
                 savetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100.png");
                 saveastoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100.png");
                 deletetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96.png");
                 exittoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52.png");
-            }
-        }
-        Form createFormInput()
-        {
-            Form f = new Form();
-            f.AutoSize = true;
-            f.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            f.Font = new Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            f.Margin = new System.Windows.Forms.Padding(4);
-            f.Name = "formInput";
-            f.Text = "formInput";
-            f.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            f.ResumeLayout(false);
-            return f;
         }
         void SetDv(bool c_i)
         {
@@ -975,46 +967,20 @@ namespace GT
         }
         void VeLuoi()
         {
-            Pen pen_x = new Pen(theme.Nest, 2);
-            Pen pen_n = new Pen(theme.Tail, 1);
-            int i, xd = 0, yd = 0;
-            float n = ((float)k / 5);
-            Brush br = new SolidBrush(theme.TextColor);
-            Font f = new Font("Arial", 12);
-
-            for (i = x0 + k; i < max_x; i += k)
+            if (Luoi)
             {
-                yd = y0;
-                if (y0 < 0) yd = 3;
-                if (y0 > max_y) yd = max_y - 20;
-                g.DrawLine(pen_x, i, 0, i, max_y);
-                g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
+                Pen pen_x = new Pen(theme.Nest, 2);
+                int i;
+                for (i = x0 + k; i < max_x; i += k)
+                    g.DrawLine(pen_x, i, 0, i, max_y);
+                for (i = x0 - k; i > 0; i -= k)
+                    g.DrawLine(pen_x, i, 0, i, max_y);
+                for (i = y0 + k; i < max_y; i += k)
+                    g.DrawLine(pen_x, 0, i, max_x, i);
+                for (i = y0 - k; i > 0; i -= k)
+                    g.DrawLine(pen_x, 0, i, max_x, i);
+                if (LuoiNho) VeLuoiNho();
             }
-            for (i = x0 - k; i > 0; i -= k)
-            {
-                yd = y0;
-                if (y0 < 0) yd = 3;
-                if (y0 > max_y) yd = max_y - 20;
-                g.DrawLine(pen_x, i, 0, i, max_y);
-                g.DrawString(((i - x0) / k * dv).ToString(), f, br, i, yd);
-            }
-            for (i = y0 + k; i < max_y; i += k)
-            {
-                xd = x0;
-                if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 20;
-                g.DrawLine(pen_x, 0, i, max_x, i);
-                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
-            }
-            for (i = y0 - k; i > 0; i -= k)
-            {
-                xd = x0;
-                if (x0 < 0) xd = 3;
-                if (x0 > max_x) xd = max_x - 20;
-                g.DrawLine(pen_x, 0, i, max_x, i);
-                g.DrawString((-(i - y0) * dv / k).ToString(), f, br, xd, i);
-            }
-            if (LuoiNho) VeLuoiNho();
         }
         private void VeLuoiNho()
         {
@@ -1069,7 +1035,6 @@ namespace GT
                     ListFcn[(int)n.Tag].Enable = !ListFcn[(int)n.Tag].Enable;
                 DrawGr();
             };
-            
 
             n.pictureBox1.Click += (s, e) =>
             {
@@ -1094,12 +1059,31 @@ namespace GT
             };
             n.textBox1.KeyDown += (s, e) =>
             {
-                Refresh_ListFcn();
+                //Refresh_ListFcn();
                 if (e.KeyValue == 13)
                 {
                     Function fn = new Function();
+                    Circle cir = new Circle();
+                    PointG ptg = new PointG();
                     if (n.Tag == null)
                     {
+                        if (ptg.parse(n.textBox1.Text))
+                        {
+                            ptg.name = PointName();
+                            ListFcn.Add(ptg);
+                            addListFcn();
+                            DrawGr();
+                            n.UserControl1_DoubleClick(null, null);
+                            return;
+                        }
+                        if (cir.parse(n.textBox1.Text.ToLower()))
+                        {
+                            ListFcn.Add(cir);
+                            addListFcn();
+                            DrawGr();
+                            n.UserControl1_DoubleClick(null, null);
+                            return;
+                        }
                         fn.Parse(n.textBox1.Text.ToLower());
                         if (fn.arr.Count != 1)
                         {
@@ -1151,12 +1135,17 @@ namespace GT
                         }
                         else
                         {
-                            if (ListFcn[(int)n.Tag].arr[0].ToString() != "x")
+                            if (fn.arr[0].ToString() != "x")
                             {
                                 MessageBox.Show("Biểu thức không hợp lệ. Vui lòng nhập lại !\n\nVí dụ: (sin(x)+3)/(x+4)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 return;
                             }
                         }
+                        fn.name = FunctionName();
+                        if (ListFcn[(int)n.Tag].GetType().ToString() != "Fcn.Function")
+                            ListFcn[(int)n.Tag] = fn;
+                        Refresh_ListFcn();
+                        n.UserControl1_DoubleClick(null, null);
                     }
                     DrawGr();
                 }
@@ -1177,7 +1166,6 @@ namespace GT
         {
             ListFcnControls.Add(create_UserControl1());
             ListFcnControls[ListFcnControls.Count - 2].textBox1.Text = ListFcn[ListFcn.Count - 1].ToString();
-           
             flowLayoutPanel1.Controls.Add(ListFcnControls[ListFcnControls.Count - 1]);
             Refresh_ListFcn();
             flowLayoutPanel1_SizeChanged(null, null);
@@ -1249,6 +1237,7 @@ namespace GT
             isSave = true;
             StreamReader stream = new StreamReader(path);
             List<string> listF = new List<string>();
+            FileInfo info = new FileInfo(path);
             while (!stream.EndOfStream)
             {
                 listF.Add(stream.ReadLine());
@@ -1285,6 +1274,7 @@ namespace GT
                         listF.Clear();
                         stream.Close();
                         stream.Dispose();
+                        this.Text = info.Name;
                         return;
                     }
                     i++;
@@ -1310,7 +1300,6 @@ namespace GT
                 addListFcn();
                 i++;
             }
-
             return;
         }
         int PointSelect(PointF p)
@@ -1332,11 +1321,9 @@ namespace GT
         }
         void CheckDr()
         {
-            if (c_mouse != mouse.dr_Circle)
+            if (c_mouse != mouse.dr_Circle && c_mouse != mouse.dr_Line)
             {
-                if (p1_Dr_Circle != null) ListFcn.Remove(p1_Dr_Circle);
-                if (p2_Dr_Circle != null) ListFcn.Remove(p2_Dr_Circle);
-                p1_Dr_Circle = p2_Dr_Circle = null;
+                p1_Dr = p2_Dr = null;
             }
         }
     }
