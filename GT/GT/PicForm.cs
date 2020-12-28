@@ -268,9 +268,9 @@ namespace GT
             LoadToolstrip1();
             foreach (ToolStripItem i in toolStrip2.Items)
             {
-                if(i == toolStripLabel1)
+                if (i == toolStripLabel1)
                 {
-                    Image img = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+                    Image img = Image.FromFile(string.Format(@".\Resources\\{0}", i.Text));
                     Bitmap bitmap = new Bitmap(50, 50);
                     Graphics g = Graphics.FromImage(bitmap);
                     g.DrawImage(img,
@@ -279,9 +279,9 @@ namespace GT
                     GraphicsUnit.Pixel);
                     i.BackgroundImage = bitmap;
                     ControlPaint.DrawBorder(g, new Rectangle(0, 0, i.Width, i.Height), Color.FromArgb(255, 0, 0), ButtonBorderStyle.Solid);
-                }    
+                }
                 else
-                   i.BackgroundImage = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+                    i.BackgroundImage = Image.FromFile(string.Format(@".\Resources\\{0}", i.Text));
             }
             x0 = this.pictureBox1.Width / 2;
             y0 = this.pictureBox1.Height / 2;
@@ -903,7 +903,7 @@ namespace GT
             toolStrip1.Refresh();
             foreach(ToolStripItem i in toolStrip2.Items)
             {
-                Image img = Image.FromFile(string.Format(@"..\\..\\Resources\\{0}", i.Text));
+                Image img = Image.FromFile(string.Format(@".\Resources\\{0}", i.Text));
                 Bitmap bitmap = new Bitmap(50, 50);
                 Graphics g = Graphics.FromImage(bitmap);
                 g.DrawImage(img,
@@ -939,12 +939,12 @@ namespace GT
 
         private void LoadToolstrip1()
         {
-                newtoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-add-file-80.png");
-                opentoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-opened-folder-144.png");
-                savetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-100.png");
-                saveastoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-save-as-100.png");
-                deletetoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-delete-bin-96.png");
-                exittoolStripButton.BackgroundImage = Image.FromFile(@"..\\..\\Resources\\icons8-exit-52.png");
+            newtoolStripButton.BackgroundImage = Image.FromFile(@".\Resources\icons8-add-file-80.png");
+            opentoolStripButton.BackgroundImage = Image.FromFile(@".\Resources\icons8-opened-folder-144.png");
+            savetoolStripButton.BackgroundImage = Image.FromFile(@".\Resources\icons8-save-100.png");
+            saveastoolStripButton.BackgroundImage = Image.FromFile(@".\Resources\icons8-save-as-100.png");
+            deletetoolStripButton.BackgroundImage = Image.FromFile(@".\Resources\icons8-delete-bin-96.png");
+            exittoolStripButton.BackgroundImage = Image.FromFile(@".\Resources\icons8-exit-52.png");
         }
         void SetDv(bool c_i)
         {
