@@ -826,6 +826,7 @@ namespace GT
 
             addListFcn();
             DrawGr();
+            c_mouse = mouse.dr_Line;
         }
 
         string Ex_function(PointG a, PointG b)
@@ -1119,8 +1120,32 @@ namespace GT
                     }
                     else
                     {
-                        ListFcn[(int)n.Tag].Parse(n.textBox1.Text.ToLower());
-                        if (ListFcn[(int)n.Tag].arr.Count != 1)
+                        string text = n.textBox1.Text;
+                        if(text.IndexOf(',')!=1)
+                            if (ptg.parse(text.Substring(text.IndexOf('('))))
+                            {
+                                if (ListFcn[(int)n.Tag].GetType().ToString() == "Fcn.PointG")
+                                    ptg.name = ListFcn[(int)n.Tag].name;
+                                else
+                                    ptg.name = PointName();
+                                ListFcn[(int)n.Tag] = ptg;
+                                
+                                n.UserControl1_DoubleClick(null, null);
+                                Refresh_ListFcn();
+                                DrawGr();
+                                return;
+                            }
+                        if (cir.parse(text))
+                        {
+                            ListFcn[(int)n.Tag] = cir;
+                            n.UserControl1_DoubleClick(null, null);
+                            Refresh_ListFcn();
+                            DrawGr();
+                            return;
+                        }
+                        text = text.Substring(text.IndexOf('=') + 1);
+                        fn.Parse(text.ToLower());
+                        if (fn.arr.Count != 1)
                         {
                             return;
                         }
